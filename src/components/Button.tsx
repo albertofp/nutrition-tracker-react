@@ -6,7 +6,18 @@ type Props = {
 
 function Button({ text }: Props) {
 	return (
-		<button className='bg-transparent hover:bg-teal-950 text-teal-700 font-semibold hover:text-white py-2 px-4 border border-teal-800 hover:border-transparent rounded'>
+		<button className='bg-transparent hover:bg-slate-900 text-teal-600 font-semibold py-2 px-4 border border-teal-800 hover:border-transparent rounded min-w-fit'>
+			{text}
+		</button>
+	)
+}
+
+export function SubmitButton({ text }: Props) {
+	return (
+		<button
+			type='submit'
+			className='bg-transparent hover:bg-slate-900 text-teal-600 font-semibold py-2 px-4 border border-teal-800 hover:border-transparent rounded min-w-fit'
+		>
 			{text}
 		</button>
 	)
