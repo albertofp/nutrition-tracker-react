@@ -44,14 +44,14 @@ export default function Navbar({ setCurrentPage }: any) {
 				<h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>
 					Nutrition Tracker
 				</h1>
-				<ul className='uppercase p-4'>
-					<li className='p-4 cursor-pointer border-b border-gray-600 hover:bg-slate-900'>
+				<ul className='p-4 uppercase'>
+					<li className='p-4 border-b border-gray-600 cursor-pointer hover:bg-slate-900'>
 						Home
 					</li>
-					<li className='p-4 cursor-pointer border-b border-gray-600 hover:bg-slate-900'>
+					<li className='p-4 border-b border-gray-600 cursor-pointer hover:bg-slate-900'>
 						About
 					</li>
-					<li className='p-4 cursor-pointer border-b border-gray-600 hover:bg-slate-900'>
+					<li className='p-4 border-b border-gray-600 cursor-pointer hover:bg-slate-900'>
 						Contact
 					</li>
 				</ul>

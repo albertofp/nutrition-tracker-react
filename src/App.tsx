@@ -1,8 +1,14 @@
 import Navbar from './components/Navbar'
-import './styles/input.css'
+import './input.css'
+import Home from './components/Home'
 
 function App() {
-	return <Navbar />
+	return (
+		<>
+			<Navbar />
+			<Home />
+		</>
+	)
 }
 
 export default App
