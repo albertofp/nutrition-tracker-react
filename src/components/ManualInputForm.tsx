@@ -1,44 +1,42 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
 import SectionTitle from './SectionTitle'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
+import { FieldValues, useForm } from 'react-hook-form'
 import { SubmitButton } from './Button'
-import { yupResolver } from '@hookform/resolvers/yup'
 import { foodVals } from '../../types'
 import { mergeObjects } from '../mergeObjects'
+import { z, ZodType } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 type Props = {
 	dayTotal: foodVals
-	setDayTotal: React.Dispatch<
-		React.SetStateAction<{
-			calories: number
-			protein: number
-			carbs: number
-			fat: number
-			fiber: number
-		}>
-	>
+	setDayTotal: React.Dispatch<React.SetStateAction<foodVals>>
+}
+
+type FormData = {
+	calories: number
+	protein: number
+	carbs: number
+	fat: number
+	fiber: number
 }
 
 function ManualInputForm({ dayTotal, setDayTotal }: Props) {
-	const schema = yup.object().shape({
-		calories: yup.number().integer().positive().required(),
-		protein: yup.number().integer().nullable(),
-		carbs: yup.number().integer().nullable(),
-		fat: yup.number().integer().nullable(),
-		fiber: yup.number().integer().nullable()
-	})
+	const schema: ZodType<FormData> = z
+		.object({
+			calories: z.number().min(1).max(3),
+			protein: z.number().max(3),
+			carbs: z.number().max(3),
+			fat: z.number().max(3),
+			fiber: z.number().max(3)
+		})
+		.refine((data) => data.calories > 0, {
+			message: 'Calories must be greater than 0',
+			path: ['calories']
+		})
 
-	const {
-		register,
-		handleSubmit,
-		formState: { errors }
-	} = useForm({
-		resolver: yupResolver(schema)
-	})
+	const { register, handleSubmit } = useForm({ resolver: zodResolver(schema) })
 
-	const onSubmit = (formValues: Object, e) => {
-		e!.preventDefault()
+	const onSubmit = (formValues: FieldValues) => {
 		setDayTotal(mergeObjects(dayTotal, formValues))
 	}
 
