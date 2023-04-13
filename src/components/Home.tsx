@@ -14,8 +14,12 @@ export default function Home() {
 		fiber: 0
 	})
 
+	const onClick = () => {
+		console.log('click')
+	}
+
 	return (
-		<div>
+		<div className='flex flex-col gap m-6'>
 			<div className='text-white flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
 				<h3 className='text-teal-500'>
 					App to track and display your daily calorie and macro nutrient
@@ -26,8 +30,14 @@ export default function Home() {
 			<div className='flex justify-start gap-4 text-[#00df9a] max-w-[1240px] mx-auto px-4 items-center'>
 				<SectionTitle title='Add Item' />
 				<div className='flex gap-2'>
-					<Button text='Search' />
-					<Button text='Manual Input' />
+					<Button
+						text='Search'
+						onClick={onClick}
+					/>
+					<Button
+						text='Manual Input'
+						onClick={onClick}
+					/>
 				</div>
 			</div>
 
@@ -43,7 +53,10 @@ export default function Home() {
 					carbs={dayTotal.carbs}
 					fiber={dayTotal.fiber}
 				/>
-				<ManualInputForm />
+				<ManualInputForm
+					dayTotal={dayTotal}
+					setDayTotal={setDayTotal}
+				/>
 			</div>
 		</div>
 	)
