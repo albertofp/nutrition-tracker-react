@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
-export default function Navbar() {
-	const [nav, setNav] = useState(false)
+export default function Navbar({ setCurrentPage }: any) {
+	const [nav, setNav] = useState(true)
 
 	const showNav = () => {
 		setNav(!nav)
@@ -41,7 +41,7 @@ export default function Navbar() {
 						: 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-800 bg-[#000300] ease-in-out duration-500'
 				}
 			>
-				<h1 className='w-full text-3xl font-bold text-[#00df9a] p-4'>
+				<h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>
 					Nutrition Tracker
 				</h1>
 				<ul className='uppercase p-4'>
