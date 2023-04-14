@@ -12,6 +12,13 @@ export async function addItem(item: foodItem) {
 			fiber: item.vals.fiber
 		}
 	])
+
+	if (error) {
+		console.error('Create row error: ', error)
+		throw error
+	} else {
+		console.log(data)
+	}
 }
 
 export async function delItem(name: string) {
@@ -21,6 +28,7 @@ export async function delItem(name: string) {
 		.eq('name', name)
 
 	if (error) {
+		console.error('Delete row error: ', error)
 		throw error
 	}
 }
@@ -34,6 +42,7 @@ export async function readItem(name: string) {
 	console.log(item)
 
 	if (error) {
+		console.error('Read row error: ', error)
 		throw error
 	}
 
@@ -54,6 +63,7 @@ export async function updateItem(name: string, vals: foodVals) {
 		.eq(name, name)
 
 	if (error) {
+		console.error('Update row error: ', error)
 		throw error
 	}
 }
