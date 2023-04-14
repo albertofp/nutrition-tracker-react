@@ -4,6 +4,7 @@ import MacrosList from './MacrosList'
 import SectionTitle from './SectionTitle'
 import { foodVals } from '../../types'
 import ManualInputForm from './ManualInputForm'
+import { addItem, delItem, readItem } from '../useDatabase'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
