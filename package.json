@@ -4,9 +4,10 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev": "vite && tailwind:watch",
 		"build": "tsc && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"tailwind:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^3.0.1",
