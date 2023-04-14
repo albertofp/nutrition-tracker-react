@@ -12,19 +12,3 @@
   
   Web app to track your nutrition habits and help plan meals.
   Developed as part of the Software Engineering program at INFNET.
-  
-</div>
-<style>
-  .flexContainer {
-    display: flex;
-    flex-direction: column;
-    gap:20px;
-  }
-  .logoContainer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content:center;
-    gap:20px;
-  }
-</style>
