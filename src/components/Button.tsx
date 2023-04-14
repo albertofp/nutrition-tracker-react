@@ -5,7 +5,7 @@ type Props = {
 	onClick?: () => void
 }
 
-const onClick = (e) => {}
+const onClick = () => {}
 
 function Button({ text, onClick }: Props) {
 	return (

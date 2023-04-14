@@ -1,7 +1,12 @@
 export type foodVals = {
-	calories: number
-	protein: number
-	carbs: number
-	fat: number
-	fiber: number
+	calories?: number | null
+	protein?: number | null
+	carbs?: number | null
+	fat?: number | null
+	fiber?: number | null
+}
+
+export type foodItem = {
+	name: string
+	vals: foodVals
 }

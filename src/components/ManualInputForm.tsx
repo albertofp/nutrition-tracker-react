@@ -13,35 +13,35 @@ type Props = {
 }
 
 type FormData = {
-	calories: number
-	protein: number
-	carbs: number
-	fat: number
-	fiber: number
+	calories: number | null
+	protein: number | null
+	carbs: number | null
+	fat: number | null
+	fiber: number | null
 }
 
 function ManualInputForm({ dayTotal, setDayTotal }: Props) {
-	const schema: ZodType<FormData> = z
-		.object({
-			calories: z.number().min(1),
-			protein: z.number(),
-			carbs: z.number(),
-			fat: z.number(),
-			fiber: z.number()
-		})
-		.refine((data) => data.calories > 0, {
-			message: 'Calories must be greater than 0',
-			path: ['calories']
-		})
+	const schema: ZodType<FormData> = z.object({
+		calories: z.number().nullable(),
+		protein: z.number().nullable(),
+		carbs: z.number().nullable(),
+		fat: z.number().nullable(),
+		fiber: z.number().nullable()
+	})
 
-	const { register, handleSubmit, reset } = useForm<FormData>({
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors }
+	} = useForm<FormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			calories: 0,
-			protein: 0,
-			carbs: 0,
-			fat: 0,
-			fiber: 0
+			calories: null,
+			protein: null,
+			carbs: null,
+			fat: null,
+			fiber: null
 		}
 	})
 
@@ -65,22 +65,30 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 					<input
 						type='number'
 						placeholder='Calories'
-						{...register('calories', { valueAsNumber: true })}
+						{...register('calories', {
+							valueAsNumber: true
+						})}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
+					{errors.calories && (
+						<p className='text-sm text-red-600 mt-1 self-center'>
+							{errors.calories.message}
+						</p>
+					)}
 				</div>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Protein</label>
 					<input
 						type='number'
 						placeholder='Protein'
-						{...register('protein', {
-							valueAsNumber: true,
-							setValueAs: (v) =>
-								v === (null || undefined || '') ? 0 : parseInt(v)
-						})}
+						{...register('protein', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
+					{errors.protein && (
+						<p className='text-sm text-red-600 mt-1 self-center'>
+							{errors.protein.message}
+						</p>
+					)}
 				</div>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Carbs</label>
@@ -90,6 +98,11 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 						{...register('carbs', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
+					{errors.carbs && (
+						<p className='text-sm text-red-600 mt-1 self-center'>
+							{errors.carbs.message}
+						</p>
+					)}
 				</div>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Fat</label>
@@ -99,6 +112,11 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 						{...register('fat', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
+					{errors.fat && (
+						<p className='text-sm text-red-600 mt-1 self-center'>
+							{errors.fat.message}
+						</p>
+					)}
 				</div>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Fiber</label>
@@ -108,6 +126,11 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 						{...register('fiber', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
+					{errors.fiber && (
+						<p className='text-sm text-red-600 mt-1 self-center'>
+							{errors.fiber.message}
+						</p>
+					)}
 				</div>
 				<SubmitButton text='Input' />
 			</form>

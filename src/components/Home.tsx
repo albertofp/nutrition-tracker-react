@@ -7,7 +7,7 @@ import ManualInputForm from './ManualInputForm'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
-	const [dayTotal, setDayTotal] = useState({
+	const [dayTotal, setDayTotal] = useState<foodVals>({
 		calories: 0,
 		protein: 0,
 		carbs: 0,
@@ -39,8 +39,12 @@ export default function Home() {
 		}
 	}
 
+	const resetDayTotal = () => {
+		setDayTotal({ calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 })
+	}
+
 	return (
-		<div className='flex flex-col gap m-6'>
+		<div className='flex flex-col gap m-6 w-full'>
 			<div className='text-white flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
 				<h3 className='text-teal-500'>
 					App to track and display your daily calorie and macro nutrient
@@ -59,21 +63,19 @@ export default function Home() {
 						text='Manual Input'
 						onClick={displayManualInput}
 					/>
+					<Button
+						text='Reset'
+						onClick={resetDayTotal}
+					/>
 				</div>
 			</div>
 
-			<div className='flex flex-col justify-evenly gap-4 text-[#00df9a] max-w-[1240px] min-w-[300px] mx-auto px-4'>
+			<div className='flex flex-col justify-evenly gap-4 text-[#00df9a] max-w-[1240px] min-w-[350px] mx-auto px-4'>
 				<SectionTitle
 					title='Daily Total'
 					type='h3'
 				></SectionTitle>
-				<MacrosList
-					calories={dayTotal.calories}
-					protein={dayTotal.protein}
-					fat={dayTotal.fat}
-					carbs={dayTotal.carbs}
-					fiber={dayTotal.fiber}
-				/>
+				<MacrosList {...dayTotal} />
 				{displayModule()}
 			</div>
 		</div>
