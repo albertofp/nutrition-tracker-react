@@ -6,6 +6,7 @@ import { foodVals } from '../../types'
 import ManualInputForm from './ManualInputForm'
 
 export default function Home() {
+	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
 	const [dayTotal, setDayTotal] = useState({
 		calories: 0,
 		protein: 0,
@@ -16,6 +17,26 @@ export default function Home() {
 
 	const onClick = () => {
 		console.log('click')
+	}
+
+	const displayManualInput = () => {
+		if (currentDisplay === 'ManualInputForm') {
+			setCurrentDisplay(null)
+		} else setCurrentDisplay('ManualInputForm')
+	}
+
+	const displayModule = () => {
+		switch (currentDisplay) {
+			case 'ManualInputForm':
+				return (
+					<ManualInputForm
+						dayTotal={dayTotal}
+						setDayTotal={setDayTotal}
+					/>
+				)
+			default:
+				return null
+		}
 	}
 
 	return (
@@ -36,12 +57,12 @@ export default function Home() {
 					/>
 					<Button
 						text='Manual Input'
-						onClick={onClick}
+						onClick={displayManualInput}
 					/>
 				</div>
 			</div>
 
-			<div className='flex flex-col justify-evenly gap-4 text-[#00df9a] max-w-[1240px] mx-auto px-4'>
+			<div className='flex flex-col justify-evenly gap-4 text-[#00df9a] max-w-[1240px] min-w-[300px] mx-auto px-4'>
 				<SectionTitle
 					title='Daily Total'
 					type='h3'
@@ -53,10 +74,7 @@ export default function Home() {
 					carbs={dayTotal.carbs}
 					fiber={dayTotal.fiber}
 				/>
-				<ManualInputForm
-					dayTotal={dayTotal}
-					setDayTotal={setDayTotal}
-				/>
+				{displayModule()}
 			</div>
 		</div>
 	)

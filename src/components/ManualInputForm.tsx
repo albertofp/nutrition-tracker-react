@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionTitle from './SectionTitle'
-import { FieldValues, useForm } from 'react-hook-form'
+import { useForm, UseFormReset } from 'react-hook-form'
 import { SubmitButton } from './Button'
 import { foodVals } from '../../types'
 import { mergeObjects } from '../mergeObjects'
@@ -23,21 +23,31 @@ type FormData = {
 function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 	const schema: ZodType<FormData> = z
 		.object({
-			calories: z.number().min(1).max(3),
-			protein: z.number().max(3),
-			carbs: z.number().max(3),
-			fat: z.number().max(3),
-			fiber: z.number().max(3)
+			calories: z.number().min(1),
+			protein: z.number(),
+			carbs: z.number(),
+			fat: z.number(),
+			fiber: z.number()
 		})
 		.refine((data) => data.calories > 0, {
 			message: 'Calories must be greater than 0',
 			path: ['calories']
 		})
 
-	const { register, handleSubmit } = useForm({ resolver: zodResolver(schema) })
+	const { register, handleSubmit, reset } = useForm<FormData>({
+		resolver: zodResolver(schema),
+		defaultValues: {
+			calories: 0,
+			protein: 0,
+			carbs: 0,
+			fat: 0,
+			fiber: 0
+		}
+	})
 
-	const onSubmit = (formValues: FieldValues) => {
+	const onSubmit = (formValues: FormData, e: any) => {
 		setDayTotal(mergeObjects(dayTotal, formValues))
+		reset()
 	}
 
 	return (
@@ -55,7 +65,7 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 					<input
 						type='number'
 						placeholder='Calories'
-						{...register('calories', { required: true })}
+						{...register('calories', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
 				</div>
@@ -64,7 +74,11 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 					<input
 						type='number'
 						placeholder='Protein'
-						{...register('protein')}
+						{...register('protein', {
+							valueAsNumber: true,
+							setValueAs: (v) =>
+								v === (null || undefined || '') ? 0 : parseInt(v)
+						})}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
 				</div>
@@ -73,7 +87,7 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 					<input
 						type='number'
 						placeholder='Carbs'
-						{...register('carbs')}
+						{...register('carbs', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
 				</div>
@@ -82,7 +96,7 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 					<input
 						type='number'
 						placeholder='Fat'
-						{...register('fat')}
+						{...register('fat', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
 				</div>
@@ -91,7 +105,7 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 					<input
 						type='number'
 						placeholder='Fiber'
-						{...register('fiber')}
+						{...register('fiber', { valueAsNumber: true })}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
 				</div>
