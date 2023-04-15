@@ -17,6 +17,7 @@ type FormData = {
 function SearchForm({}: Props) {
 	const [currentQuery, setCurrentQuery] = useState<FormData>({ query: '' })
 	const [matchingResults, setMatchingResults] = useState<Array<foodItem>>([])
+	const [showResults, setShowResults] = useState<boolean>(false)
 
 	const schema: ZodType<FormData> = z.object({
 		query: z.string()
@@ -44,10 +45,8 @@ function SearchForm({}: Props) {
 			.finally(() => setMatchingResults(newMatches))
 
 		reset()
+		setShowResults(true)
 	}
-
-	async function renderResults() {}
-
 	return (
 		<div>
 			<form
@@ -70,8 +69,17 @@ function SearchForm({}: Props) {
 				</div>
 				<SubmitButton text='Search  Database' />
 			</form>
-			{matchingResults.length > 0 && (
+
+			{showResults && matchingResults.length > 0 && (
 				<ResultsDisplay results={matchingResults} />
+			)}
+			{showResults && matchingResults.length == 0 && (
+				<div className='flex flex-col items-center'>
+					<SectionTitle
+						title={'No Results Found'}
+						type={'h2'}
+					/>
+				</div>
 			)}
 		</div>
 	)
