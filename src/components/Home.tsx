@@ -61,7 +61,7 @@ export default function Home() {
 	}
 
 	return (
-		<div className='flex flex-col gap m-6 w-full'>
+		<div className='flex flex-col gap m-2 w-full'>
 			<div className='text-white flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
 				<h3 className='text-teal-500'>
 					App to track and display your daily calorie and macro nutrient
@@ -70,7 +70,6 @@ export default function Home() {
 			</div>
 
 			<div className='flex justify-start gap-4 text-[#00df9a] max-w-[1240px] mx-auto px-4 items-center'>
-				<SectionTitle title='Add Item' />
 				<div className='flex gap-2'>
 					<Button
 						text='Search'
@@ -87,12 +86,15 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className='flex flex-col justify-evenly gap-4 text-[#00df9a] max-w-[1240px] min-w-[350px] mx-auto px-4'>
+			<div className='flex flex-col items-center gap-2 text-[#00df9a] max-w-[1240px] min-w-[350px] mx-auto p-4'>
 				<SectionTitle
 					title='Daily Total'
 					type='h3'
 				></SectionTitle>
-				<MacrosList {...dayTotal} />
+				<MacrosList
+					{...dayTotal}
+					showName={false}
+				/>
 				{displayModule()}
 			</div>
 		</div>

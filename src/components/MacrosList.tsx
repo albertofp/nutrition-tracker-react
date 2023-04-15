@@ -5,6 +5,8 @@ import SectionTitle from './SectionTitle'
 
 type Props = {
 	name?: string
+	id?:number
+	showName?: boolean
 	controls?: boolean
 	calories: number
 	protein: number
@@ -15,6 +17,8 @@ type Props = {
 
 function MacrosList({
 	name,
+	id,
+	showName,
 	controls,
 	calories,
 	protein,
@@ -28,14 +32,17 @@ function MacrosList({
 
 	const deleteEntry = () => {
 		console.log('deleteEntry')
+		if (name) {
+			delItem(name)
+		}
 	}
 
 	return (
-		<div>
+		<>
 			<div className='flex flex-col items-center'>
-				{name && <SectionTitle title={name} />}
+				{name && showName && <SectionTitle title={name} />}
 			</div>
-			<ul className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-4 items-start max-w-xs'>
+			<ul className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-4 items-start min-w-[250px]'>
 				<li className='flex justify-between w-full border-b border-teal-700 p-1'>
 					<span>Calories: </span>
 					<span>{calories}g</span>
@@ -69,7 +76,7 @@ function MacrosList({
 					/>
 				</div>
 			)}
-		</div>
+		</>
 	)
 }
 

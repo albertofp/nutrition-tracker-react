@@ -6,18 +6,22 @@ type Props = {
 }
 
 function ResultsDisplay({ results }: Props) {
+
 	return (
-		<div className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-2'>
+		<div className='flex xs:flex-col md:flex-row gap-4 rounded-lg m-2 p-2'>
 			{results.map((item) => (
-				<MacrosList
-					name={item.name}
-					controls={true}
-					calories={item.calories}
-					protein={item.protein}
-					carbs={item.carbs}
-					fat={item.fat}
-					fiber={item.fiber}
-				/>
+				<div>
+					<MacrosList
+						name={item.name}
+						controls={true}
+						showName={true}
+						calories={item.calories}
+						protein={item.protein}
+						carbs={item.carbs}
+						fat={item.fat}
+						fiber={item.fiber}
+					/>
+				</div>
 			))}
 		</div>
 	)

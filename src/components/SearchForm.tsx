@@ -47,7 +47,7 @@ function SearchForm({}: Props) {
 		setShowResults(true)
 	}
 	return (
-		<div>
+		<div className='flex flex-col items-center max-w-lg flex-wrap'>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
