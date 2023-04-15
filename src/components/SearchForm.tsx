@@ -7,6 +7,7 @@ import { mergeObjects } from '../mergeObjects'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { readItem } from '../useDatabase'
+import ResultsDisplay from './ResultsDisplay'
 
 type Props = {}
 type FormData = {
@@ -15,6 +16,7 @@ type FormData = {
 
 function SearchForm({}: Props) {
 	const [currentQuery, setCurrentQuery] = useState<FormData>({ query: '' })
+	const [matchingResults, setMatchingResults] = useState<Array<foodItem>>([])
 
 	const schema: ZodType<FormData> = z.object({
 		query: z.string()
@@ -36,12 +38,18 @@ function SearchForm({}: Props) {
 		setCurrentQuery(input)
 		console.log('input:', input)
 		console.log('currentQuery:', currentQuery)
+		let newMatches: any
 		readItem(input.query)
+			.then((res) => (newMatches = res))
+			.finally(() => setMatchingResults(newMatches))
+
 		reset()
 	}
 
+	async function renderResults() {}
+
 	return (
-		<>
+		<div>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
@@ -62,7 +70,10 @@ function SearchForm({}: Props) {
 				</div>
 				<SubmitButton text='Search  Database' />
 			</form>
-		</>
+			{matchingResults.length > 0 && (
+				<ResultsDisplay results={matchingResults} />
+			)}
+		</div>
 	)
 }
 

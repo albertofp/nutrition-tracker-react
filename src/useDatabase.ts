@@ -39,14 +39,11 @@ export async function readItem(name: string) {
 		.select('*')
 		.eq('name', name)
 
-	console.log(item)
-
 	if (error) {
 		console.error('Read row error: ', error)
 		throw error
 	}
-
-	return item
+	return Promise.resolve(item)
 }
 
 export async function updateItem(item: foodItem) {

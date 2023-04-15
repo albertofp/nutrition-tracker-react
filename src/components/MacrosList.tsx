@@ -1,23 +1,26 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
-import React from 'react'
+import SectionTitle from './SectionTitle'
 
-import { foodItem } from '../../types'
-
-/*calories: number
+type Props = {
+	name?: string
+	calories: number
 	protein: number
 	carbs: number
 	fat: number
-	fiber: number*/
+	fiber: number
+}
 
 function MacrosList({
+	name,
 	calories,
 	protein,
 	carbs,
 	fat,
 	fiber
-}: foodItem): ReactJSXElement {
+}: Props): ReactJSXElement {
 	return (
-		<>
+		<div>
+			<div className='flex flex-col items-center'>{name && <SectionTitle title={name} />}</div>
 			<ul className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-4 items-start max-w-xs'>
 				<li className='flex justify-between w-full border-b border-teal-700 p-1'>
 					<span>Calories: </span>
@@ -40,7 +43,7 @@ function MacrosList({
 					<span>{fiber}g</span>
 				</li>
 			</ul>
-		</>
+		</div>
 	)
 }
 
