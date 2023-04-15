@@ -35,11 +35,11 @@ function ManualInputForm({ macros, setMacros }: Props) {
 
 	const schema: ZodType<FormData> = z.object({
 		name: z.string(),
-		calories: z.number().nullable(),
-		protein: z.number().nullable(),
-		carbs: z.number().nullable(),
-		fat: z.number().nullable(),
-		fiber: z.number().nullable()
+		calories: z.number().min(0),
+		protein: z.number().min(0),
+		carbs: z.number().min(0),
+		fat: z.number().min(0),
+		fiber: z.number().min(0)
 	})
 
 	const {
@@ -63,7 +63,12 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		const newItem = mergeObjects(formValues, macros)
 		setMacros(newItem)
 		if (saveTemplate && newItem.name.length > 0) {
-			addItem(newItem)
+			newItem.calories +
+				newItem.protein +
+				newItem.carbs +
+				newItem.fat +
+				newItem.fiber >
+				0 && addItem(newItem)
 		}
 		reset()
 	}

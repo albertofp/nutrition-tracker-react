@@ -5,6 +5,7 @@ import SectionTitle from './SectionTitle'
 import { foodItem } from '../../types'
 import ManualInputForm from './ManualInputForm'
 import { addItem, delItem, readItem } from '../useDatabase'
+import SearchForm from './SearchForm'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
@@ -27,6 +28,12 @@ export default function Home() {
 		} else setCurrentDisplay('ManualInputForm')
 	}
 
+	const displaySearch = () => {
+		if (currentDisplay === 'SearchForm') {
+			setCurrentDisplay(null)
+		} else setCurrentDisplay('SearchForm')
+	}
+
 	const displayModule = () => {
 		switch (currentDisplay) {
 			case 'ManualInputForm':
@@ -36,6 +43,8 @@ export default function Home() {
 						setMacros={setDayTotal}
 					/>
 				)
+			case 'SearchForm':
+				return <SearchForm />
 			default:
 				return null
 		}
@@ -66,7 +75,7 @@ export default function Home() {
 				<div className='flex gap-2'>
 					<Button
 						text='Search'
-						onClick={onClick}
+						onClick={displaySearch}
 					/>
 					<Button
 						text='Manual Input'
