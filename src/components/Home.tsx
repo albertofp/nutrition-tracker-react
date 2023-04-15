@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Button from './Button'
 import MacrosList from './MacrosList'
 import SectionTitle from './SectionTitle'
 import { foodItem } from '../../types'
 import ManualInputForm from './ManualInputForm'
-import { addItem, delItem, readItem } from '../useDatabase'
 import SearchForm from './SearchForm'
 
 export default function Home() {

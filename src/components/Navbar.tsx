@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
 export default function Navbar({ setCurrentPage }: any) {

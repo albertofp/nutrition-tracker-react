@@ -1,4 +1,3 @@
-import React from 'react'
 import { foodItem } from '../../types'
 import MacrosList from './MacrosList'
 

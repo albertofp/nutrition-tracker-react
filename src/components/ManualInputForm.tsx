@@ -1,6 +1,6 @@
 import React from 'react'
 import SectionTitle from './SectionTitle'
-import { useForm, UseFormReset } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { SubmitButton } from './Button'
 import { foodItem } from '../../types'
 import { mergeObjects } from '../mergeObjects'
