@@ -1,8 +1,11 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
+import { delItem } from '../useDatabase'
+import Button from './Button'
 import SectionTitle from './SectionTitle'
 
 type Props = {
 	name?: string
+	controls?: boolean
 	calories: number
 	protein: number
 	carbs: number
@@ -12,15 +15,26 @@ type Props = {
 
 function MacrosList({
 	name,
+	controls,
 	calories,
 	protein,
 	carbs,
 	fat,
 	fiber
 }: Props): ReactJSXElement {
+	const addMacros = () => {
+		console.log('addMacros')
+	}
+
+	const deleteEntry = () => {
+		console.log('deleteEntry')
+	}
+
 	return (
 		<div>
-			<div className='flex flex-col items-center'>{name && <SectionTitle title={name} />}</div>
+			<div className='flex flex-col items-center'>
+				{name && <SectionTitle title={name} />}
+			</div>
 			<ul className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-4 items-start max-w-xs'>
 				<li className='flex justify-between w-full border-b border-teal-700 p-1'>
 					<span>Calories: </span>
@@ -43,6 +57,18 @@ function MacrosList({
 					<span>{fiber}g</span>
 				</li>
 			</ul>
+			{controls && (
+				<div className='flex justify-evenly'>
+					<Button
+						text='Add'
+						onClick={addMacros}
+					/>
+					<Button
+						text='Delete'
+						onClick={deleteEntry}
+					/>
+				</div>
+			)}
 		</div>
 	)
 }
