@@ -2,26 +2,39 @@ import React from 'react'
 import SectionTitle from './SectionTitle'
 import { useForm, UseFormReset } from 'react-hook-form'
 import { SubmitButton } from './Button'
-import { foodVals } from '../../types'
+import { foodItem } from '../../types'
 import { mergeObjects } from '../mergeObjects'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { addItem } from '../useDatabase'
 
 type Props = {
-	dayTotal: foodVals
-	setDayTotal: React.Dispatch<React.SetStateAction<foodVals>>
+	macros: foodItem
+	setMacros: React.Dispatch<React.SetStateAction<foodItem>>
 }
 
 type FormData = {
-	calories: number | null
-	protein: number | null
-	carbs: number | null
-	fat: number | null
-	fiber: number | null
+	name: string
+	calories: number
+	protein: number
+	carbs: number
+	fat: number
+	fiber: number
 }
 
-function ManualInputForm({ dayTotal, setDayTotal }: Props) {
+function ManualInputForm({ macros, setMacros }: Props) {
+	const [saveTemplate, setSaveTemplate] = React.useState(false)
+	const [newItem, setNewItem] = React.useState<foodItem>({
+		name: '',
+		calories: 0,
+		protein: 0,
+		carbs: 0,
+		fat: 0,
+		fiber: 0
+	})
+
 	const schema: ZodType<FormData> = z.object({
+		name: z.string(),
 		calories: z.number().nullable(),
 		protein: z.number().nullable(),
 		carbs: z.number().nullable(),
@@ -37,19 +50,27 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			calories: null,
-			protein: null,
-			carbs: null,
-			fat: null,
-			fiber: null
+			name: '',
+			calories: 0,
+			protein: 0,
+			carbs: 0,
+			fat: 0,
+			fiber: 0
 		}
 	})
 
 	const onSubmit = (formValues: FormData, e: any) => {
-		setDayTotal(mergeObjects(dayTotal, formValues))
+		const newItem = mergeObjects(formValues, macros)
+		setMacros(newItem)
+		if (saveTemplate && newItem.name.length > 0) {
+			addItem(newItem)
+		}
 		reset()
 	}
 
+	const onCheckBoxChange = (e: any) => {
+		setSaveTemplate(!saveTemplate)
+	}
 	return (
 		<>
 			<SectionTitle
@@ -132,6 +153,32 @@ function ManualInputForm({ dayTotal, setDayTotal }: Props) {
 						</p>
 					)}
 				</div>
+				<div className='flex gap-2 items-start'>
+					<label className='text-xs'>Save as template</label>
+					<input
+						type='checkbox'
+						onChange={onCheckBoxChange}
+						checked={saveTemplate}
+					/>
+				</div>
+
+				{saveTemplate && (
+					<div className='flex flex-col items-start'>
+						<label className='text-xs'>Name</label>
+						<input
+							type='string'
+							placeholder='Name'
+							{...register('name')}
+							className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						/>
+						{errors.name && (
+							<p className='text-sm text-red-600 mt-1 self-center'>
+								{errors.name?.message}
+							</p>
+						)}
+					</div>
+				)}
+
 				<SubmitButton text='Input' />
 			</form>
 		</>

@@ -7,7 +7,7 @@
     &emsp;&emsp;&emsp;
   <img src="./src/assets/vite-logo.svg" alt="Vite logo" width="50"/>
     &emsp;&emsp;&emsp;
-  <img src="./src/assets/tailwindcss-icon.svg" alt="Tailwind logo" width="50"/>
+  <img src="./src/assets/tailwindcss-icon.svg" alt="Tailwind logo" width="75"/>
     &emsp;&emsp;&emsp;
   <img src="./src/assets/supabase-icon.svg" alt="Supabase logo" width="50"/>
 <div>

@@ -1,15 +1,15 @@
-import { foodItem, foodVals } from '../types'
+import { foodItem } from '../types'
 import { supabase } from './supabaseClient'
 
 export async function addItem(item: foodItem) {
 	const { data, error } = await supabase.from('Ingredient Macros').insert([
 		{
 			name: item.name,
-			calories: item.vals.calories,
-			protein: item.vals.protein,
-			carbs: item.vals.carbs,
-			fat: item.vals.fat,
-			fiber: item.vals.fiber
+			calories: item.calories,
+			protein: item.protein,
+			carbs: item.carbs,
+			fat: item.fat,
+			fiber: item.fiber
 		}
 	])
 
@@ -17,7 +17,7 @@ export async function addItem(item: foodItem) {
 		console.error('Create row error: ', error)
 		throw error
 	} else {
-		console.log(data)
+		console.log('Added item do database: ', item)
 	}
 }
 
@@ -49,18 +49,18 @@ export async function readItem(name: string) {
 	return item
 }
 
-export async function updateItem(name: string, vals: foodVals) {
+export async function updateItem(item: foodItem) {
 	const { data, error } = await supabase
 		.from('Ingredient Macros')
 		.update({
-			name: name,
-			calories: vals.calories,
-			protein: vals.protein,
-			carbs: vals.carbs,
-			fat: vals.fat,
-			fiber: vals.fiber
+			name: item.name,
+			calories: item.calories,
+			protein: item.protein,
+			carbs: item.carbs,
+			fat: item.fat,
+			fiber: item.fiber
 		})
-		.eq(name, name)
+		.eq('name', item.name)
 
 	if (error) {
 		console.error('Update row error: ', error)

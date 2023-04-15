@@ -1,7 +1,7 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import React from 'react'
 
-import { foodVals } from '../../types'
+import { foodItem } from '../../types'
 
 /*calories: number
 	protein: number
@@ -15,7 +15,7 @@ function MacrosList({
 	carbs,
 	fat,
 	fiber
-}: foodVals): ReactJSXElement {
+}: foodItem): ReactJSXElement {
 	return (
 		<>
 			<ul className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-4 items-start max-w-xs'>

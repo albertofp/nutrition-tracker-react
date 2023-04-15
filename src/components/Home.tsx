@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import Button from './Button'
 import MacrosList from './MacrosList'
 import SectionTitle from './SectionTitle'
-import { foodVals } from '../../types'
+import { foodItem } from '../../types'
 import ManualInputForm from './ManualInputForm'
 import { addItem, delItem, readItem } from '../useDatabase'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
-	const [dayTotal, setDayTotal] = useState<foodVals>({
+	const [dayTotal, setDayTotal] = useState<foodItem>({
+		name: '',
 		calories: 0,
 		protein: 0,
 		carbs: 0,
@@ -31,8 +32,8 @@ export default function Home() {
 			case 'ManualInputForm':
 				return (
 					<ManualInputForm
-						dayTotal={dayTotal}
-						setDayTotal={setDayTotal}
+						macros={dayTotal}
+						setMacros={setDayTotal}
 					/>
 				)
 			default:
@@ -41,7 +42,14 @@ export default function Home() {
 	}
 
 	const resetDayTotal = () => {
-		setDayTotal({ calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 })
+		setDayTotal({
+			name: '',
+			calories: 0,
+			protein: 0,
+			carbs: 0,
+			fat: 0,
+			fiber: 0
+		})
 	}
 
 	return (
