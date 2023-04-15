@@ -159,7 +159,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 					)}
 				</div>
 				<div className='flex gap-2 items-start'>
-					<label className='text-xs'>Save as template</label>
+					<label className='text-xs'>Add to database</label>
 					<input
 						type='checkbox'
 						onChange={onCheckBoxChange}

@@ -28,12 +28,13 @@ function SearchForm({}: Props) {
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			query: ''
+			query: 'cookie'
 		}
 	})
 
 	const onSubmit = (queryTerm: FormData, e: any) => {
 		setQuery(queryTerm)
+		console.log('Search for:', queryTerm.query)
 		readItem(queryTerm.query)
 		reset()
 	}
@@ -52,8 +53,8 @@ function SearchForm({}: Props) {
 						{...(register('query'),
 						{
 							required: true,
-                            minLength: 1,
-                            setValueAs: (v: string) => v.toLowerCase()
+							minLength: 1,
+							setValueAs: (v: string) => v.toLowerCase()
 						})}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
