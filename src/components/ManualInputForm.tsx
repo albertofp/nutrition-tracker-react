@@ -24,14 +24,6 @@ type FormData = {
 
 function ManualInputForm({ macros, setMacros }: Props) {
 	const [saveTemplate, setSaveTemplate] = React.useState(false)
-	const [newItem, setNewItem] = React.useState<foodItem>({
-		name: '',
-		calories: 0,
-		protein: 0,
-		carbs: 0,
-		fat: 0,
-		fiber: 0
-	})
 
 	const schema: ZodType<FormData> = z.object({
 		name: z.string(),
