@@ -1,11 +1,13 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
+import { useContext } from 'react'
+import { DayContext } from '../DayContext'
+import { mergeObjects } from '../mergeObjects'
 import { delItem } from '../useDatabase'
 import Button from './Button'
 import SectionTitle from './SectionTitle'
 
 type Props = {
-	name?: string
-	id?:number
+	name: string
 	showName?: boolean
 	controls?: boolean
 	calories: number
@@ -17,7 +19,6 @@ type Props = {
 
 function MacrosList({
 	name,
-	id,
 	showName,
 	controls,
 	calories,
@@ -26,8 +27,15 @@ function MacrosList({
 	fat,
 	fiber
 }: Props): ReactJSXElement {
+	const { dayTotal, setDayTotal } = useContext(DayContext)
+
 	const addMacros = () => {
 		console.log('addMacros')
+		const newItem = mergeObjects(
+			{ name, calories, protein, carbs, fat, fiber },
+			dayTotal
+		)
+		setDayTotal(newItem)
 	}
 
 	const deleteEntry = () => {

@@ -5,6 +5,7 @@ import SectionTitle from './SectionTitle'
 import { foodItem } from '../../types'
 import ManualInputForm from './ManualInputForm'
 import SearchForm from './SearchForm'
+import { DayContext } from '../DayContext'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
@@ -61,6 +62,7 @@ export default function Home() {
 	}
 
 	return (
+		<DayContext.Provider value={{ dayTotal, setDayTotal }}>
 		<div className='flex flex-col gap m-2 w-full'>
 			<div className='text-white flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
 				<h3 className='text-teal-500'>
@@ -98,5 +100,6 @@ export default function Home() {
 				{displayModule()}
 			</div>
 		</div>
+		</DayContext.Provider>
 	)
 }
