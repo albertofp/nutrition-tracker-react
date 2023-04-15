@@ -14,7 +14,7 @@ type FormData = {
 }
 
 function SearchForm({}: Props) {
-	const [query, setQuery] = useState<FormData>({ query: '' })
+	const [currentQuery, setCurrentQuery] = useState<FormData>({ query: '' })
 
 	const schema: ZodType<FormData> = z.object({
 		query: z.string()
@@ -28,14 +28,15 @@ function SearchForm({}: Props) {
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			query: 'cookie'
+			query: ''
 		}
 	})
 
-	const onSubmit = (queryTerm: FormData, e: any) => {
-		setQuery(queryTerm)
-		console.log('Search for:', queryTerm.query)
-		readItem(queryTerm.query)
+	const onSubmit = (input: FormData, e: any) => {
+		setCurrentQuery(input)
+		console.log('input:', input)
+		console.log('currentQuery:', currentQuery)
+		readItem(input.query)
 		reset()
 	}
 
@@ -46,16 +47,11 @@ function SearchForm({}: Props) {
 				className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
 				<div className='flex flex-col items-center'>
-					<label className='text-xs'>Database search: </label>
+					<label className='text-xs'>Search Term</label>
 					<input
 						type='string'
-						placeholder='Item Name'
-						{...(register('query'),
-						{
-							required: true,
-							minLength: 1,
-							setValueAs: (v: string) => v.toLowerCase()
-						})}
+						placeholder=''
+						{...register('query')}
 						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
 					/>
 					{errors.query && (
