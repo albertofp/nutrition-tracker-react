@@ -46,6 +46,19 @@ export async function readItem(name: string) {
 	return Promise.resolve(item)
 }
 
+export async function readAll() {
+	let { data: item, error } = await supabase
+		.from('Ingredient Macros')
+		.select('*')
+
+	if (error) {
+		console.error('Read row error: ', error)
+		throw error
+	}
+	console.log(item)
+	return Promise.resolve(item)
+}
+
 export async function updateItem(item: foodItem) {
 	const { data, error } = await supabase
 		.from('Ingredient Macros')

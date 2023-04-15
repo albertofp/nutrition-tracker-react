@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
-import { SubmitButton } from './Button'
+import Button, { SubmitButton } from './Button'
 import { foodItem } from '../../types'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { readItem } from '../useDatabase'
+import { readAll, readItem } from '../useDatabase'
 import ResultsDisplay from './ResultsDisplay'
 
 type Props = {}
@@ -46,6 +46,14 @@ function SearchForm({}: Props) {
 		reset()
 		setShowResults(true)
 	}
+
+	const showAll = () => {
+		let newMatches: any
+		readAll()
+			.then((res) => (newMatches = res))
+			.finally(() => setMatchingResults(newMatches))
+		setShowResults(true)
+	}
 	return (
 		<div className='flex flex-col items-center max-w-lg flex-wrap'>
 			<form
@@ -67,6 +75,7 @@ function SearchForm({}: Props) {
 					)}
 				</div>
 				<SubmitButton text='Search  Database' />
+				<Button text='Show all' onClick={showAll} />
 			</form>
 
 			{showResults && matchingResults.length > 0 && (
