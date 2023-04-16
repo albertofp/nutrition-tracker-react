@@ -18,6 +18,6 @@ Developed as part of the Software Engineering program at INFNET.
 Tech used:
 
 - [React](https://react.dev/) with [Typescript](https://www.typescriptlang.org/)
-- [Vite](https://www.vitejs.dev)
+- [Vite](https://www.vitejs.dev) bundler
 - [Tailwind](https://tailwindcss.com/) CSS utility classes
 - [Supabase](https://supabase.com/) for database management
