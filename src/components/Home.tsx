@@ -18,10 +18,6 @@ export default function Home() {
 		fiber: 0
 	})
 
-	const onClick = () => {
-		console.log('click')
-	}
-
 	const displayManualInput = () => {
 		if (currentDisplay === 'ManualInputForm') {
 			setCurrentDisplay(null)
@@ -63,43 +59,43 @@ export default function Home() {
 
 	return (
 		<DayContext.Provider value={{ dayTotal, setDayTotal }}>
-		<div className='flex flex-col gap m-2 w-full'>
-			<div className='text-white flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
-				<h3 className='text-teal-500'>
-					App to track and display your daily calorie and macro nutrient
-					consumption.{' '}
-				</h3>
-			</div>
+			<div className='flex flex-col gap m-2 w-full'>
+				<div className='flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
+					<h3 className='text-teal-500'>
+						App to track and display your daily calorie and macro nutrient
+						consumption.{' '}
+					</h3>
+				</div>
 
-			<div className='flex justify-start gap-4 text-[#00df9a] max-w-[1240px] mx-auto px-4 items-center'>
-				<div className='flex gap-2'>
-					<Button
-						text='Search'
-						onClick={displaySearch}
+				<div className='flex justify-start gap-4 text-[#00df9a] max-w-[1240px] mx-auto px-4 items-center'>
+					<div className='flex gap-2'>
+						<Button
+							text='Search'
+							onClick={displaySearch}
+						/>
+						<Button
+							text='Manual Input'
+							onClick={displayManualInput}
+						/>
+						<Button
+							text='Reset'
+							onClick={resetDayTotal}
+						/>
+					</div>
+				</div>
+
+				<div className='flex flex-col items-center gap-2 text-[#00df9a] max-w-[1240px] min-w-[350px] mx-auto p-4'>
+					<SectionTitle
+						title='Daily Total'
+						type='h3'
+					></SectionTitle>
+					<MacrosList
+						{...dayTotal}
+						showName={false}
 					/>
-					<Button
-						text='Manual Input'
-						onClick={displayManualInput}
-					/>
-					<Button
-						text='Reset'
-						onClick={resetDayTotal}
-					/>
+					{displayModule()}
 				</div>
 			</div>
-
-			<div className='flex flex-col items-center gap-2 text-[#00df9a] max-w-[1240px] min-w-[350px] mx-auto p-4'>
-				<SectionTitle
-					title='Daily Total'
-					type='h3'
-				></SectionTitle>
-				<MacrosList
-					{...dayTotal}
-					showName={false}
-				/>
-				{displayModule()}
-			</div>
-		</div>
 		</DayContext.Provider>
 	)
 }

@@ -22,6 +22,11 @@ type FormData = {
 	fiber: number
 }
 
+const inputStyle =
+	'border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+
+const errorStyle = 'text-sm text-red-600 mt-1 self-center'
+
 function ManualInputForm({ macros, setMacros }: Props) {
 	const [saveTemplate, setSaveTemplate] = React.useState(false)
 
@@ -86,12 +91,10 @@ function ManualInputForm({ macros, setMacros }: Props) {
 						{...register('calories', {
 							valueAsNumber: true
 						})}
-						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						className={inputStyle}
 					/>
 					{errors.calories && (
-						<p className='text-sm text-red-600 mt-1 self-center'>
-							{errors.calories.message}
-						</p>
+						<p className={errorStyle}>{errors.calories.message}</p>
 					)}
 				</div>
 				<div className='flex flex-col items-start'>
@@ -100,12 +103,10 @@ function ManualInputForm({ macros, setMacros }: Props) {
 						type='number'
 						placeholder='Protein'
 						{...register('protein', { valueAsNumber: true })}
-						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						className={inputStyle}
 					/>
 					{errors.protein && (
-						<p className='text-sm text-red-600 mt-1 self-center'>
-							{errors.protein.message}
-						</p>
+						<p className={errorStyle}>{errors.protein.message}</p>
 					)}
 				</div>
 				<div className='flex flex-col items-start'>
@@ -114,13 +115,9 @@ function ManualInputForm({ macros, setMacros }: Props) {
 						type='number'
 						placeholder='Carbs'
 						{...register('carbs', { valueAsNumber: true })}
-						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						className={inputStyle}
 					/>
-					{errors.carbs && (
-						<p className='text-sm text-red-600 mt-1 self-center'>
-							{errors.carbs.message}
-						</p>
-					)}
+					{errors.carbs && <p className={errorStyle}>{errors.carbs.message}</p>}
 				</div>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Fat</label>
@@ -128,13 +125,9 @@ function ManualInputForm({ macros, setMacros }: Props) {
 						type='number'
 						placeholder='Fat'
 						{...register('fat', { valueAsNumber: true })}
-						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						className={inputStyle}
 					/>
-					{errors.fat && (
-						<p className='text-sm text-red-600 mt-1 self-center'>
-							{errors.fat.message}
-						</p>
-					)}
+					{errors.fat && <p className={errorStyle}>{errors.fat.message}</p>}
 				</div>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Fiber</label>
@@ -142,13 +135,9 @@ function ManualInputForm({ macros, setMacros }: Props) {
 						type='number'
 						placeholder='Fiber'
 						{...register('fiber', { valueAsNumber: true })}
-						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						className={inputStyle}
 					/>
-					{errors.fiber && (
-						<p className='text-sm text-red-600 mt-1 self-center'>
-							{errors.fiber.message}
-						</p>
-					)}
+					{errors.fiber && <p className={errorStyle}>{errors.fiber.message}</p>}
 				</div>
 				<div className='flex gap-2 items-start'>
 					<label className='text-xs'>Add to database</label>
@@ -166,12 +155,10 @@ function ManualInputForm({ macros, setMacros }: Props) {
 							type='string'
 							placeholder='Name'
 							{...register('name')}
-							className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+							className={inputStyle}
 						/>
 						{errors.name && (
-							<p className='text-sm text-red-600 mt-1 self-center'>
-								{errors.name?.message}
-							</p>
+							<p className={errorStyle}>{errors.name?.message}</p>
 						)}
 					</div>
 				)}

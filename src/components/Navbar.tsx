@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
+const liStyle = 'p-4 cursor-pointer hover:bg-slate-900'
+
 export default function Navbar({ setCurrentPage }: any) {
 	const [nav, setNav] = useState(true)
 
@@ -14,9 +16,9 @@ export default function Navbar({ setCurrentPage }: any) {
 				Nutrition Tracker
 			</h1>
 			<ul className='hidden md:flex'>
-				<li className='p-4 cursor-pointer hover:bg-slate-900'>Home</li>
-				<li className='p-4 cursor-pointer hover:bg-slate-900'>About</li>
-				<li className='p-4 cursor-pointer hover:bg-slate-900'>Contact</li>
+				<li className={liStyle}>Home</li>
+				<li className={liStyle}>About</li>
+				<li className={liStyle}>Contact</li>
 			</ul>
 			<div
 				onClick={showNav}
@@ -45,15 +47,9 @@ export default function Navbar({ setCurrentPage }: any) {
 					Nutrition Tracker
 				</h1>
 				<ul className='p-4 uppercase'>
-					<li className='p-4 border-b border-gray-600 cursor-pointer hover:bg-slate-900'>
-						Home
-					</li>
-					<li className='p-4 border-b border-gray-600 cursor-pointer hover:bg-slate-900'>
-						About
-					</li>
-					<li className='p-4 border-b border-gray-600 cursor-pointer hover:bg-slate-900'>
-						Contact
-					</li>
+					<li className={liStyle + 'border-b border-gray-600'}>Home</li>
+					<li className={liStyle + 'border-b border-gray-600'}>About</li>
+					<li className={liStyle + 'border-b border-gray-600'}>Contact</li>
 				</ul>
 			</div>
 		</div>
