@@ -30,7 +30,6 @@ function MacrosList({
 	const { dayTotal, setDayTotal } = useContext(DayContext)
 
 	const addMacros = () => {
-		console.log('addMacros')
 		const newItem = mergeObjects(
 			{ name, calories, protein, carbs, fat, fiber },
 			dayTotal
@@ -39,7 +38,6 @@ function MacrosList({
 	}
 
 	const deleteEntry = () => {
-		console.log('deleteEntry')
 		if (name) {
 			delItem(name)
 		}

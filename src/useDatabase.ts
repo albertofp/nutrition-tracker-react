@@ -17,7 +17,7 @@ export async function addItem(item: foodItem) {
 		console.error('Create row error: ', error)
 		throw error
 	} else {
-		console.log('Added item do database: ', item)
+		console.log('Added item to database: ', item)
 	}
 }
 
@@ -55,7 +55,6 @@ export async function readAll() {
 		console.error('Read row error: ', error)
 		throw error
 	}
-	console.log(item)
 	return Promise.resolve(item)
 }
 

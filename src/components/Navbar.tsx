@@ -6,12 +6,8 @@ const liStyle = 'p-4 cursor-pointer hover:bg-slate-900'
 export default function Navbar({ setCurrentPage }: any) {
 	const [nav, setNav] = useState(true)
 
-	const showNav = () => {
-		setNav(!nav)
-	}
-
 	return (
-		<div className='text-white flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
+		<nav className='text-white flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
 			<h1 className='w-full text-3xl font-bold text-[#00df9a]'>
 				Nutrition Tracker
 			</h1>
@@ -21,20 +17,12 @@ export default function Navbar({ setCurrentPage }: any) {
 				<li className={liStyle}>Contact</li>
 			</ul>
 			<div
-				onClick={showNav}
-				className='block md:hidden'
+				onClick={() => {
+					setNav(!nav)
+				}}
+				className='block md:hidden cursor-pointer'
 			>
-				{!nav ? (
-					<AiOutlineClose
-						size={20}
-						className='cursor-pointer'
-					/>
-				) : (
-					<AiOutlineMenu
-						className='cursor-pointer'
-						size={20}
-					/>
-				)}
+				{!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
 			</div>
 			<div
 				className={
@@ -52,6 +40,6 @@ export default function Navbar({ setCurrentPage }: any) {
 					<li className={liStyle + 'border-b border-gray-600'}>Contact</li>
 				</ul>
 			</div>
-		</div>
+		</nav>
 	)
 }
