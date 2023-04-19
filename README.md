@@ -21,3 +21,11 @@ Tech used:
 - [Vite](https://www.vitejs.dev) bundler
 - [Tailwind](https://tailwindcss.com/) CSS utility classes
 - [Supabase](https://supabase.com/) for database management
+
+TODO:
+
+- [ ] Build a proper UI (Mantine, DaisyUI?)
+- [ ] Auth (+ guest user)
+- [ ] Tests
+- [ ] About
+- [ ] Contact
