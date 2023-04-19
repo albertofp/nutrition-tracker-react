@@ -25,4 +25,5 @@ TODO:
 - [ ] Recipes (collection of multiple food items)?
 - [ ] Fuzzy search
 - [ ] Add Images to item searches? (API call for google image search etc)
-- [ ] handling duplicate food names
+- [ ] Handle duplicate food names
+- [ ] Edit database entry
