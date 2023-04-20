@@ -58,7 +58,7 @@ function SearchForm({}: Props) {
 		<div className='flex flex-col items-center max-w-lg flex-wrap'>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
+				className='bg-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
 				<div className='flex flex-col items-center'>
 					<label className='text-xs'>Search Term</label>
@@ -66,7 +66,7 @@ function SearchForm({}: Props) {
 						type='string'
 						placeholder=''
 						{...register('query')}
-						className='border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+						className='rounded-lg p-1 m-1 bg-gray-300 text-sky-600'
 					/>
 					{errors.query && (
 						<p className='text-sm text-red-600 mt-1 self-center'>
@@ -75,7 +75,10 @@ function SearchForm({}: Props) {
 					)}
 				</div>
 				<SubmitButton text='Search  Database' />
-				<Button text='Show all' onClick={showAll} />
+				<Button
+					text='Show all'
+					onClick={showAll}
+				/>
 			</form>
 
 			{showResults && matchingResults.length > 0 && (

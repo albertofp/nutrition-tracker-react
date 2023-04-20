@@ -8,7 +8,7 @@ export default function Navbar({ setCurrentPage }: any) {
 
 	return (
 		<nav className='text-white flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4'>
-			<h1 className='w-full text-3xl font-bold text-[#00df9a]'>
+			<h1 className='w-full text-3xl font-bold text-sky-300'>
 				Nutrition Tracker
 			</h1>
 			<ul className='hidden md:flex'>
@@ -28,10 +28,10 @@ export default function Navbar({ setCurrentPage }: any) {
 				className={
 					nav
 						? 'fixed left-[-100%]'
-						: 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-800 bg-[#000300] ease-in-out duration-500'
+						: 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-800 bg-gray-950 ease-in-out duration-500'
 				}
 			>
-				<h1 className='w-full text-3xl font-bold text-[#00df9a] m-4'>
+				<h1 className='w-full text-3xl font-bold text-sky-300 m-4'>
 					Nutrition Tracker
 				</h1>
 				<ul className='p-4 uppercase'>

@@ -81,7 +81,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 			/>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
+				className='bg-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Calories</label>

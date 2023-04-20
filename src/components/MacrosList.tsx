@@ -43,27 +43,26 @@ function MacrosList({
 		}
 	}
 
-	const liStyle = 'flex justify-between w-full p-1 '
+	const liStyle = 'flex justify-between w-full p-1 text-sky-300 '
 
 	return (
-		<>
-			<div className='flex flex-col items-center'>
+		<div className='bg-sky-950 flex flex-col gap-2 rounded-lg items'>
+			<ul className=' rounded-lg m-2 p-4 items-start min-w-[250px]'>
 				{name && showName && <SectionTitle title={name} />}
-			</div>
-			<ul className='bg-teal-950 flex flex-col gap-2 rounded-lg m-2 p-4 items-start min-w-[250px]'>
-				<li className={liStyle + 'border-b border-teal-700'}>
+
+				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Calories: </span>
 					<span>{calories}g</span>
 				</li>
-				<li className={liStyle + 'border-b border-teal-700'}>
+				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Protein: </span>
 					<span>{protein}g</span>
 				</li>
-				<li className={liStyle + 'border-b border-teal-700'}>
+				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Carbs: </span>
 					<span>{carbs}g</span>
 				</li>
-				<li className={liStyle + 'border-b border-teal-700'}>
+				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Fat: </span>
 					<span>{fat}g</span>
 				</li>
@@ -71,20 +70,21 @@ function MacrosList({
 					<span>Fiber: </span>
 					<span>{fiber}g</span>
 				</li>
+
+				{controls && (
+					<div className='flex justify-evenly'>
+						<Button
+							text='Add'
+							onClick={addMacros}
+						/>
+						<Button
+							text='Delete'
+							onClick={deleteEntry}
+						/>
+					</div>
+				)}
 			</ul>
-			{controls && (
-				<div className='flex justify-evenly'>
-					<Button
-						text='Add'
-						onClick={addMacros}
-					/>
-					<Button
-						text='Delete'
-						onClick={deleteEntry}
-					/>
-				</div>
-			)}
-		</>
+		</div>
 	)
 }
 
