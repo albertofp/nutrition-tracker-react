@@ -17,6 +17,7 @@ function SearchForm({}: Props) {
 	const [currentQuery, setCurrentQuery] = useState<FormData>({ query: '' })
 	const [matchingResults, setMatchingResults] = useState<Array<foodItem>>([])
 	const [showResults, setShowResults] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(false)
 
 	const schema: ZodType<FormData> = z.object({
 		query: z.string()
@@ -34,28 +35,51 @@ function SearchForm({}: Props) {
 		}
 	})
 
+	const handleDisplayResults = () => {
+		if (loading && showResults) {
+			return <SectionTitle title='Loading...' />
+		} else {
+			if (showResults) {
+				if (matchingResults.length === 0) {
+					return <SectionTitle title='No results found' />
+				} else {
+					return <ResultsDisplay results={matchingResults} />
+				}
+			}
+		}
+	}
+
 	const onSubmit = (input: FormData, e: any) => {
 		setCurrentQuery(input)
 		console.log('input:', input)
 		console.log('currentQuery:', currentQuery)
 		let newMatches: any
+		setLoading(true)
 		readItem(input.query)
-			.then((res) => (newMatches = res))
+			.then((res) => {
+				newMatches = res
+				setLoading(false)
+			})
 			.finally(() => setMatchingResults(newMatches))
 
 		reset()
 		setShowResults(true)
 	}
 
-	const showAll = () => {
-		let newMatches: any
-		readAll()
-			.then((res) => (newMatches = res))
-			.finally(() => setMatchingResults(newMatches))
-		setShowResults(true)
+	const showAll = async () => {
+		if (matchingResults.length === 0) {
+			let newMatches: any
+			setLoading(true)
+			await readAll().then((res) => {
+				newMatches = res
+				setLoading(false)
+			})
+			setMatchingResults(newMatches)
+		}
+		setShowResults(!showResults)
 	}
 	return (
-		<div className='flex flex-col items-center max-w-lg flex-wrap'>
+		<div className='flex flex-col items-center flex-wrap'>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='bg-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
@@ -74,24 +98,17 @@ function SearchForm({}: Props) {
 						</p>
 					)}
 				</div>
-				<SubmitButton text='Search  Database' />
+				<SubmitButton
+					text='Search  Database'
+					disabled={loading}
+				/>
 				<Button
 					text='Show all'
 					onClick={showAll}
+					disabled={loading}
 				/>
 			</form>
-
-			{showResults && matchingResults.length > 0 && (
-				<ResultsDisplay results={matchingResults} />
-			)}
-			{showResults && matchingResults.length == 0 && (
-				<div className='flex flex-col items-center'>
-					<SectionTitle
-						title={'No Results Found'}
-						type={'h2'}
-					/>
-				</div>
-			)}
+			{handleDisplayResults()}
 		</div>
 	)
 }

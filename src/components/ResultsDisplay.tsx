@@ -6,9 +6,8 @@ type Props = {
 }
 
 function ResultsDisplay({ results }: Props) {
-
 	return (
-		<div className='flex xs:flex-col md:flex-row gap-4 rounded-lg m-2 p-2'>
+		<div className='flex flex-col md:flex-row gap-4 md:max-w-[850px] flex-wrap rounded-lg m-2 p-2'>
 			{results.map((item) => (
 				<div>
 					<MacrosList
