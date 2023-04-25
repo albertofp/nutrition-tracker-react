@@ -59,14 +59,7 @@ export default function Home() {
 
 	return (
 		<DayContext.Provider value={{ dayTotal, setDayTotal }}>
-			<div className='flex flex-col gap m-2 w-full'>
-				<div className='flex flex-col justify-between items-start h-24 max-w-[1240px] mx-auto px-4'>
-					<h3 className='text-sky-300'>
-						App to track and display your daily calorie and macro nutrient
-						consumption.{' '}
-					</h3>
-				</div>
-
+			<div className='flex flex-col m-2 w-full'>
 				<div className='flex justify-start gap-4 max-w-[1240px] mx-auto px-4 items-center'>
 					<div className='flex gap-2'>
 						<Button
