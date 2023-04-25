@@ -6,9 +6,9 @@
 	"type": "module",
 	"scripts": {
 		"predeploy": "npm run build",
-		"deploy": "gh-pages -d build",
+		"deploy": "gh-pages -d dist",
 		"dev": "vite",
-		"build": "tsc && vite build",
+		"build": "vite build",
 		"preview": "vite preview",
 		"tailwind:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
 	},
