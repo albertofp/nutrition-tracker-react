@@ -21,7 +21,7 @@ TODO:
 - [ ] Build a proper UI (Mantine, DaisyUI?)
 - [ ] Auth (+ guest user)
 - [ ] Tests
-- [ ] About
+- [x] About
 - [ ] Contact
 - [ ] Recipes (collection of multiple food items)?
 - [ ] Fuzzy search

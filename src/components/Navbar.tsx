@@ -9,7 +9,9 @@ export default function Navbar() {
 
 	return (
 		<nav className='flex justify-between items-center h-20 w-full mx-auto px-4 bg-sky-950 mb-6 text-sky-300'>
-			<h1 className='w-full text-3xl font-bold'>Nutrition Tracker</h1>
+			<h1 className='w-full text-3xl font-bold'>
+				<Link to='/'>Nutrition Tracker</Link>
+			</h1>
 			<ul className='hidden md:flex'>
 				<li className={liStyle}>
 					<Link to='/'>Home</Link>
