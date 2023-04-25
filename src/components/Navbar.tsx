@@ -8,7 +8,7 @@ export default function Navbar() {
 	const [nav, setNav] = useState(true)
 
 	return (
-		<nav className='flex justify-between items-center h-20 w-full mx-auto px-4 bg-sky-950 mb-6 text-sky-300'>
+		<nav className='flex justify-between items-center h-20 w-full mx-auto px-4 bg-gradient-to-b from-sky-800 to-sky-950 mb-6 text-sky-300'>
 			<h1 className='w-full text-3xl font-bold'>
 				<Link to='/'>Nutrition Tracker</Link>
 			</h1>
@@ -35,20 +35,20 @@ export default function Navbar() {
 				className={
 					nav
 						? 'fixed left-[-100%]'
-						: 'fixed left-0 top-0 w-[60%] h-full border-r border-r-gray-800 bg-gray-950 ease-in-out duration-500'
+						: 'fixed left-0 top-0 w-[60%] h-full border-r border-r-sky-950 bg-gray-950 ease-in-out duration-500'
 				}
 			>
 				<h1 className='w-full text-3xl font-bold text-sky-300 m-4'>
-					Nutrition Tracker
+					<Link to='/'>Nutrition Tracker</Link>
 				</h1>
 				<ul className='p-4 uppercase'>
-					<li className={liStyle + 'border-b border-gray-600'}>
+					<li className={liStyle + 'border-b border-sky-300'}>
 						<Link to='/'>Home</Link>
 					</li>
-					<li className={liStyle + 'border-b border-gray-600'}>
+					<li className={liStyle + 'border-b border-sky-300'}>
 						<Link to='/about'>About</Link>
 					</li>
-					<li className={liStyle + 'border-b border-gray-600'}>
+					<li className={liStyle + 'border-b border-sky-300'}>
 						<Link to='/contact'>Contact</Link>
 					</li>
 				</ul>

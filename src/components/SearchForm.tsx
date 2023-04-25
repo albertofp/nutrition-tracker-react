@@ -79,10 +79,10 @@ function SearchForm({}: Props) {
 		setShowResults(!showResults)
 	}
 	return (
-		<div className='flex flex-col items-center flex-wrap'>
+		<div className='flex flex-col items-center flex-wrap '>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='bg-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
+				className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
 				<div className='flex flex-col items-center'>
 					<label className='text-xs'>Search Term</label>

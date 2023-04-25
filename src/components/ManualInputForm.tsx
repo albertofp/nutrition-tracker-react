@@ -23,7 +23,7 @@ type FormData = {
 }
 
 const inputStyle =
-	'border-2 border-teal-950 rounded-lg p-1 m-1 bg-slate-400 text-teal-800 placeholder-inherit'
+	'border-2 border-sky-950 rounded-lg p-1 m-1 bg-slate-400 text-sky-800 placeholder-inherit'
 
 const errorStyle = 'text-sm text-red-600 mt-1 self-center'
 
@@ -81,7 +81,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 			/>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className='bg-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
+				className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Calories</label>

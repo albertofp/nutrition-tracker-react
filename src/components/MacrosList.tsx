@@ -46,7 +46,7 @@ function MacrosList({
 	const liStyle = 'flex justify-between w-full p-1 text-sky-300 '
 
 	return (
-		<div className='bg-sky-950 flex flex-col gap-2 rounded-lg items'>
+		<div className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg items'>
 			<ul className=' rounded-lg m-2 p-4 items-start min-w-[250px]'>
 				{name && showName && <SectionTitle title={name} />}
 
