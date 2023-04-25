@@ -1,14 +1,11 @@
 {
-	"homepage": "http://albertofp.github.io/nutrition-tracker-react/",
 	"name": "nutrition-tracker-react",
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist",
 		"dev": "vite",
-		"build": "vite build",
+		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"tailwind:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
 	},
