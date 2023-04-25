@@ -10,6 +10,7 @@ import {
 } from '@tanstack/router'
 import About from './components/About'
 import Contact from './components/Contact'
+import Login from './components/Login'
 
 const rootRoute = new RootRoute({
 	component: Root
@@ -18,6 +19,12 @@ const rootRoute = new RootRoute({
 const indexRoute = new Route({
 	getParentRoute: () => rootRoute,
 	path: '/',
+	component: Login
+})
+
+const homeRoute = new Route({
+	getParentRoute: () => rootRoute,
+	path: '/home',
 	component: Home
 })
 
@@ -33,7 +40,12 @@ const contactRoute = new Route({
 	component: Contact
 })
 
-const routeTree = rootRoute.addChildren([indexRoute, aboutRoute, contactRoute])
+const routeTree = rootRoute.addChildren([
+	indexRoute,
+	homeRoute,
+	aboutRoute,
+	contactRoute
+])
 const router = new Router({ routeTree })
 
 declare module '@tanstack/router' {

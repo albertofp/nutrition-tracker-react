@@ -35,14 +35,14 @@ export default function Navbar() {
 				className={
 					nav
 						? 'fixed left-[-100%]'
-						: 'fixed left-0 top-0 w-[60%] h-full border-r border-r-sky-950 bg-gray-950 ease-in-out duration-500'
+						: 'fixed left-0 top-0 w-[60%] min-w-fit h-full border-r border-r-sky-950 bg-gray-950 ease-in-out duration-500'
 				}
 			>
 				<h1 className='w-full text-3xl font-bold text-sky-300 m-4'>
 					<Link to='/'>Nutrition Tracker</Link>
 				</h1>
 				<ul className='p-4 uppercase'>
-					<li className={liStyle + 'border-b border-sky-300'}>
+					<li className={liStyle + 'border-b border-sky-300 w-full'}>
 						<Link to='/'>Home</Link>
 					</li>
 					<li className={liStyle + 'border-b border-sky-300'}>

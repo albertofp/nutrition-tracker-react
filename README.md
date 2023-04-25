@@ -22,7 +22,7 @@ TODO:
 - [ ] Auth (+ guest user)
 - [ ] Tests
 - [x] About
-- [ ] Contact
+- [x] Contact
 - [ ] Recipes (collection of multiple food items)?
 - [ ] Fuzzy search
 - [ ] Add Images to item searches? (API call for google image search etc)
