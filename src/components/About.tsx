@@ -19,31 +19,31 @@ function About() {
 					<a href='https://react.dev/'>
 						<img
 							src={ReactIcon}
-							className='w-14 hover:scale-125'
+							className='w-14 hover:scale-125 ease-in duration-200'
 						/>
 					</a>
 					<a href='https://vitejs.dev/'>
 						<img
 							src={ViteIcon}
-							className='w-14 hover:scale-125'
+							className='w-14 hover:scale-125 ease-in duration-200'
 						/>
 					</a>
 					<a href='https://www.typescriptlang.org/'>
 						<img
 							src={TypeScriptIcon}
-							className='w-14 hover:scale-125'
+							className='w-14 hover:scale-125 ease-in duration-200'
 						/>
 					</a>
 					<a href='https://tailwindcss.com/'>
 						<img
 							src={TailwindIcon}
-							className='w-16 hover:scale-125'
+							className='w-16 hover:scale-125 ease-in duration-200'
 						/>
 					</a>
 					<a href='https://supabase.com/'>
 						<img
 							src={SupabaseIcon}
-							className='w-14 hover:scale-125'
+							className='w-14 hover:scale-125 ease-in duration-200'
 						/>
 					</a>
 				</div>
