@@ -11,6 +11,7 @@ function Login() {
 	supabase.auth.onAuthStateChange(async (event) => {
 		if (event !== 'SIGNED_OUT') {
 			navigate({ to: '/home' })
+		} else {
 			navigate({ to: '/' })
 		}
 	})
