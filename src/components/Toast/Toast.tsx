@@ -1,15 +1,12 @@
 import { useToastDispatchContext } from './ToastContext'
+import { ToastType } from '../../../types'
 
-type Props = {
-    
-}
-
-export default function Toast({ type , message, id }:Props) {
-	const dispatch = useToastDispatchContext()
+export default function Toast({ type, message, id }: ToastType) {
+	const dispatch = useToastDispatchContext()!
 	return (
 		<>
 			{type == 'success' && (
-				<div className='rounded-md bg-green-50 p-4 m-3'>
+				<div className='rounded-lg bg-green-50 p-4 m-3'>
 					<div className='flex'>
 						<div className='flex-shrink-0'>
 							<svg
@@ -59,11 +56,11 @@ export default function Toast({ type , message, id }:Props) {
 				</div>
 			)}
 			{type == 'error' && (
-				<div className='rounded-md bg-red-50 p-4 m-3'>
+				<div className='rounded-lg bg-red-50 p-4 m-3'>
 					<div className='flex'>
 						<div className='flex-shrink-0'>
 							<svg
-								class='h-5 w-5 text-red-400'
+								className='h-5 w-5 text-red-400'
 								xmlns='http://www.w3.org/2000/svg'
 								viewBox='0 0 20 20'
 								fill='currentColor'

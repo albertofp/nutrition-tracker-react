@@ -6,3 +6,9 @@ export type foodItem = {
 	fat: number
 	fiber: number
 }
+
+export type ToastType = {
+	type: string
+	message: string
+	id: number
+}
