@@ -2,6 +2,9 @@
 
 ## Web app to track your nutrition habits and help plan meals.
 
+## [Live Preview](https://albertofp.github.io/nutrition-tracker-react/) 
+![Build](https://github.com/albertofp/nutrition-tracker-react/actions/workflows/pages-build-deployment.yml/badge.svg)
+
 ## Features:
 
 - Manually input food macronutrient values to add to current daily total
