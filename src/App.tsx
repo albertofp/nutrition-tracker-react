@@ -11,6 +11,8 @@ import {
 import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login'
+import { ToastProvider } from './components/Toast/ToastContext'
+import ToastContainer from './components/Toast/ToastContainer'
 
 const rootRoute = new RootRoute({
 	component: Root
@@ -64,7 +66,12 @@ function Root() {
 }
 
 function App() {
-	return <RouterProvider router={router} />
+	return (
+		<ToastProvider>
+			<RouterProvider router={router} />
+			<ToastContainer/>
+		</ToastProvider>
+	)
 }
 
 export default App
