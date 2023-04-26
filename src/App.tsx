@@ -69,7 +69,7 @@ function App() {
 	return (
 		<ToastProvider>
 			<RouterProvider router={router} />
-			<ToastContainer/>
+			<ToastContainer />
 		</ToastProvider>
 	)
 }
