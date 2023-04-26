@@ -9,13 +9,10 @@ function Login() {
 	const navigate = useNavigate()
 
 	supabase.auth.onAuthStateChange(async (event) => {
-		if (event !== 'SIGNED_OUT') {
-			navigate({ to: '/home' })
-		} else {
-			navigate({ to: '/' })
+		if (event !== 'INITIAL_SESSION') {
+			event == 'SIGNED_IN' ? navigate({ to: '/home' }) : navigate({ to: '/' })
 		}
 	})
-
 	return (
 		<div className='flex justify-center'>
 			<Auth

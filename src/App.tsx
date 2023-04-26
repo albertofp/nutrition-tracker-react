@@ -11,6 +11,7 @@ import {
 import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login'
+import Splash from './components/Splash'
 import { ToastProvider } from './components/Toast/ToastContext'
 import ToastContainer from './components/Toast/ToastContainer'
 
@@ -21,6 +22,12 @@ const rootRoute = new RootRoute({
 const indexRoute = new Route({
 	getParentRoute: () => rootRoute,
 	path: '/',
+	component: Splash
+})
+
+const loginRoute = new Route({
+	getParentRoute: () => rootRoute,
+	path: '/login',
 	component: Login
 })
 
@@ -46,7 +53,8 @@ const routeTree = rootRoute.addChildren([
 	indexRoute,
 	homeRoute,
 	aboutRoute,
-	contactRoute
+	contactRoute,
+	loginRoute
 ])
 const router = new Router({ routeTree })
 
