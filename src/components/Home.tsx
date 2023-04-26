@@ -7,10 +7,9 @@ import ManualInputForm from './ManualInputForm'
 import SearchForm from './SearchForm'
 import { DayContext } from '../DayContext'
 import { useToast } from './Toast/useToast'
-import { ToastProvider } from './Toast/ToastContext'
 
 export default function Home() {
-	const toast = useToast(4000)
+	const toast = useToast()
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
 	const [dayTotal, setDayTotal] = useState<foodItem>({
 		name: '',
@@ -58,7 +57,7 @@ export default function Home() {
 			fat: 0,
 			fiber: 0
 		})
-		toast('success', 'Reset successful')
+		toast('success', 'Daily total reset')
 	}
 
 	return (

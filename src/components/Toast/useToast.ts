@@ -1,9 +1,9 @@
 import { useToastDispatchContext } from './ToastContext'
 
-export function useToast(delay) {
-	const dispatch = useToastDispatchContext()
+export function useToast(delay: number = 2500) {
+	const dispatch = useToastDispatchContext()!
 
-	function toast(type, message) {
+	function toast(type: 'success' | 'error', message: string) {
 		const id = Math.random().toString(36).substr(2, 9)
 		dispatch({
 			type: 'ADD_TOAST',

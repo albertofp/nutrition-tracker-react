@@ -7,6 +7,7 @@ import { mergeObjects } from '../mergeObjects'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../useDatabase'
+import { useToast } from './Toast/useToast'
 
 type Props = {
 	macros: foodItem
@@ -56,6 +57,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		}
 	})
 
+	const toast = useToast()
 	const onSubmit = (formValues: FormData, e: any) => {
 		const newItem = mergeObjects(formValues, macros)
 		setMacros(newItem)
@@ -68,6 +70,8 @@ function ManualInputForm({ macros, setMacros }: Props) {
 				0 && addItem(newItem)
 		}
 		reset()
+		toast('success', 'Daily total updated')
+		newItem.name.length && toast('success', 'Item added  to database')
 	}
 
 	const onCheckBoxChange = (e: any) => {

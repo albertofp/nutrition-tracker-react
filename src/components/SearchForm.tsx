@@ -8,12 +8,11 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../useDatabase'
 import ResultsDisplay from './ResultsDisplay'
 
-type Props = {}
 type FormData = {
 	query: string
 }
 
-function SearchForm({}: Props) {
+function SearchForm() {
 	const [currentQuery, setCurrentQuery] = useState<FormData>({ query: '' })
 	const [matchingResults, setMatchingResults] = useState<Array<foodItem>>([])
 	const [showResults, setShowResults] = useState<boolean>(false)
