@@ -1,9 +1,26 @@
-import React from 'react'
+import SectionTitle from './SectionTitle'
 
-type Props = {}
+import Button from './Button'
 
-function Splash({}: Props) {
-	return <div>Welcome</div>
+import { useAuth } from '../useAuth'
+
+function Splash() {
+	const { session, user } = useAuth()
+
+	return (
+		<>
+			<SectionTitle title='Splash Screen' />
+			<br></br>
+			<SectionTitle title={'User: ' + user} />
+			<br></br>
+			<div className='flex items-center justify-center'>
+				<Button
+					text='log session'
+					onClick={() => console.log(session)}
+				/>
+			</div>
+		</>
+	)
 }
 
 export default Splash

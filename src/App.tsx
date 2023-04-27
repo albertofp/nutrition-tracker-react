@@ -14,6 +14,7 @@ import Login from './components/Login'
 import Splash from './components/Splash'
 import { ToastProvider } from './components/Toast/ToastContext'
 import ToastContainer from './components/Toast/ToastContainer'
+import { AuthProvider } from './useAuth'
 
 const rootRoute = new RootRoute({
 	component: Root
@@ -74,11 +75,14 @@ function Root() {
 }
 
 function App() {
+
 	return (
-		<ToastProvider>
-			<RouterProvider router={router} />
-			<ToastContainer />
-		</ToastProvider>
+		<AuthProvider>
+			<ToastProvider>
+				<RouterProvider router={router} />
+				<ToastContainer />
+			</ToastProvider>
+		</AuthProvider>
 	)
 }
 

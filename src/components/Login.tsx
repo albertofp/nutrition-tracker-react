@@ -2,6 +2,9 @@ import { Auth } from '@supabase/auth-ui-react'
 import { supabase } from '../supabaseClient'
 import { useNavigate } from '@tanstack/router'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { useContext, useEffect, useState } from 'react'
+import { Session } from '@supabase/supabase-js'
+import Button from './Button'
 
 type Props = {}
 
@@ -9,10 +12,16 @@ function Login() {
 	const navigate = useNavigate()
 
 	supabase.auth.onAuthStateChange(async (event) => {
-		if (event !== 'INITIAL_SESSION') {
-			event == 'SIGNED_IN' ? navigate({ to: '/home' }) : navigate({ to: '/' })
+		switch (event) {
+			case 'SIGNED_IN':
+				navigate({ to: '/home' })
+			case 'SIGNED_OUT':
+				navigate({ to: '/login' })
+			default:
+				break
 		}
 	})
+
 	return (
 		<div className='flex justify-center'>
 			<Auth
@@ -22,9 +31,10 @@ function Login() {
 					variables: {
 						default: {
 							colors: {
+								brand: '#082f49',
 								defaultButtonBackground: '#082f49',
-								defaultButtonBackgroundHover: '#38bdf8',
-								brandAccent: '#0ea5e9',
+								defaultButtonBackgroundHover: '#075985',
+								brandAccent: '#075985',
 								defaultButtonBorder: '#155e75',
 								brandButtonText: '#0284c7'
 							}
@@ -32,7 +42,9 @@ function Login() {
 					}
 				}}
 				theme='dark'
-				providers={['github']}
+				providers={['github', 'google']}
+				showLinks={true}
+				onlyThirdPartyProviders={false}
 			/>
 		</div>
 	)

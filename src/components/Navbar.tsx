@@ -48,9 +48,16 @@ export default function Navbar() {
 					<li
 						className={liStyle + 'border-b border-sky-300 w-full rounded-none'}
 					>
+						User goes here
+					</li>
+					<li
+						className={liStyle + 'border-b border-sky-300 w-full rounded-none'}
+					>
 						<Link to='/login'>Log in</Link>
 					</li>
-					<li className={liStyle + 'border-b border-sky-300 w-full rounded-none'}>
+					<li
+						className={liStyle + 'border-b border-sky-300 w-full rounded-none'}
+					>
 						<Link to='/home'>Home</Link>
 					</li>
 					<li className={liStyle + 'border-b border-sky-300 rounded-none'}>
