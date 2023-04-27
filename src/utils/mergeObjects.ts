@@ -1,4 +1,4 @@
-import { foodItem } from '../types'
+import { foodItem } from '../../types/types'
 
 // Updates 1 food item with new values
 export const mergeObjects = (object1: foodItem, object2: foodItem) => {

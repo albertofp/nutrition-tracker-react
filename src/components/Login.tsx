@@ -1,5 +1,5 @@
 import { Auth } from '@supabase/auth-ui-react'
-import { supabase } from '../supabaseClient'
+import { supabase } from '../config/supabaseClient'
 import { useNavigate } from '@tanstack/router'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useContext, useEffect, useState } from 'react'

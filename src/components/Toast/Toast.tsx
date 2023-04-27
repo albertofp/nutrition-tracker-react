@@ -1,5 +1,5 @@
 import { useToastDispatchContext } from './ToastContext'
-import { ToastType } from '../../../types'
+import { ToastType } from '../../../types/types'
 
 export default function Toast({ type, message, id }: ToastType) {
 	const dispatch = useToastDispatchContext()!

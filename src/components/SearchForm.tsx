@@ -2,10 +2,10 @@ import { useState } from 'react'
 import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
 import Button, { SubmitButton } from './Button'
-import { foodItem } from '../../types'
+import { foodItem } from '../../types/types'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { readAll, readItem } from '../useDatabase'
+import { readAll, readItem } from '../utils/useDatabase'
 import ResultsDisplay from './ResultsDisplay'
 
 type FormData = {

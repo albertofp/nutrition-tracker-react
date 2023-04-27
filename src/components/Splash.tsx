@@ -2,7 +2,7 @@ import SectionTitle from './SectionTitle'
 
 import Button from './Button'
 
-import { useAuth } from '../useAuth'
+import { useAuth } from '../hooks/useAuth'
 
 function Splash() {
 	const { session, user } = useAuth()

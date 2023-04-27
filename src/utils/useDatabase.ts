@@ -1,5 +1,5 @@
-import { foodItem } from '../types'
-import { supabase } from './supabaseClient'
+import { foodItem } from '../../types/types'
+import { supabase } from '../config/supabaseClient'
 
 export async function addItem(item: foodItem) {
 	const { data, error } = await supabase.from('Ingredient Macros').insert([

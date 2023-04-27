@@ -1,11 +1,17 @@
 import React, { createContext, useReducer, useContext } from 'react'
-import { ToastType } from '../../../types'
-import { ReactJSXElement, ReactJSXElementChildrenAttribute } from '@emotion/react/types/jsx-namespace'
+import { ToastType } from '../../../types/types'
+import {
+	ReactJSXElement,
+	ReactJSXElementChildrenAttribute
+} from '@emotion/react/types/jsx-namespace'
 
 const ToastStateContext = createContext<any>({ toasts: [] })
 const ToastDispatchContext = createContext<null | React.Dispatch<any>>(null)
 
-function ToastReducer(state: { toasts: ToastType[] }, action: { type: string; toast: any; id: number }) {
+function ToastReducer(
+	state: { toasts: ToastType[] },
+	action: { type: string; toast: any; id: number }
+) {
 	switch (action.type) {
 		case 'ADD_TOAST': {
 			return {
@@ -14,7 +20,7 @@ function ToastReducer(state: { toasts: ToastType[] }, action: { type: string; to
 			}
 		}
 		case 'DELETE_TOAST': {
-			const updatedToasts = state.toasts.filter((e:any) => e.id != action.id)
+			const updatedToasts = state.toasts.filter((e: any) => e.id != action.id)
 			return {
 				...state,
 				toasts: updatedToasts
@@ -26,7 +32,7 @@ function ToastReducer(state: { toasts: ToastType[] }, action: { type: string; to
 	}
 }
 
-export function ToastProvider({ children } : any) {
+export function ToastProvider({ children }: any) {
 	const [state, dispatch] = useReducer(ToastReducer, {
 		toasts: []
 	})

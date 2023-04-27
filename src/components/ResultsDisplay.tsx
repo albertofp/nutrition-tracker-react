@@ -1,4 +1,4 @@
-import { foodItem } from '../../types'
+import { foodItem } from '../../types/types'
 import MacrosList from './MacrosList'
 
 type Props = {
