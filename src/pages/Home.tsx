@@ -7,6 +7,9 @@ import ManualInputForm from '../components/ManualInputForm'
 import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
 import { useToast } from '../hooks/useToast'
+import { notifications } from '@mantine/notifications'
+import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider'
+import { CheckCircle2 } from 'lucide-react'
 
 export default function Home() {
 	const toast = useToast()
@@ -57,7 +60,14 @@ export default function Home() {
 			fat: 0,
 			fiber: 0
 		})
-		toast('success', 'Daily total reset')
+		//toast('success', 'Daily total reset')
+		notifications.show({
+			message: 'Daily total reset!',
+			color: 'green',
+			autoClose: 2000,
+			icon: <CheckCircle2 />,
+			sx: { backgroundColor: 'lightgreen' }
+		})
 	}
 
 	return (
