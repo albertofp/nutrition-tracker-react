@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
-import { SubmitButton } from './Button'
 import { foodItem } from '../../types/types'
 import { mergeObjects } from '../utils/mergeObjects'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
 import { notifications} from '@mantine/notifications'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Plus } from 'lucide-react'
+import Button from './Button'
 
 type Props = {
 	macros: foodItem
@@ -180,7 +180,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 					</div>
 				)}
 
-				<SubmitButton text='Input' />
+				<Button type='submit' text='Input' icon={<Plus/>}/>
 			</form>
 		</>
 	)

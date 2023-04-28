@@ -5,6 +5,7 @@ import { mergeObjects } from '../utils/mergeObjects'
 import { delItem } from '../utils/useDatabase'
 import Button from './Button'
 import SectionTitle from './SectionTitle'
+import { Plus, X } from 'lucide-react'
 
 type Props = {
 	name: string
@@ -76,10 +77,12 @@ function MacrosList({
 						<Button
 							text='Add'
 							onClick={addMacros}
+							icon={<Plus />}
 						/>
 						<Button
 							text='Delete'
 							onClick={deleteEntry}
+							icon={<X />}
 						/>
 					</div>
 				)}

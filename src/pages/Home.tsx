@@ -7,7 +7,7 @@ import ManualInputForm from '../components/ManualInputForm'
 import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
 import { notifications } from '@mantine/notifications'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, Search, RotateCcw, ListPlus } from 'lucide-react'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
@@ -75,14 +75,17 @@ export default function Home() {
 						<Button
 							text='Search'
 							onClick={displaySearch}
+							icon={<Search />}
 						/>
 						<Button
 							text='Manual Input'
 							onClick={displayManualInput}
+							icon={<ListPlus />}
 						/>
 						<Button
 							text='Reset'
 							onClick={resetDayTotal}
+							icon={<RotateCcw />}
 						/>
 					</div>
 				</div>

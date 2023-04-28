@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
-import Button, { SubmitButton } from './Button'
+import Button from './Button'
 import { foodItem } from '../../types/types'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../utils/useDatabase'
 import ResultsDisplay from './ResultsDisplay'
+import {Search} from 'lucide-react'
 
 type FormData = {
 	query: string
@@ -97,9 +98,11 @@ function SearchForm() {
 						</p>
 					)}
 				</div>
-				<SubmitButton
+				<Button
 					text='Search  Database'
 					disabled={loading}
+					type='submit'
+					icon={<Search />}
 				/>
 				<Button
 					text='Show all'
