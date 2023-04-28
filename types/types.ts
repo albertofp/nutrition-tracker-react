@@ -1,4 +1,4 @@
-import { Database } from "./supabase"
+import { Database } from './supabase'
 
 export type foodItem = {
 	name: string
@@ -7,13 +7,9 @@ export type foodItem = {
 	carbs: number
 	fat: number
 	fiber: number
-	img?:string
+	img?: string
+	imgAuthor?: string
 }
 
-export type foodItemDB = Database["public"]["Tables"]["Ingredient Macros"]["Row"]
-
-export type ToastType = {
-	type: string
-	message: string
-	id: number
-}
+export type foodItemDB =
+	Database['public']['Tables']['Ingredient Macros']['Row']

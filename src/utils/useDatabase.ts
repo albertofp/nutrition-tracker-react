@@ -4,12 +4,8 @@ import { supabase } from '../config/supabaseClient'
 export async function addItem(item: foodItem) {
 	const { data, error } = await supabase.from('Ingredient Macros').insert([
 		{
-			name: item.name.toLowerCase(),
-			calories: item.calories,
-			protein: item.protein,
-			carbs: item.carbs,
-			fat: item.fat,
-			fiber: item.fiber
+			...item,
+			name: item.name.toLowerCase()
 		}
 	])
 

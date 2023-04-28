@@ -53,28 +53,15 @@ function MacrosList({
 
 	return (
 		<div className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg items'>
-			<div className='flex flex-col mt-2'>
-				{item.name && (
+			<div className='flex flex-col mt-2'>			
 					<Title
 						order={2}
 						align='center'
 						weight='normal'
 						transform='capitalize'
 					>
-						{item.name}
+						{title ? title : item.name}
 					</Title>
-				)}
-
-				{title && (
-					<Title
-						order={2}
-						align='center'
-						weight='normal'
-						transform='capitalize'
-					>
-						{title}
-					</Title>
-				)}
 				{showImg && (
 					<img
 						src={item.img}

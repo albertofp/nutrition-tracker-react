@@ -69,22 +69,18 @@ function ManualInputForm({ macros, setMacros }: Props) {
 				newItem.fiber >
 				0 && addItem(newItem)
 		}
-		reset()
+		
+		const message = formValues.name.length
+			? `${formValues.name} added to database`
+			: 'Macros added to daily total'
 		notifications.show({
-			message: 'Macros added',
+			message: message,
 			color: 'green',
 			autoClose: 2000,
 			icon: <CheckCircle2 />,
 			sx: { backgroundColor: 'lightgreen' }
 		})
-		newItem.name.length &&
-			notifications.show({
-				message: 'Macros added',
-				color: 'green',
-				autoClose: 2000,
-				icon: <CheckCircle2 />,
-				sx: { backgroundColor: 'lightgreen' }
-			})
+		reset()
 	}
 
 	const onCheckBoxChange = (e: any) => {
