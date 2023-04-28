@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { createApi } from 'unsplash-js'
 import { ApiResponse } from 'unsplash-js/dist/helpers/response'
 import { photos, users } from 'unsplash-js/dist/internals'
@@ -22,14 +22,12 @@ const unsplashApi = createApi({ accessKey })
 export default function usePhoto(query: string) {
 	const [data, setPhotosResponse] = useState<null | ApiResponse<Photos>>(null)
 
-	useEffect(() => {
-		unsplashApi.search
-			.getPhotos({ query: query, orientation: 'landscape', perPage: 1 })
-			.then((result) => {
-				setPhotosResponse(result)
-			})
-			.catch((error) => console.error('error getting photo: ', error))
-	}, [])
+	unsplashApi.search
+		.getPhotos({ query: query, orientation: 'landscape', perPage: 1 })
+		.then((result) => {
+			setPhotosResponse(result)
+		})
+		.catch((error) => console.error('error getting photo: ', error))
 
 	const photo = data?.response?.results[0]
 
@@ -38,3 +36,5 @@ export default function usePhoto(query: string) {
 		user: photo?.user.name
 	}
 }
+
+
