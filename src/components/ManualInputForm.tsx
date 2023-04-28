@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
 import { SubmitButton } from './Button'
@@ -7,7 +7,8 @@ import { mergeObjects } from '../utils/mergeObjects'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
-import { useToast } from '../hooks/useToast'
+import { notifications} from '@mantine/notifications'
+import { CheckCircle2 } from 'lucide-react'
 
 type Props = {
 	macros: foodItem
@@ -29,7 +30,7 @@ const inputStyle =
 const errorStyle = 'text-sm text-red-600 mt-1 self-center'
 
 function ManualInputForm({ macros, setMacros }: Props) {
-	const [saveTemplate, setSaveTemplate] = React.useState(false)
+	const [saveTemplate, setSaveTemplate] = useState(false)
 
 	const schema: ZodType<FormData> = z.object({
 		name: z.string(),
@@ -57,7 +58,6 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		}
 	})
 
-	const toast = useToast()
 	const onSubmit = (formValues: FormData, e: any) => {
 		const newItem = mergeObjects(formValues, macros)
 		setMacros(newItem)
@@ -70,8 +70,21 @@ function ManualInputForm({ macros, setMacros }: Props) {
 				0 && addItem(newItem)
 		}
 		reset()
-		toast('success', 'Daily total updated')
-		newItem.name.length && toast('success', 'Item added  to database')
+		notifications.show({
+			message: 'Macros added',
+			color: 'green',
+			autoClose: 2000,
+			icon: <CheckCircle2 />,
+			sx: { backgroundColor: 'lightgreen' }
+		})
+		newItem.name.length &&
+			notifications.show({
+				message: 'Macros added',
+				color: 'green',
+				autoClose: 2000,
+				icon: <CheckCircle2 />,
+				sx: { backgroundColor: 'lightgreen' }
+			})
 	}
 
 	const onCheckBoxChange = (e: any) => {
