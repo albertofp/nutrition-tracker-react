@@ -13,7 +13,6 @@ function ResultsDisplay({ results }: Props) {
 					<MacrosList
 						item={item}
 						controls={true}
-						showName={true}
 					/>
 				</div>
 			))}

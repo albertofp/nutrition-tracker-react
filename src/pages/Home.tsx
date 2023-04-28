@@ -61,7 +61,7 @@ export default function Home() {
 		notifications.show({
 			message: 'Daily total reset!',
 			color: 'green',
-			autoClose: 2000,
+			autoClose: 1000,
 			icon: <CheckCircle2 />,
 			sx: { backgroundColor: 'lightgreen' }
 		})

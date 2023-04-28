@@ -4,9 +4,10 @@ import { DayContext } from '../DayContext'
 import { mergeObjects } from '../utils/mergeObjects'
 import { delItem } from '../utils/useDatabase'
 import Button from './Button'
-import { Plus, X } from 'lucide-react'
+import { CheckCircle2, Plus, X } from 'lucide-react'
 import { Title } from '@mantine/core'
 import { foodItem } from '../../types/types'
+import { notifications } from '@mantine/notifications'
 
 interface Props {
 	item: foodItem
@@ -20,11 +21,25 @@ function MacrosList({ item, controls, title }: Props): ReactJSXElement {
 	const addMacros = () => {
 		const newItem = mergeObjects(item, dayTotal)
 		setDayTotal(newItem)
+		notifications.show({
+			message: 'Added to daily totals!',
+			color: 'green',
+			autoClose: 1000,
+			icon: <CheckCircle2 />,
+			sx: { backgroundColor: 'lightgreen' }
+		})
 	}
 
 	const deleteEntry = () => {
 		if (item.name) {
 			delItem(item.name)
+			notifications.show({
+				message: 'Deleted item from database',
+				color: 'green',
+				autoClose: 1000,
+				icon: <CheckCircle2 />,
+				sx: { backgroundColor: 'lightgreen' }
+			})
 		}
 	}
 
