@@ -5,7 +5,6 @@ import { mergeObjects } from '../utils/mergeObjects'
 import { delItem } from '../utils/useDatabase'
 import Button from './Button'
 import SectionTitle from './SectionTitle'
-import { useToast } from '../hooks/useToast'
 
 type Props = {
 	name: string
@@ -30,20 +29,17 @@ function MacrosList({
 }: Props): ReactJSXElement {
 	const { dayTotal, setDayTotal } = useContext(DayContext)
 
-	const toast = useToast()
 	const addMacros = () => {
 		const newItem = mergeObjects(
 			{ name, calories, protein, carbs, fat, fiber },
 			dayTotal
 		)
 		setDayTotal(newItem)
-		toast('success', 'Added macros to daily total')
 	}
 
 	const deleteEntry = () => {
 		if (name) {
 			delItem(name)
-			toast('success', 'Deleted item from database')
 		}
 	}
 

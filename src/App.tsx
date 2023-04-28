@@ -12,8 +12,6 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Splash from './pages/Splash'
-import { ToastProvider } from './components/Toast/ToastContext'
-import ToastContainer from './components/Toast/ToastContainer'
 import { AuthProvider } from './hooks/useAuth'
 
 const rootRoute = new RootRoute({
@@ -77,10 +75,7 @@ function Root() {
 function App() {
 	return (
 		<AuthProvider>
-			<ToastProvider>
-				<RouterProvider router={router} />
-				<ToastContainer />
-			</ToastProvider>
+			<RouterProvider router={router} />
 		</AuthProvider>
 	)
 }

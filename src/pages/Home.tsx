@@ -6,13 +6,10 @@ import { foodItem } from '../../types/types'
 import ManualInputForm from '../components/ManualInputForm'
 import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
-import { useToast } from '../hooks/useToast'
 import { notifications } from '@mantine/notifications'
-import { ThemeConsumer } from 'react-bootstrap/esm/ThemeProvider'
 import { CheckCircle2 } from 'lucide-react'
 
 export default function Home() {
-	const toast = useToast()
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
 	const [dayTotal, setDayTotal] = useState<foodItem>({
 		name: '',
