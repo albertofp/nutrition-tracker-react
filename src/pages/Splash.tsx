@@ -1,17 +1,13 @@
-import SectionTitle from '../components/SectionTitle'
-
+import { Title } from '@mantine/core'
 import Button from '../components/Button'
-
 import { useAuth } from '../hooks/useAuth'
 
 function Splash() {
 	const { session, user } = useAuth()
 
 	return (
-		<>
-			<SectionTitle title='Splash Screen' />
-			<br></br>
-			<SectionTitle title={'User: ' + user} />
+		<div className='text-sky-300'>
+			<Title align='center' weight={'normal'}>Splash Screen</Title>
 			<br></br>
 			<div className='flex items-center justify-center'>
 				<Button
@@ -19,7 +15,7 @@ function Splash() {
 					onClick={() => console.log(session)}
 				/>
 			</div>
-		</>
+		</div>
 	)
 }
 

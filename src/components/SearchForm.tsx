@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
 import Button from './Button'
 import { foodItem } from '../../types/types'
@@ -8,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../utils/useDatabase'
 import ResultsDisplay from './ResultsDisplay'
 import {Search} from 'lucide-react'
+import { Title,Loader } from '@mantine/core'
 
 type FormData = {
 	query: string
@@ -37,11 +37,11 @@ function SearchForm() {
 
 	const handleDisplayResults = () => {
 		if (loading && showResults) {
-			return <SectionTitle title='Loading...' />
+			return <Loader />
 		} else {
 			if (showResults) {
 				if (matchingResults.length === 0) {
-					return <SectionTitle title='No results found' />
+					return <Title order={2} weight={'normal'}>No results found</Title>
 				} else {
 					return <ResultsDisplay results={matchingResults} />
 				}

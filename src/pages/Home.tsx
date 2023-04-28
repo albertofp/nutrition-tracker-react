@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import Button from '../components/Button'
 import MacrosList from '../components/MacrosList'
-import SectionTitle from '../components/SectionTitle'
 import { foodItem } from '../../types/types'
 import ManualInputForm from '../components/ManualInputForm'
 import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
 import { notifications } from '@mantine/notifications'
 import { CheckCircle2, Search, RotateCcw, ListPlus } from 'lucide-react'
+import { Title } from '@mantine/core'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
@@ -91,13 +91,10 @@ export default function Home() {
 				</div>
 
 				<div className='flex flex-col items-center gap-2 text-sky-300 max-w-[1240px] min-w-[350px] mx-auto p-4'>
-					<SectionTitle
-						title='Daily Total'
-						type='h3'
-					></SectionTitle>
 					<MacrosList
 						{...dayTotal}
-						showName={false}
+						name='Daily Total'
+						showName={true}
 					/>
 					{displayModule()}
 				</div>

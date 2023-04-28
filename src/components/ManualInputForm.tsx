@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import SectionTitle from './SectionTitle'
 import { useForm } from 'react-hook-form'
 import { foodItem } from '../../types/types'
 import { mergeObjects } from '../utils/mergeObjects'
@@ -9,6 +8,7 @@ import { addItem } from '../utils/useDatabase'
 import { notifications} from '@mantine/notifications'
 import { CheckCircle2, Plus } from 'lucide-react'
 import Button from './Button'
+import { Title } from '@mantine/core'
 
 type Props = {
 	macros: foodItem
@@ -92,14 +92,11 @@ function ManualInputForm({ macros, setMacros }: Props) {
 	}
 	return (
 		<>
-			<SectionTitle
-				title='Manual Input Form'
-				type='h3'
-			/>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
 				className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
+				<Title order={3} weight='semibold'>Manual Input</Title>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Calories</label>
 					<input

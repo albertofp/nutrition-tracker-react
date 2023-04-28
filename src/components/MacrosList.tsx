@@ -4,8 +4,8 @@ import { DayContext } from '../DayContext'
 import { mergeObjects } from '../utils/mergeObjects'
 import { delItem } from '../utils/useDatabase'
 import Button from './Button'
-import SectionTitle from './SectionTitle'
 import { Plus, X } from 'lucide-react'
+import { Title } from '@mantine/core'
 
 type Props = {
 	name: string
@@ -49,7 +49,16 @@ function MacrosList({
 	return (
 		<div className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg items'>
 			<ul className=' rounded-lg m-2 p-4 items-start min-w-[250px]'>
-				{name && showName && <SectionTitle title={name} />}
+				{name && showName && (
+					<Title
+						order={2}
+						align='center'
+						weight='normal'
+						transform='capitalize'
+					>
+						{name}
+					</Title>
+				)}
 
 				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Calories: </span>
