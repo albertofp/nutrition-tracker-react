@@ -4,7 +4,7 @@ import { useNavigate } from '@tanstack/router'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useContext, useEffect, useState } from 'react'
 import { Session } from '@supabase/supabase-js'
-import Button from './Button'
+import Button from '../components/Button'
 
 type Props = {}
 

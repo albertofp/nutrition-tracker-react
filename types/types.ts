@@ -1,3 +1,5 @@
+import { Database } from "./supabase"
+
 export type foodItem = {
 	name: string
 	calories: number
@@ -6,6 +8,8 @@ export type foodItem = {
 	fat: number
 	fiber: number
 }
+
+export type foodItemDB = Database["public"]["Tables"]["Ingredient Macros"]["Row"]
 
 export type ToastType = {
 	type: string

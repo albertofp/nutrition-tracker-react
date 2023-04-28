@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar'
 import './input.css'
-import Home from './components/Home'
+import Home from './pages/Home'
 import {
 	Outlet,
 	RouterProvider,
@@ -8,10 +8,10 @@ import {
 	Route,
 	RootRoute
 } from '@tanstack/router'
-import About from './components/About'
-import Contact from './components/Contact'
-import Login from './components/Login'
-import Splash from './components/Splash'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Login from './pages/Login'
+import Splash from './pages/Splash'
 import { ToastProvider } from './components/Toast/ToastContext'
 import ToastContainer from './components/Toast/ToastContainer'
 import { AuthProvider } from './hooks/useAuth'

@@ -1,4 +1,4 @@
-import SectionTitle from './SectionTitle'
+import SectionTitle from '../components/SectionTitle'
 import SupabaseIcon from '../assets/supabase-icon.svg'
 import TypeScriptIcon from '../assets/typescript-logo.svg'
 import ReactIcon from '../assets/react.svg'

@@ -1,6 +1,6 @@
-import SectionTitle from './SectionTitle'
+import SectionTitle from '../components/SectionTitle'
 
-import Button from './Button'
+import Button from '../components/Button'
 
 import { useAuth } from '../hooks/useAuth'
 

@@ -5,7 +5,7 @@ import { mergeObjects } from '../utils/mergeObjects'
 import { delItem } from '../utils/useDatabase'
 import Button from './Button'
 import SectionTitle from './SectionTitle'
-import { useToast } from './Toast/useToast'
+import { useToast } from '../hooks/useToast'
 
 type Props = {
 	name: string

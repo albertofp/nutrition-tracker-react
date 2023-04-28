@@ -1,4 +1,4 @@
-import SectionTitle from './SectionTitle'
+import SectionTitle from '../components/SectionTitle'
 import GithubIcon from '../assets/github-icon.svg'
 import LinkedInIcon from '../assets/linkedin-icon.svg'
 

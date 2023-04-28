@@ -7,7 +7,7 @@ import { mergeObjects } from '../utils/mergeObjects'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
-import { useToast } from './Toast/useToast'
+import { useToast } from '../hooks/useToast'
 
 type Props = {
 	macros: foodItem

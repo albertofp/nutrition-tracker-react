@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import Button from './Button'
-import MacrosList from './MacrosList'
-import SectionTitle from './SectionTitle'
+import Button from '../components/Button'
+import MacrosList from '../components/MacrosList'
+import SectionTitle from '../components/SectionTitle'
 import { foodItem } from '../../types/types'
-import ManualInputForm from './ManualInputForm'
-import SearchForm from './SearchForm'
+import ManualInputForm from '../components/ManualInputForm'
+import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
-import { useToast } from './Toast/useToast'
+import { useToast } from '../hooks/useToast'
 
 export default function Home() {
 	const toast = useToast()
