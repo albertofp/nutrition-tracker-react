@@ -1,8 +1,7 @@
 import { createContext } from 'react'
 import { foodItem } from '../types/types'
-
-interface DayContextTypes {
-	dayTotal: foodItem
+type DayContextTypes= {
+	dayTotal: foodItem,
 	setDayTotal: React.Dispatch<React.SetStateAction<foodItem>>
 }
 

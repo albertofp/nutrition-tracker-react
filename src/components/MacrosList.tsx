@@ -6,41 +6,25 @@ import { delItem } from '../utils/useDatabase'
 import Button from './Button'
 import { Plus, X } from 'lucide-react'
 import { Title } from '@mantine/core'
+import { foodItem } from '../../types/types'
 
-type Props = {
-	name: string
-	showName?: boolean
+interface Props {
+	item: foodItem
 	controls?: boolean
-	calories: number
-	protein: number
-	carbs: number
-	fat: number
-	fiber: number
+	title?: string
 }
 
-function MacrosList({
-	name,
-	showName,
-	controls,
-	calories,
-	protein,
-	carbs,
-	fat,
-	fiber
-}: Props): ReactJSXElement {
+function MacrosList({ item, controls, title }: Props): ReactJSXElement {
 	const { dayTotal, setDayTotal } = useContext(DayContext)
 
 	const addMacros = () => {
-		const newItem = mergeObjects(
-			{ name, calories, protein, carbs, fat, fiber },
-			dayTotal
-		)
+		const newItem = mergeObjects(item, dayTotal)
 		setDayTotal(newItem)
 	}
 
 	const deleteEntry = () => {
-		if (name) {
-			delItem(name)
+		if (item.name) {
+			delItem(item.name)
 		}
 	}
 
@@ -49,36 +33,47 @@ function MacrosList({
 	return (
 		<div className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg items'>
 			<ul className=' rounded-lg m-2 p-4 items-start min-w-[250px]'>
-				{name && showName && (
+				{item.name && (
 					<Title
 						order={2}
 						align='center'
 						weight='normal'
 						transform='capitalize'
 					>
-						{name}
+						{item.name}
+					</Title>
+				)}
+
+				{title && (
+					<Title
+						order={2}
+						align='center'
+						weight='normal'
+						transform='capitalize'
+					>
+						{title}
 					</Title>
 				)}
 
 				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Calories: </span>
-					<span>{calories}g</span>
+					<span>{item.calories}g</span>
 				</li>
 				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Protein: </span>
-					<span>{protein}g</span>
+					<span>{item.protein}g</span>
 				</li>
 				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Carbs: </span>
-					<span>{carbs}g</span>
+					<span>{item.carbs}g</span>
 				</li>
 				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Fat: </span>
-					<span>{fat}g</span>
+					<span>{item.fat}g</span>
 				</li>
 				<li className={liStyle}>
 					<span>Fiber: </span>
-					<span>{fiber}g</span>
+					<span>{item.fiber}g</span>
 				</li>
 
 				{controls && (

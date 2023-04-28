@@ -11,14 +11,9 @@ function ResultsDisplay({ results }: Props) {
 			{results.map((item) => (
 				<div>
 					<MacrosList
-						name={item.name}
+						item={item}
 						controls={true}
 						showName={true}
-						calories={item.calories}
-						protein={item.protein}
-						carbs={item.carbs}
-						fat={item.fat}
-						fiber={item.fiber}
 					/>
 				</div>
 			))}

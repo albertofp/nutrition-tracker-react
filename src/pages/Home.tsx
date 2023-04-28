@@ -92,9 +92,8 @@ export default function Home() {
 
 				<div className='flex flex-col items-center gap-2 text-sky-300 max-w-[1240px] min-w-[350px] mx-auto p-4'>
 					<MacrosList
-						{...dayTotal}
-						name='Daily Total'
-						showName={true}
+						item={dayTotal}
+						title='Daily Total'
 					/>
 					{displayModule()}
 				</div>
