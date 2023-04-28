@@ -9,6 +9,7 @@ import { notifications} from '@mantine/notifications'
 import { CheckCircle2, Plus } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
+import usePhoto from '../hooks/usePhoto'
 
 type Props = {
 	macros: foodItem
@@ -58,16 +59,15 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		}
 	})
 
-	const onSubmit = (formValues: FormData, e: any) => {
-		const newItem = mergeObjects(formValues, macros)
-		setMacros(newItem)
-		if (saveTemplate && newItem.name.length > 0) {
-			newItem.calories +
-				newItem.protein +
-				newItem.carbs +
-				newItem.fat +
-				newItem.fiber >
-				0 && addItem(newItem)
+	const onSubmit = (formValues: foodItem, e: any) => {
+		const newTotal = mergeObjects(formValues, macros)
+		setMacros(newTotal)
+
+		if (saveTemplate && formValues.name.length > 0) {
+			const newItem = {...formValues}
+			//newItem.img = usePhoto(newItem.name).url
+			//newItem.imgAuthor=usePhoto(newItem.name).user
+			addItem(newItem)
 		}
 		
 		const message = formValues.name.length
