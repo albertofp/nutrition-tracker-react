@@ -7,6 +7,7 @@ export type foodItem = {
 	carbs: number
 	fat: number
 	fiber: number
+	img?:string
 }
 
 export type foodItemDB = Database["public"]["Tables"]["Ingredient Macros"]["Row"]

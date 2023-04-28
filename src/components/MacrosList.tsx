@@ -13,9 +13,15 @@ interface Props {
 	item: foodItem
 	controls?: boolean
 	title?: string
+	showImg?: boolean
 }
 
-function MacrosList({ item, controls, title }: Props): ReactJSXElement {
+function MacrosList({
+	item,
+	controls,
+	title,
+	showImg
+}: Props): ReactJSXElement {
 	const { dayTotal, setDayTotal } = useContext(DayContext)
 
 	const addMacros = () => {
@@ -47,7 +53,7 @@ function MacrosList({ item, controls, title }: Props): ReactJSXElement {
 
 	return (
 		<div className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg items'>
-			<ul className=' rounded-lg m-2 p-4 items-start min-w-[250px]'>
+			<div className='flex flex-col mt-2'>
 				{item.name && (
 					<Title
 						order={2}
@@ -69,7 +75,15 @@ function MacrosList({ item, controls, title }: Props): ReactJSXElement {
 						{title}
 					</Title>
 				)}
-
+				{showImg && (
+					<img
+						src={item.img}
+						className='mx-0 w-full h-auto max-h-28 object-cover'
+						alt={`Photo of ${item.name}`}
+					></img>
+				)}
+			</div>
+			<ul className=' rounded-lg m-2 p-4 items-start min-w-[250px]'>
 				<li className={liStyle + 'border-b border-sky-300'}>
 					<span>Calories: </span>
 					<span>{item.calories}g</span>
