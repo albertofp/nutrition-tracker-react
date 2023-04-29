@@ -3,6 +3,7 @@ import TypeScriptIcon from '../assets/typescript-logo.svg'
 import ReactIcon from '../assets/react.svg'
 import TailwindIcon from '../assets/tailwindcss-icon.svg'
 import ViteIcon from '../assets/vite-logo.svg'
+import UnsplashIcon from '../assets/unsplash.svg'
 import { Paper, Text, Title } from '@mantine/core'
 
 function About() {
@@ -15,7 +16,10 @@ function About() {
 				>
 					About
 				</Title>
-				<Text className=' max-w-[420px] text-xl' align='justify'>
+				<Text
+					className=' max-w-[420px] text-xl'
+					align='justify'
+				>
 					App to track and display your daily calorie and macro nutrient
 					consumption. Developed by Alberto F. Pluecker as a learning project on
 					React, Typescript, Tailwind and Supabase.
@@ -48,6 +52,12 @@ function About() {
 					<a href='https://supabase.com/'>
 						<img
 							src={SupabaseIcon}
+							className='w-14 hover:scale-125 ease-in duration-200'
+						/>
+					</a>
+					<a href='https://unsplash.com/'>
+						<img
+							src={UnsplashIcon}
 							className='w-14 hover:scale-125 ease-in duration-200'
 						/>
 					</a>

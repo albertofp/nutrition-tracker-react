@@ -2,20 +2,22 @@ import { Auth } from '@supabase/auth-ui-react'
 import { supabase } from '../config/supabaseClient'
 import { useNavigate } from '@tanstack/router'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { useContext, useEffect, useState } from 'react'
-import { Session } from '@supabase/supabase-js'
-import Button from '../components/Button'
+import { useAuth } from '../hooks/useAuth'
 
 type Props = {}
 
 function Login() {
 	const navigate = useNavigate()
+	let {session, user}  = useAuth()
 
 	supabase.auth.onAuthStateChange(async (event) => {
 		switch (event) {
 			case 'SIGNED_IN':
 				navigate({ to: '/home' })
+				console.log('signed in session:',  session)
+				console.log('signed in user:', user)
 			case 'SIGNED_OUT':
+
 				navigate({ to: '/login' })
 			default:
 				break
@@ -43,8 +45,6 @@ function Login() {
 				}}
 				theme='dark'
 				providers={['github', 'google']}
-				showLinks={true}
-				onlyThirdPartyProviders={false}
 			/>
 		</div>
 	)
