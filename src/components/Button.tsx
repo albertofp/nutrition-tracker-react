@@ -16,9 +16,8 @@ function Button({
 	return (
 		<button
 			className={
-				!className
-					? 'bg-transparent hover:bg-slate-900 active:bg-transparent text-sky-300 font-semibold py-2 px-4 border border-sky-300 hover:border-transparent rounded min-w-[60px] transition-colors duration:200'
-					: className
+					'hover:bg-slate-900 text-sky-300 font-semibold py-2 px-4 border border-sky-300 hover:border-transparent rounded min-w-[60px] transition-colors duration:200'
+					+ className
 			}
 			{...props}
 		>

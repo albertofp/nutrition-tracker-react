@@ -16,7 +16,7 @@ interface Props {
 	showImg?: boolean
 }
 
-function MacrosList({
+function addMacrosToDaily({
 	item,
 	controls,
 	title,
@@ -24,7 +24,7 @@ function MacrosList({
 }: Props): ReactJSXElement {
 	const { dayTotal, setDayTotal } = useContext(DayContext)
 
-	const addMacros = () => {
+	const addMacrosToDaily = () => {
 		const newItem = mergeObjects(item, dayTotal)
 		setDayTotal(newItem)
 		notifications.show({
@@ -52,7 +52,7 @@ function MacrosList({
 	const liStyle = 'flex justify-between w-full p-1 text-sky-300 '
 
 	return (
-		<div className='shadow-lg bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-md'>
+		<div className='shadow-lg bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col rounded-md'>
 			<div className='flex flex-col mt-2'>
 				<Title
 					order={2}
@@ -96,12 +96,14 @@ function MacrosList({
 					<div className='flex justify-evenly'>
 						<Button
 							text='Add'
-							onClick={addMacros}
+							onClick={addMacrosToDaily}
+							aria-label='add-button'
 							icon={<Plus />}
 						/>
 						<Button
 							text='Delete'
 							onClick={deleteEntry}
+							aria-label='delete-button'
 							icon={<X />}
 						/>
 					</div>
@@ -111,4 +113,4 @@ function MacrosList({
 	)
 }
 
-export default MacrosList
+export default addMacrosToDaily
