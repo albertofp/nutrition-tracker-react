@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, UseFormGetFieldState } from 'react-hook-form'
 import { foodItem } from '../../types/types'
 import { mergeObjects } from '../utils/mergeObjects'
 import { z, ZodType } from 'zod'
@@ -46,6 +46,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		register,
 		handleSubmit,
 		reset,
+		getValues,
 		formState: { errors }
 	} = useForm<FormData>({
 		resolver: zodResolver(schema),
@@ -59,14 +60,17 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		}
 	})
 
+	const newItemName = getValues('name')
+	const {url, user} = usePhoto(newItemName)
+	
 	const onSubmit = (formValues: foodItem, e: any) => {
 		const newTotal = mergeObjects(formValues, macros)
 		setMacros(newTotal)
 
 		if (saveTemplate && formValues.name.length > 0) {
 			const newItem = {...formValues}
-			//newItem.img = usePhoto(newItem.name).url
-			//newItem.imgAuthor=usePhoto(newItem.name).user
+			newItem.img = url
+			newItem.imgAuthor=user
 			addItem(newItem)
 		}
 		
