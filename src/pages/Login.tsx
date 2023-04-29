@@ -1,32 +1,32 @@
-import { Auth } from '@supabase/auth-ui-react'
+import { Auth as AuthUI } from '@supabase/auth-ui-react'
 import { supabase } from '../config/supabaseClient'
 import { useNavigate } from '@tanstack/router'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useAuth } from '../hooks/useAuth'
+import Auth from '../components/Auth'
 
 type Props = {}
 
 function Login() {
 	const navigate = useNavigate()
-	let {session, user}  = useAuth()
+	let { session, user } = useAuth()
 
 	supabase.auth.onAuthStateChange(async (event) => {
 		switch (event) {
 			case 'SIGNED_IN':
 				navigate({ to: '/home' })
-				console.log('signed in session:',  session)
+				console.log('signed in session:', session)
 				console.log('signed in user:', user)
 			case 'SIGNED_OUT':
-
 				navigate({ to: '/login' })
 			default:
 				break
 		}
 	})
 
-	return (
-		<div className='flex justify-center'>
-			<Auth
+	/*
+	
+			<AuthUI
 				supabaseClient={supabase}
 				appearance={{
 					theme: ThemeSupa,
@@ -47,6 +47,11 @@ function Login() {
 				providers={['github', 'google']}
 				socialLayout='horizontal'
 			/>
+		*/
+
+	return (
+		<div className='flex justify-center'>
+			<Auth />
 		</div>
 	)
 }

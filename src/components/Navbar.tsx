@@ -37,7 +37,7 @@ export default function Navbar() {
 			>
 				{!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
 			</div>
-			<div
+			<aside
 				className={
 					nav
 						? 'fixed left-[-100%]'
@@ -85,7 +85,7 @@ export default function Navbar() {
 						<Link to='/contact'>Contact</Link>
 					</li>
 				</ul>
-			</div>
+			</aside>
 		</nav>
 	)
 }
