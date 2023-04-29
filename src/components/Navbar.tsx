@@ -56,14 +56,14 @@ export default function Navbar() {
 								size='h4'
 								weight={'normal'}
 							>
-								User
+								{user?.user_metadata?.name}
 							</Title>
 							<Avatar
 								radius={'xl'}
 								size={36}
 								variant='light'
-								//src={user.avatar}
-								//alt={user.name}
+								src={user?.user_metadata?.image}
+								alt={user?.user_metadata?.name}
 								//children={user.initials}
 							/>
 						</div>

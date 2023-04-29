@@ -5,8 +5,6 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useAuth } from '../hooks/useAuth'
 import Auth from '../components/Auth'
 
-type Props = {}
-
 function Login() {
 	const navigate = useNavigate()
 	let { session, user } = useAuth()
@@ -26,6 +24,11 @@ function Login() {
 
 	/*
 	
+			
+		*/
+
+	return (
+		<div className='flex justify-center'>
 			<AuthUI
 				supabaseClient={supabase}
 				appearance={{
@@ -47,11 +50,6 @@ function Login() {
 				providers={['github', 'google']}
 				socialLayout='horizontal'
 			/>
-		*/
-
-	return (
-		<div className='flex justify-center'>
-			<Auth />
 		</div>
 	)
 }

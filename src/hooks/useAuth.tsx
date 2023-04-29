@@ -9,7 +9,7 @@ const AuthContext = createContext<{
 }>({ session: null, user: null, signOut: () => {} })
 
 export const AuthProvider = ({ children }: any) => {
-	const [user, setUser] = useState<User>()
+	const [user, setUser] = useState<User | null | undefined>(null)
 	const [session, setSession] = useState<Session | null>()
 	const [loading, setLoading] = useState(true)
 
@@ -19,16 +19,21 @@ export const AuthProvider = ({ children }: any) => {
 				data: { session },
 				error
 			} = await supabase.auth.getSession()
-			if (error) throw error
+			if (error) {
+				throw error
+				console.log(`Error getting session: ${error?.message}`)
+			}
 			setSession(session)
-			setUser(session?.user)
+			setUser(session?.user ?? null)
 			setLoading(false)
+			console.log('Logged in - session:' , session)
 		}
 
 		const { data: listener } = supabase.auth.onAuthStateChange(
 			(_event, session) => {
+				console.log(`Supabase auth event: ${_event}`)
 				setSession(session)
-				setUser(session?.user)
+				setUser(session?.user ?? null)
 				setLoading(false)
 			}
 		)

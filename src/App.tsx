@@ -14,6 +14,7 @@ import Login from './pages/Login'
 import Splash from './pages/Splash'
 
 
+
 const rootRoute = new RootRoute({
 	component: Root
 })

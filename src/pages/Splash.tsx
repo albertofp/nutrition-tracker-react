@@ -1,9 +1,17 @@
 import { Title } from '@mantine/core'
 import Button from '../components/Button'
 import { useAuth } from '../hooks/useAuth'
+import { supabase } from '../config/supabaseClient'
+import { useNavigate } from '@tanstack/router'
 
 function Splash() {
 	const { session, user, signOut } = useAuth()
+	const navigate = useNavigate()
+
+	const logsession = async () => {
+		const data = await supabase.auth.refreshSession()
+		console.log('session: ', data.data.session)
+	}
 
 	return (
 		<div className='text-sky-300'>
@@ -17,7 +25,7 @@ function Splash() {
 			<div className='flex flex-col gap-2 items-center justify-center'>
 				<Button
 					text='log session'
-					onClick={() => console.log('session: ', session)}
+					onClick={() => logsession()}
 				/>
 				<Button
 					text='log user'
@@ -25,7 +33,10 @@ function Splash() {
 				/>
 				<Button
 					text='Log Out'
-					onClick={() => signOut()}
+					onClick={() => {
+						signOut()
+						navigate({ to: '/login' })
+					}}
 				/>
 				<Title weight={'normal'}>User ID: {user?.id}</Title>
 			</div>

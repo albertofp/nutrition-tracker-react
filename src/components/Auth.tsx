@@ -150,17 +150,15 @@ const Auth = () => {
 				</span>
 			</div>
 			<div className='mt-3'>
-				<div className='relative'>
-					<div className='relative flex justify-center text-sm leading-5'>
-						<span className='px-2 bg-inherit text-sky-50'>
-							<Text
-								weight={'lighter'}
-								color='dimmed'
-							>
-								Or continue with
-							</Text>
-						</span>
-					</div>
+				<div className='flex justify-center text-sm leading-5'>
+					<span className='px-2 bg-inherit text-sky-50'>
+						<Text
+							weight={'lighter'}
+							color='dimmed'
+						>
+							Or continue with
+						</Text>
+					</span>
 				</div>
 
 				<div>
