@@ -16,7 +16,7 @@ interface Props {
 	showImg?: boolean
 }
 
-function addMacrosToDaily({
+function MacrosList({
 	item,
 	controls,
 	title,
@@ -113,4 +113,4 @@ function addMacrosToDaily({
 	)
 }
 
-export default addMacrosToDaily
+export default MacrosList
