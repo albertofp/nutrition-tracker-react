@@ -17,6 +17,7 @@
 - [Vite](https://www.vitejs.dev) <img src="./src/assets/vite-logo.svg" alt="Vite logo" width="13"/> bundler
 - [Tailwind](https://tailwindcss.com/) <img src="./src/assets/tailwindcss-icon.svg" alt="Tailwind logo" width="17"/> CSS utility classes
 - [Supabase](https://supabase.com/) <img src="./src/assets/supabase-icon.svg" alt="Supabase logo" width="13"/> for database management
+- [Unsplash](https://unsplash.com/) <img src="./src/assets/unsplash.svg" alt="Unsplash logo" width="13"/> API for photos
 
 ## TODO:
 
