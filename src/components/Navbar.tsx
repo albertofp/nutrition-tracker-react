@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { Link } from '@tanstack/router'
+import { Avatar, Title } from '@mantine/core'
+import { useAuth } from '../hooks/useAuth'
 
 const liStyle = 'p-4 cursor-pointer hover:bg-slate-900 rounded-lg min-w-fit '
 
 export default function Navbar() {
 	const [nav, setNav] = useState(true)
+	const { user, signOut } = useAuth()
 
 	return (
 		<nav className='flex justify-between items-center h-20 w-full mx-auto px-4 bg-gradient-to-b from-sky-800 to-sky-950 mb-6 text-sky-300'>
@@ -41,14 +44,29 @@ export default function Navbar() {
 						: 'fixed left-0 top-0 w-[60%] min-w-fit h-full border-r border-r-sky-950 bg-zinc-900 ease-in-out duration-500'
 				}
 			>
-				<h1 className='w-full text-3xl font-bold text-sky-300 m-4'>
+				<h1 className='w-full text-3xl font-bold text-sky-300 m-4 max-w-fit '>
 					<Link to='/'>Nutrition Tracker</Link>
 				</h1>
 				<ul className='p-4 uppercase'>
 					<li
 						className={liStyle + 'border-b border-sky-300 w-full rounded-none'}
 					>
-						User goes here
+						<div className=' flex items-center gap-2 justify-between'>
+							<Title
+								size='h4'
+								weight={'normal'}
+							>
+								User
+							</Title>
+							<Avatar
+								radius={'xl'}
+								size={36}
+								variant='light'
+								//src={user.avatar}
+								//alt={user.name}
+								//children={user.initials}
+							/>
+						</div>
 					</li>
 					<li
 						className={liStyle + 'border-b border-sky-300 w-full rounded-none'}

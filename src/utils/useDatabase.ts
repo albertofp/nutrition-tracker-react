@@ -1,3 +1,4 @@
+
 import { foodItem } from '../../types/types'
 import { supabase } from '../config/supabaseClient'
 
