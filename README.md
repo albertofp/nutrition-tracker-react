@@ -27,7 +27,7 @@
 - [x] Contact
 - [ ] Recipes (collection of multiple food items)?
 - [ ] Fuzzy search
-- [ ] Add Images to item searches? (API call for google image search etc)
+- [x] Add Images to item searches? (API call for google image search etc)
 - [ ] Handle duplicate food names
 - [ ] Edit database entry
 - [ ] Change delete function to delete a single item instead of all
