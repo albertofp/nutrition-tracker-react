@@ -45,6 +45,7 @@ function Login() {
 				}}
 				theme='dark'
 				providers={['github', 'google']}
+				socialLayout='horizontal'
 			/>
 		</div>
 	)

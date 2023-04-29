@@ -3,7 +3,7 @@ import Button from '../components/Button'
 import { useAuth } from '../hooks/useAuth'
 
 function Splash() {
-	const { session, user } = useAuth()
+	const { session, user, signOut } = useAuth()
 
 	return (
 		<div className='text-sky-300'>
@@ -22,6 +22,10 @@ function Splash() {
 				<Button
 					text='log user'
 					onClick={() => console.log('user: ', user)}
+				/>
+				<Button
+					text='Log Out'
+					onClick={() => signOut()}
 				/>
 				<Title weight={'normal'}>User ID: {user?.id}</Title>
 			</div>

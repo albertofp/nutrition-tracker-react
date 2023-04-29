@@ -52,16 +52,16 @@ function MacrosList({
 	const liStyle = 'flex justify-between w-full p-1 text-sky-300 '
 
 	return (
-		<div className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg items'>
-			<div className='flex flex-col mt-2'>			
-					<Title
-						order={2}
-						align='center'
-						weight='normal'
-						transform='capitalize'
-					>
-						{title ? title : item.name}
-					</Title>
+		<div className='shadow-lg bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-md'>
+			<div className='flex flex-col mt-2'>
+				<Title
+					order={2}
+					align='center'
+					weight='normal'
+					transform='capitalize'
+				>
+					{title ? title : item.name}
+				</Title>
 				{showImg && (
 					<img
 						src={item.img}
