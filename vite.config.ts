@@ -5,9 +5,13 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
 	base: '/nutrition-tracker-react',
 	plugins: [react()],
-	test:{
-		globals:true,
-		environment:'jsdom',
-		setupFiles:['./src/setupTests.ts']
+	test: {
+		globals: true,
+		environment: 'jsdom',
+		setupFiles: ['./src/tests/setupTests.ts'],
+		includeSource: ['src/**/*.{js,ts,tsx}'],
+		coverage: {
+			provider: 'c8'
+		}
 	}
 })

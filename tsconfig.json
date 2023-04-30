@@ -16,7 +16,7 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"watch": true,
-		"types": ["vitest/importMeta"]
+		"types": ["vitest/importMeta", "vitest/globals"]
 	},
 	"include": ["src", "types/types.ts", "types"],
 	"references": [{ "path": "./tsconfig.node.json" }]

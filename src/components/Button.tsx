@@ -1,4 +1,5 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
+import { describe, it } from 'vitest'
 
 interface Props extends React.HTMLAttributes<HTMLButtonElement>{
 	text?: string
