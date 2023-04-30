@@ -1,8 +1,8 @@
 import { createContext } from 'react'
-import { foodItem } from '../types/types'
+import { foodItemDB } from '../types/types'
 type DayContextTypes= {
-	dayTotal: foodItem,
-	setDayTotal: React.Dispatch<React.SetStateAction<foodItem>>
+	dayTotal: foodItemDB,
+	setDayTotal: React.Dispatch<React.SetStateAction<foodItemDB>>
 }
 
 export const DayContext = createContext<DayContextTypes | null>(null)

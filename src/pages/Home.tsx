@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Button from '../components/Button'
 import MacrosList from '../components/MacrosList'
-import { foodItem } from '../../types/types'
+import { foodItemDB } from '../../types/types'
 import ManualInputForm from '../components/ManualInputForm'
 import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
@@ -11,13 +11,17 @@ import { Title } from '@mantine/core'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
-	const [dayTotal, setDayTotal] = useState<foodItem>({
+	const [dayTotal, setDayTotal] = useState<foodItemDB>({
 		name: '',
 		calories: 0,
 		protein: 0,
 		carbs: 0,
 		fat: 0,
-		fiber: 0
+		fiber: 0,
+		id: 0,
+		created_at: '',
+		img: '',
+		imgAuthor: ''
 	})
 
 	const displayManualInput = () => {
@@ -55,7 +59,11 @@ export default function Home() {
 			protein: 0,
 			carbs: 0,
 			fat: 0,
-			fiber: 0
+			fiber: 0,
+			id: 0,
+			created_at: '',
+			img: '',
+			imgAuthor: ''
 		})
 		//toast('success', 'Daily total reset')
 		notifications.show({

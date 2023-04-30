@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Button from './Button'
-import { foodItem, foodItemDB } from '../../types/types'
+import { foodItemDB } from '../../types/types'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../utils/useDatabase'
 import ResultsDisplay from './ResultsDisplay'
 import { Search } from 'lucide-react'
-import { Title, Loader } from '@mantine/core'
+import { Loader } from '@mantine/core'
 
 type FormData = {
 	query: string
 }
 
 function SearchForm() {
-	const [matchingResults, setMatchingResults] = useState<foodItem[]>([])
+	const [matchingResults, setMatchingResults] = useState<Array<foodItemDB> | null>([])
 	const [showResults, setShowResults] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 
@@ -45,20 +45,22 @@ function SearchForm() {
 		readItem(input.query)
 			.then((res) => {
 				setLoading(false)
-				setMatchingResults( res )
+				setMatchingResults(res)
 			})
-			.finally(() => setMatchingResults(newMatches))
-
-		reset()
-		setShowResults(true)
+			.finally(() => {
+				reset()
+				setShowResults(true)
+			})
 	}
 
 	const showAll = () => {
 		setLoading(true)
-		readAll().then((res) => {
-			setLoading(false)
-			setMatchingResults( res )
-		})
+		readAll()
+			.then((res) => {
+				setLoading(false)
+				setMatchingResults(res)
+			})
+			.finally(() => setShowResults(!showResults))
 	}
 	return (
 		<div className='flex flex-col items-center flex-wrap '>

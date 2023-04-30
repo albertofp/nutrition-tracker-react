@@ -1,31 +1,32 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import { useContext } from 'react'
 import { DayContext } from '../DayContext'
-import { mergeObjects } from '../utils/mergeObjects'
 import { delItem, updateItem } from '../utils/useDatabase'
 import Button from './Button'
 import { CheckCircle2, Edit, Plus, X } from 'lucide-react'
 import { Title } from '@mantine/core'
-import { foodItem } from '../../types/types'
+import {  foodItemDB } from '../../types/types'
 import { notifications } from '@mantine/notifications'
 
 interface Props {
-	item: foodItem
+	item: foodItemDB
 	controls?: boolean
 	title?: string
 	showImg?: boolean
 }
 
-function MacrosList({
-	item,
-	controls,
-	title,
-	showImg
-}: Props): ReactJSXElement {
+function MacrosList({ item, controls, title, showImg }:Props): ReactJSXElement {
 	const { dayTotal, setDayTotal } = useContext(DayContext)
 
 	const addMacrosToDaily = () => {
-		const newItem = mergeObjects(item, dayTotal)
+		const newItem ={
+			name : item.name,
+			calories: item.calories + dayTotal.calories,
+			protein: item.protein + dayTotal.protein,
+			carbs: item.carbs + dayTotal.carbs,
+			fat: item.fat + dayTotal.fat,
+			fiber: item.fiber+ dayTotal.fiber
+		}
 		setDayTotal(newItem)
 		notifications.show({
 			message: 'Added to daily totals!',
@@ -68,7 +69,7 @@ function MacrosList({
 				</Title>
 				{showImg && (
 					<img
-						src={item.img}
+						src={item.img!}
 						className='mx-0 w-full h-auto max-h-28 object-cover'
 						alt={`Picture of ${item.name} by ${item.imgAuthor}`}
 						title={`Picture by ${item.imgAuthor}`}

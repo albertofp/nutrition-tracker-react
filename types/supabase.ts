@@ -36,34 +36,40 @@ export interface Database {
     Tables: {
       "Ingredient Macros": {
         Row: {
-          calories: number | null
-          carbs: number | null
-          created_at: string | null
-          fat: number | null
-          fiber: number | null
-          id: number
-          name: string | null
-          protein: number | null
+          calories: number
+          carbs: number
+          created_at?: string
+          fat: number
+          fiber: number
+          id?: number
+          img: string
+          imgAuthor: string
+          name: string
+          protein: number
         }
         Insert: {
-          calories?: number | null
-          carbs?: number | null
-          created_at?: string | null
-          fat?: number | null
-          fiber?: number | null
+          calories?: number
+          carbs?: number
+          created_at?: string
+          fat?: number
+          fiber?: number
           id?: number
-          name?: string | null
-          protein?: number | null
+          img?: string
+          imgAuthor?: string
+          name?: string
+          protein?: number
         }
         Update: {
-          calories?: number | null
-          carbs?: number | null
-          created_at?: string | null
-          fat?: number | null
-          fiber?: number | null
+          calories?: number
+          carbs?: number
+          created_at?: string
+          fat?: number
+          fiber?: number
           id?: number
-          name?: string | null
-          protein?: number | null
+          img?: string
+          imgAuthor?: string
+          name?: string
+          protein?: number
         }
       }
     }

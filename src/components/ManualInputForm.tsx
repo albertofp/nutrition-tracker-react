@@ -1,19 +1,19 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { foodItem } from '../../types/types'
-import { mergeObjects } from '../utils/mergeObjects'
-import { z, ZodType } from 'zod'
+import { foodItemDB } from '../../types/types'
+import { date, z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
-import { notifications} from '@mantine/notifications'
+import { notifications } from '@mantine/notifications'
 import { CheckCircle2, Plus } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
 import usePhoto from '../hooks/usePhoto'
+import { NorthWest } from '@mui/icons-material'
 
 type Props = {
-	macros: foodItem
-	setMacros: React.Dispatch<React.SetStateAction<foodItem>>
+	macros: foodItemDB
+	setMacros: React.Dispatch<React.SetStateAction<foodItemDB>>
 }
 
 type FormData = {
@@ -61,19 +61,30 @@ function ManualInputForm({ macros, setMacros }: Props) {
 	})
 
 	const newItemName = getValues('name')
-	const {url, user} = usePhoto(newItemName)
-	
-	const onSubmit = (formValues: foodItem, e: any) => {
-		const newTotal = mergeObjects(formValues, macros)
+	const { url, user } = usePhoto(newItemName)
+
+	const onSubmit = (formValues: FormData, e: any) => {
+		//const newTotal = mergeObjects(formValues, macros)
+		const newTotal: foodItemDB = {
+			name: formValues.name,
+			calories: formValues.calories! + macros.calories!,
+			protein: formValues.protein! + macros.protein!,
+			carbs: formValues.carbs! + macros.carbs!,
+			fat: formValues.fat! + macros.fat!,
+			fiber: formValues.fiber! + macros.fiber!,
+			id: 0,
+			created_at: '',
+			img: '',
+			imgAuthor: ''
+		}
+
 		setMacros(newTotal)
 
 		if (saveTemplate && formValues.name.length > 0) {
-			const newItem = {...formValues}
-			newItem.img = url
-			newItem.imgAuthor=user
+			const newItem = { ...formValues, img: url!, imgAuthor: user! }
 			addItem(newItem)
 		}
-		
+
 		const message = formValues.name.length
 			? `${formValues.name} added to database`
 			: 'Macros added to daily total'
@@ -96,7 +107,12 @@ function ManualInputForm({ macros, setMacros }: Props) {
 				onSubmit={handleSubmit(onSubmit)}
 				className='bg-gradient-to-br from-sky-900 to-sky-950 flex flex-col gap-2 rounded-lg m-2 p-3 items-center max-w-xs'
 			>
-				<Title order={3} weight='semibold'>Manual Input</Title>
+				<Title
+					order={3}
+					weight='semibold'
+				>
+					Manual Input
+				</Title>
 				<div className='flex flex-col items-start'>
 					<label className='text-xs'>Calories</label>
 					<input
@@ -177,7 +193,11 @@ function ManualInputForm({ macros, setMacros }: Props) {
 					</div>
 				)}
 
-				<Button type='submit' text='Input' icon={<Plus/>}/>
+				<Button
+					type='submit'
+					text='Input'
+					icon={<Plus />}
+				/>
 			</form>
 		</>
 	)
