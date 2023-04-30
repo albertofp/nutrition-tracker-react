@@ -100,10 +100,10 @@ function MacrosList({
 					<div className='flex flex-col gap-1'>
 						<div className='flex justify-evenly gap-1'>
 							<Button
-								text='Add'
-								onClick={addMacrosToDaily}
-								aria-label='add-button'
-								icon={<Plus />}
+								text='Delete'
+								onClick={deleteEntry}
+								aria-label='delete-button'
+								icon={<X />}
 							/>
 							<Button
 								text='Edit'
@@ -113,10 +113,10 @@ function MacrosList({
 							/>
 						</div>
 						<Button
-							text='Delete'
-							onClick={deleteEntry}
-							aria-label='delete-button'
-							icon={<X />}
+							text='Add'
+							onClick={addMacrosToDaily}
+							aria-label='add-button'
+							icon={<Plus />}
 						/>
 					</div>
 				)}

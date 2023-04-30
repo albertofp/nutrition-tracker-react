@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Button from './Button'
-import { foodItem } from '../../types/types'
+import { foodItem, foodItemDB } from '../../types/types'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../utils/useDatabase'
@@ -36,25 +36,9 @@ function SearchForm() {
 	})
 
 	const handleDisplayResults = () => {
-		if (loading && showResults) {
-			return <Loader />
-		} else {
-			if (showResults) {
-				if (matchingResults.length === 0) {
-					return (
-						<Title
-							order={2}
-							weight={'normal'}
-						>
-							No results found
-						</Title>
-					)
-				} else {
-					return <ResultsDisplay results={matchingResults} />
-				}
-			}
-		}
-	}
+		if (showResults) {
+			return( loading ? <Loader /> : <ResultsDisplay results={matchingResults} />)
+	}}
 
 	const onSubmit = (input: FormData, e: any) => {
 		setCurrentQuery(input)
@@ -78,8 +62,8 @@ function SearchForm() {
 			await readAll().then((res) => {
 				newMatches = res
 				setLoading(false)
+				setMatchingResults(newMatches)
 			})
-			setMatchingResults(newMatches)
 		}
 		setShowResults(!showResults)
 	}
