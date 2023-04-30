@@ -1,12 +1,14 @@
-import { Title } from '@mantine/core'
+import { Title, rem } from '@mantine/core'
 import { foodItem } from '../../types/types'
 import MacrosList from './MacrosList'
+import { Carousel } from '@mantine/carousel'
+import { useMediaQuery } from '@mantine/hooks'
 
 type Props = {
 	results: foodItem[] | null
 }
-
 function ResultsDisplay({ results }: Props) {
+	const mobile = useMediaQuery(`(max-width: 768px)`)
 	return (
 		<div className='flex flex-col md:flex-row gap-4 md:max-w-[850px] flex-wrap m-2 p-2 justify-center'>
 			{results!.length <= 0 ? (
@@ -17,15 +19,28 @@ function ResultsDisplay({ results }: Props) {
 					No results found
 				</Title>
 			) : (
-				results!.map((item) => (
-					<div key={item.id}>
-						<MacrosList
-							item={item}
-							controls={true}
-							showImg={true}
-						/>
-					</div>
-				))
+				<Carousel
+					slideSize='50%'
+					breakpoints={[{ maxWidth: 'sm', slideSize: '20%', slideGap: rem(2) }]}
+					slideGap='sm'
+					align='start'
+					orientation={mobile ? 'vertical' : 'horizontal'}
+					withControls={false}
+				>
+					{results!.map((item) => (
+						<Carousel.Slide
+							key={item.id}
+							size={20}
+							gap={10}
+						>
+							<MacrosList
+								item={item}
+								controls={true}
+								showImg={true}
+							/>
+						</Carousel.Slide>
+					))}
+				</Carousel>
 			)}
 		</div>
 	)

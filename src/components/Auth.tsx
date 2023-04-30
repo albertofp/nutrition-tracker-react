@@ -110,7 +110,7 @@ const Auth = () => {
 			/>
 			<span
 				className={
-					'text-blue-600 mt-2 cursor-pointer self-end text-sm font-medium'
+					'text-blue-600 hover:text-blue-400 mt-2 cursor-pointer self-end text-sm font-medium'
 				}
 				onClick={forgotPassword}
 			>
@@ -133,7 +133,7 @@ const Auth = () => {
 						type='submit'
 						onClick={() => handleLogin('REGISTER').catch(console.error)}
 						className={
-							'border w-full border-sky-600 text-sky-600 flex justify-center py-2 px-4 text-sm font-medium rounded-md hover:bg-sky-200 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
+							'border-transparent w-full border-sky-600 flex justify-center py-2 px-4 text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
 						}
 					>
 						Sign Up
@@ -143,7 +143,7 @@ const Auth = () => {
 					<button
 						onClick={() => handleLogin('LOGIN')}
 						type='button'
-						className='w-3/4 mx-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
+						className='w-full mx-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
 					>
 						Sign In
 					</button>
@@ -166,7 +166,7 @@ const Auth = () => {
 						<span className='block rounded-md shadow-sm'>
 							<Button
 								text='GitHub'
-								className='items-center w-3/4 mx-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
+								className='items-center w-full mx-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
 								icon={<GithubIcon />}
 								onClick={() => handleOAuthLogin('github')}
 							/>
@@ -176,7 +176,7 @@ const Auth = () => {
 						<span className='block rounded-md shadow-sm'>
 							<Button
 								text='Google'
-								className='items-center w-3/4 mx-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
+								className='items-center w-full mx-auto flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-sky-50 bg-sky-600 hover:bg-sky-500 focus:outline-none focus:border-sky-700 focus:shadow-outline-sky active:bg-sky-700 transition duration-150 ease-in-out'
 								icon={<Google />}
 								onClick={() => handleOAuthLogin('google')}
 							/>
