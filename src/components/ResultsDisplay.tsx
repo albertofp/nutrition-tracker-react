@@ -3,7 +3,7 @@ import { foodItem } from '../../types/types'
 import MacrosList from './MacrosList'
 
 type Props = {
-	results: Array<foodItem>
+	results: foodItem[]
 }
 
 function ResultsDisplay({ results }: Props) {

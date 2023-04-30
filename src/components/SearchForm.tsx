@@ -14,8 +14,7 @@ type FormData = {
 }
 
 function SearchForm() {
-	const [currentQuery, setCurrentQuery] = useState<FormData>({ query: '' })
-	const [matchingResults, setMatchingResults] = useState<Array<foodItem>>([])
+	const [matchingResults, setMatchingResults] = useState<foodItem[]>([])
 	const [showResults, setShowResults] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 
@@ -37,17 +36,16 @@ function SearchForm() {
 
 	const handleDisplayResults = () => {
 		if (showResults) {
-			return( loading ? <Loader /> : <ResultsDisplay results={matchingResults} />)
-	}}
+			return loading ? <Loader /> : <ResultsDisplay results={matchingResults} />
+		}
+	}
 
 	const onSubmit = (input: FormData, e: any) => {
-		setCurrentQuery(input)
-		let newMatches: any
 		setLoading(true)
 		readItem(input.query)
 			.then((res) => {
-				newMatches = res
 				setLoading(false)
+				setMatchingResults( res )
 			})
 			.finally(() => setMatchingResults(newMatches))
 
@@ -55,17 +53,12 @@ function SearchForm() {
 		setShowResults(true)
 	}
 
-	const showAll = async () => {
-		if (matchingResults.length === 0) {
-			let newMatches: any
-			setLoading(true)
-			await readAll().then((res) => {
-				newMatches = res
-				setLoading(false)
-				setMatchingResults(newMatches)
-			})
-		}
-		setShowResults(!showResults)
+	const showAll = () => {
+		setLoading(true)
+		readAll().then((res) => {
+			setLoading(false)
+			setMatchingResults( res )
+		})
 	}
 	return (
 		<div className='flex flex-col items-center flex-wrap '>

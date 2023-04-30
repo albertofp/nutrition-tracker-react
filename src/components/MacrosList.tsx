@@ -70,7 +70,8 @@ function MacrosList({
 					<img
 						src={item.img}
 						className='mx-0 w-full h-auto max-h-28 object-cover'
-						alt={`Photo of ${item.name}`}
+						alt={`Picture of ${item.name} by ${item.imgAuthor}`}
+						title={`Picture by ${item.imgAuthor}`}
 					></img>
 				)}
 			</div>
