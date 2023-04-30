@@ -6,8 +6,8 @@ import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../utils/useDatabase'
 import ResultsDisplay from './ResultsDisplay'
-import {Search} from 'lucide-react'
-import { Title,Loader } from '@mantine/core'
+import { Search } from 'lucide-react'
+import { Title, Loader } from '@mantine/core'
 
 type FormData = {
 	query: string
@@ -41,7 +41,14 @@ function SearchForm() {
 		} else {
 			if (showResults) {
 				if (matchingResults.length === 0) {
-					return <Title order={2} weight={'normal'}>No results found</Title>
+					return (
+						<Title
+							order={2}
+							weight={'normal'}
+						>
+							No results found
+						</Title>
+					)
 				} else {
 					return <ResultsDisplay results={matchingResults} />
 				}
@@ -51,8 +58,6 @@ function SearchForm() {
 
 	const onSubmit = (input: FormData, e: any) => {
 		setCurrentQuery(input)
-		console.log('input:', input)
-		console.log('currentQuery:', currentQuery)
 		let newMatches: any
 		setLoading(true)
 		readItem(input.query)
@@ -100,14 +105,14 @@ function SearchForm() {
 				</div>
 				<Button
 					text='Search  Database'
-					disabled={loading}
 					type='submit'
 					icon={<Search />}
+					aria-disabled={loading}
 				/>
 				<Button
 					text='Show all'
 					onClick={showAll}
-					disabled={loading}
+					aria-disabled={loading}
 				/>
 			</form>
 			{handleDisplayResults()}

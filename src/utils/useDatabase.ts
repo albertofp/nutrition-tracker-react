@@ -3,7 +3,7 @@ import { foodItem } from '../../types/types'
 import { supabase } from '../config/supabaseClient'
 
 export async function addItem(item: foodItem) {
-	const { data, error } = await supabase.from('Ingredient Macros').insert([
+	const { error } = await supabase.from('Ingredient Macros').insert([
 		{
 			...item,
 			name: item.name.toLowerCase()
@@ -19,7 +19,7 @@ export async function addItem(item: foodItem) {
 }
 
 export async function delItem(name: string) {
-	const { data, error } = await supabase
+	const { error } = await supabase
 		.from('Ingredient Macros')
 		.delete()
 		.eq('name', name)
@@ -56,7 +56,7 @@ export async function readAll() {
 }
 
 export async function updateItem(item: foodItem) {
-	const { data, error } = await supabase
+	const { error } = await supabase
 		.from('Ingredient Macros')
 		.update({
 			name: item.name,

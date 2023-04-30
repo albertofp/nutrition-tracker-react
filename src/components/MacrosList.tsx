@@ -2,9 +2,9 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import { useContext } from 'react'
 import { DayContext } from '../DayContext'
 import { mergeObjects } from '../utils/mergeObjects'
-import { delItem } from '../utils/useDatabase'
+import { delItem, updateItem } from '../utils/useDatabase'
 import Button from './Button'
-import { CheckCircle2, Plus, X } from 'lucide-react'
+import { CheckCircle2, Edit, Plus, X } from 'lucide-react'
 import { Title } from '@mantine/core'
 import { foodItem } from '../../types/types'
 import { notifications } from '@mantine/notifications'
@@ -47,6 +47,10 @@ function MacrosList({
 				sx: { backgroundColor: 'lightgreen' }
 			})
 		}
+	}
+
+	const editEntry = () => {
+		alert('Edit entry')
 	}
 
 	const liStyle = 'flex justify-between w-full p-1 text-sky-300 '
@@ -93,13 +97,21 @@ function MacrosList({
 				</li>
 
 				{controls && (
-					<div className='flex justify-evenly'>
-						<Button
-							text='Add'
-							onClick={addMacrosToDaily}
-							aria-label='add-button'
-							icon={<Plus />}
-						/>
+					<div className='flex flex-col gap-1'>
+						<div className='flex justify-evenly gap-1'>
+							<Button
+								text='Add'
+								onClick={addMacrosToDaily}
+								aria-label='add-button'
+								icon={<Plus />}
+							/>
+							<Button
+								text='Edit'
+								onClick={editEntry}
+								aria-label='edit-button'
+								icon={<Edit />}
+							/>
+						</div>
 						<Button
 							text='Delete'
 							onClick={deleteEntry}
