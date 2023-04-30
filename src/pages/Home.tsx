@@ -7,9 +7,12 @@ import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
 import { notifications } from '@mantine/notifications'
 import { CheckCircle2, Search, RotateCcw, ListPlus } from 'lucide-react'
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 
 export default function Home() {
-	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
+	const [currentDisplay, setCurrentDisplay] = useState<ReactJSXElement | null>(
+		null
+	)
 	const [dayTotal, setDayTotal] = useState<foodItem>({
 		name: '',
 		calories: 0,
@@ -24,31 +27,20 @@ export default function Home() {
 	})
 
 	const displayManualInput = () => {
-		if (currentDisplay === 'ManualInputForm') {
-			setCurrentDisplay(null)
-		} else setCurrentDisplay('ManualInputForm')
-	}
-
-	const displaySearch = () => {
-		if (currentDisplay === 'SearchForm') {
-			setCurrentDisplay(null)
-		} else setCurrentDisplay('SearchForm')
-	}
-
-	const displayModule = () => {
-		switch (currentDisplay) {
-			case 'ManualInputForm':
-				return (
+		currentDisplay === null
+			? setCurrentDisplay(
 					<ManualInputForm
 						macros={dayTotal}
 						setMacros={setDayTotal}
 					/>
-				)
-			case 'SearchForm':
-				return <SearchForm />
-			default:
-				return null
-		}
+			  )
+			: setCurrentDisplay(null)
+	}
+
+	const displaySearch = () => {
+		currentDisplay === null
+			? setCurrentDisplay(<SearchForm />)
+			: setCurrentDisplay(<SearchForm />)
 	}
 
 	const resetDayTotal = () => {
@@ -102,7 +94,7 @@ export default function Home() {
 						item={dayTotal}
 						title='Daily Total'
 					/>
-					{displayModule()}
+					{currentDisplay}
 				</div>
 			</div>
 		</DayContext.Provider>
