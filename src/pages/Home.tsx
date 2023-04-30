@@ -1,17 +1,16 @@
 import { useState } from 'react'
 import Button from '../components/Button'
 import MacrosList from '../components/MacrosList'
-import { foodItemDB } from '../../types/types'
+import { foodItem } from '../../types/types'
 import ManualInputForm from '../components/ManualInputForm'
 import SearchForm from '../components/SearchForm'
 import { DayContext } from '../DayContext'
 import { notifications } from '@mantine/notifications'
 import { CheckCircle2, Search, RotateCcw, ListPlus } from 'lucide-react'
-import { Title } from '@mantine/core'
 
 export default function Home() {
 	const [currentDisplay, setCurrentDisplay] = useState<null | string>(null)
-	const [dayTotal, setDayTotal] = useState<foodItemDB>({
+	const [dayTotal, setDayTotal] = useState<foodItem>({
 		name: '',
 		calories: 0,
 		protein: 0,

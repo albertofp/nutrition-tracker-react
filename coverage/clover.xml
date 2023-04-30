@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1682852544286" clover="3.2.0">
-  <project timestamp="1682852544286" name="All files">
+<coverage generated="1682887176808" clover="3.2.0">
+  <project timestamp="1682887176808" name="All files">
     <metrics statements="33" coveredstatements="33" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1" elements="35" coveredelements="35" complexity="0" loc="33" ncloc="33" packages="1" files="1" classes="1"/>
     <file name="Button.tsx" path="/home/albertofp/Desktop/INFNET/BLOCO3/PROJETO/nutrition-tracker-react/src/components/Button.tsx">
       <metrics statements="33" coveredstatements="33" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>

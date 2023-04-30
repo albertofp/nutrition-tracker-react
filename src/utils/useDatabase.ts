@@ -1,8 +1,7 @@
-
-import { foodItemDB } from '../../types/types'
+import { foodItem } from '../../types/types'
 import { supabase } from '../config/supabaseClient'
 
-export async function addItem(item: foodItemDB) {
+export async function addItem(item: foodItem) {
 	const { error } = await supabase.from('Ingredient Macros').insert([
 		{
 			...item,
@@ -55,7 +54,7 @@ export async function readAll() {
 	return Promise.resolve(item)
 }
 
-export async function updateItem(item: foodItemDB) {
+export async function updateItem(item: foodItem) {
 	const { error } = await supabase
 		.from('Ingredient Macros')
 		.update({

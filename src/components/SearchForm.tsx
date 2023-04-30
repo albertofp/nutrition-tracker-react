@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Button from './Button'
-import { foodItemDB } from '../../types/types'
+import { foodItem } from '../../types/types'
 import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { readAll, readItem } from '../utils/useDatabase'
@@ -14,7 +14,8 @@ type FormData = {
 }
 
 function SearchForm() {
-	const [matchingResults, setMatchingResults] = useState<Array<foodItemDB> | null>([])
+	const [matchingResults, setMatchingResults] =
+		useState<Array<foodItem> | null>([])
 	const [showResults, setShowResults] = useState<boolean>(false)
 	const [loading, setLoading] = useState<boolean>(false)
 

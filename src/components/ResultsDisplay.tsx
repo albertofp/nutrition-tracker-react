@@ -1,9 +1,9 @@
 import { Title } from '@mantine/core'
-import { foodItemDB } from '../../types/types'
+import { foodItem } from '../../types/types'
 import MacrosList from './MacrosList'
 
 type Props = {
-	results: foodItemDB[] | null
+	results: foodItem[] | null
 }
 
 function ResultsDisplay({ results }: Props) {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { foodItemDB } from '../../types/types'
+import { foodItem } from '../../types/types'
 import { date, z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
@@ -12,8 +12,8 @@ import usePhoto from '../hooks/usePhoto'
 import { NorthWest } from '@mui/icons-material'
 
 type Props = {
-	macros: foodItemDB
-	setMacros: React.Dispatch<React.SetStateAction<foodItemDB>>
+	macros: foodItem
+	setMacros: React.Dispatch<React.SetStateAction<foodItem>>
 }
 
 type FormData = {
@@ -65,15 +65,13 @@ function ManualInputForm({ macros, setMacros }: Props) {
 
 	const onSubmit = (formValues: FormData, e: any) => {
 		//const newTotal = mergeObjects(formValues, macros)
-		const newTotal: foodItemDB = {
+		const newTotal: foodItem = {
 			name: formValues.name,
 			calories: formValues.calories! + macros.calories!,
 			protein: formValues.protein! + macros.protein!,
 			carbs: formValues.carbs! + macros.carbs!,
 			fat: formValues.fat! + macros.fat!,
 			fiber: formValues.fiber! + macros.fiber!,
-			id: 0,
-			created_at: '',
 			img: '',
 			imgAuthor: ''
 		}

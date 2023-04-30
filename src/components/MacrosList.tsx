@@ -1,31 +1,36 @@
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace'
 import { useContext } from 'react'
-import { DayContext } from '../DayContext'
+import { DayContext, DayContextTypes } from '../DayContext'
 import { delItem, updateItem } from '../utils/useDatabase'
 import Button from './Button'
 import { CheckCircle2, Edit, Plus, X } from 'lucide-react'
 import { Title } from '@mantine/core'
-import {  foodItemDB } from '../../types/types'
+import { foodItem } from '../../types/types'
 import { notifications } from '@mantine/notifications'
 
 interface Props {
-	item: foodItemDB
+	item: foodItem
 	controls?: boolean
 	title?: string
 	showImg?: boolean
 }
 
-function MacrosList({ item, controls, title, showImg }:Props): ReactJSXElement {
-	const { dayTotal, setDayTotal } = useContext(DayContext)
+function MacrosList({
+	item,
+	controls,
+	title,
+	showImg
+}: Props): ReactJSXElement {
+	const { dayTotal, setDayTotal } = useContext(DayContext) as DayContextTypes
 
 	const addMacrosToDaily = () => {
-		const newItem ={
-			name : item.name,
+		const newItem = {
+			name: item.name,
 			calories: item.calories + dayTotal.calories,
 			protein: item.protein + dayTotal.protein,
 			carbs: item.carbs + dayTotal.carbs,
 			fat: item.fat + dayTotal.fat,
-			fiber: item.fiber+ dayTotal.fiber
+			fiber: item.fiber + dayTotal.fiber
 		}
 		setDayTotal(newItem)
 		notifications.show({

@@ -1,4 +1,3 @@
 import { Database } from './supabase'
 
-export type foodItemDB =
-	Database['public']['Tables']['Ingredient Macros']['Row']
+export type foodItem = Database['public']['Tables']['Ingredient Macros']['Row']
