@@ -17,11 +17,11 @@ type Props = {
 
 const schema = z.object({
 	name: z.string(),
-	calories: z.number().min(0),
-	protein: z.number().min(0),
-	carbs: z.number().min(0),
-	fat: z.number().min(0),
-	fiber: z.number().min(0)
+	calories: z.number().min(0).default(0),
+	protein: z.number().min(0).default(0),
+	carbs: z.number().min(0).default(0),
+	fat: z.number().min(0).default(0),
+	fiber: z.number().min(0).default(0)
 })
 
 type FormData = z.infer<typeof schema>
@@ -41,15 +41,7 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		getValues,
 		formState: { errors }
 	} = useForm<FormData>({
-		resolver: zodResolver(schema),
-		defaultValues: {
-			name: '',
-			calories: 0,
-			protein: 0,
-			carbs: 0,
-			fat: 0,
-			fiber: 0
-		}
+		resolver: zodResolver(schema)
 	})
 
 	const newItemName = getValues('name')
@@ -70,12 +62,12 @@ function ManualInputForm({ macros, setMacros }: Props) {
 
 		setMacros(newTotal)
 
-		if (saveTemplate && formValues.name.length > 0) {
+		if (saveTemplate) {
 			const newItem = { ...formValues, img: url!, imgAuthor: user! }
 			addItem(newItem)
 		}
 
-		const message = formValues.name.length
+		const message = saveTemplate
 			? `${formValues.name} added to database`
 			: 'Macros added to daily total'
 		notifications.show({
