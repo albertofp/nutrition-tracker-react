@@ -5,7 +5,7 @@ import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
 import { notifications } from '@mantine/notifications'
-import { CheckCircle2, Plus } from 'lucide-react'
+import { CheckCircle2, Plus, X } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
 import usePhoto from '../hooks/usePhoto'
@@ -16,7 +16,7 @@ type Props = {
 }
 
 const schema = z.object({
-	name: z.string(),
+	name: z.string().min(1),
 	calories: z.number().min(0).default(0),
 	protein: z.number().min(0).default(0),
 	carbs: z.number().min(0).default(0),
@@ -41,11 +41,19 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		getValues,
 		formState: { errors }
 	} = useForm<FormData>({
-		resolver: zodResolver(schema)
+		resolver: zodResolver(schema),
+		defaultValues: {
+			name: '',
+			calories: 0,
+			protein: 0,
+			carbs: 0,
+			fat: 0,
+			fiber: 0
+		}
 	})
 
 	const newItemName = getValues('name')
-	const { url, user } = usePhoto(newItemName)
+	const { url, user, error } = usePhoto(newItemName)
 
 	const onSubmit = (formValues: FormData, e: any) => {
 		//const newTotal = mergeObjects(formValues, macros)
@@ -63,21 +71,30 @@ function ManualInputForm({ macros, setMacros }: Props) {
 		setMacros(newTotal)
 
 		if (saveTemplate) {
-			const newItem = { ...formValues, img: url!, imgAuthor: user! }
-			addItem(newItem)
+			if (!error) {
+				const newItem = { ...formValues, img: url!, imgAuthor: user! }
+				addItem(newItem)
+				const message = saveTemplate
+					? `${formValues.name} added to database`
+					: 'Macros added to daily total'
+				notifications.show({
+					message: message,
+					color: 'green',
+					autoClose: 2000,
+					icon: <CheckCircle2 />,
+					sx: { backgroundColor: 'lightgreen' }
+				})
+				reset()
+			} else {
+				notifications.show({
+					message: `${error.status}: ${error.response?.message}`,
+					color: '',
+					autoClose: 2000,
+					icon: <X />,
+					sx: { backgroundColor: 'orangered' }
+				})
+			}
 		}
-
-		const message = saveTemplate
-			? `${formValues.name} added to database`
-			: 'Macros added to daily total'
-		notifications.show({
-			message: message,
-			color: 'green',
-			autoClose: 2000,
-			icon: <CheckCircle2 />,
-			sx: { backgroundColor: 'lightgreen' }
-		})
-		reset()
 	}
 
 	const onCheckBoxChange = (e: any) => {

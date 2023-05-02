@@ -1,8 +1,6 @@
-import axios from 'axios'
 import { useState } from 'react'
 import { createApi } from 'unsplash-js'
 import { ApiResponse } from 'unsplash-js/dist/helpers/response'
-import { photos, users } from 'unsplash-js/dist/internals'
 import { Photos } from 'unsplash-js/dist/methods/search/types/response'
 
 type Photo = {
@@ -23,7 +21,11 @@ const unsplashApi = createApi({
 })
 
 export default function usePhoto(query: string) {
-	const [data, setPhotosResponse] = useState<null | ApiResponse<Photos>>(null)
+	const [data, setData] = useState<null | ApiResponse<Photos>>(null)
+	const [unsplashError, setUnsplashError] = useState<null | ApiResponse<Error>>(
+		null
+	)
+	const [fallback, setFallback] = useState(false)
 
 	/*
 	axios
@@ -33,20 +35,32 @@ export default function usePhoto(query: string) {
 				Authorization: `CLIENT-ID ${accessKey}`
 			}
 		})
-		.then((response) => setPhotosResponse(response.data))
+		.then((response) => setData(response.data))
 		.catch((error) => console.error('error getting photo: ', error))
 */
 
 	unsplashApi.search
 		.getPhotos({ query: query, orientation: 'landscape', perPage: 1 })
 		.then((result) => {
-			setPhotosResponse(result)
+			if (result.type == 'error') {
+				setFallback(true)
+				setUnsplashError(result)
+			} else {
+				setData(result)
+			}
 		})
 		.catch((error) => console.error('error getting photo: ', error))
 
-	const photo = data?.response?.results[0]
-	return {
-		url: photo?.urls.regular,
-		user: photo?.user.name
-	}
+	const response = fallback
+		? {
+				url: 'https://images.unsplash.com/photo-1487147264018-f937fba0c817?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max',
+				user: 'Mona Eendra',
+				error: unsplashError
+		  }
+		: {
+				url: data?.response?.results[0]?.urls.regular,
+				user: data?.response?.results[0]?.user.name,
+				error: unsplashError
+		  }
+	return response
 }
