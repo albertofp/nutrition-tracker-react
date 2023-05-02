@@ -55,13 +55,16 @@ function SearchForm() {
 	}
 
 	const showAll = () => {
-		setLoading(true)
-		readAll()
-			.then((res) => {
+		setShowResults(!showResults)
+		if (matchingResults?.length == 0) {
+			setLoading(true)
+			readAll().then((res) => {
 				setLoading(false)
 				setMatchingResults(res)
 			})
-			.finally(() => setShowResults(!showResults))
+		}else{
+			setMatchingResults(null)
+		}
 	}
 	return (
 		<div className='flex flex-col items-center flex-wrap '>
@@ -88,11 +91,13 @@ function SearchForm() {
 					type='submit'
 					icon={<Search />}
 					aria-disabled={loading}
+					disabled={loading}
 				/>
 				<Button
 					text='Show all'
 					onClick={showAll}
 					aria-disabled={loading}
+					disabled={loading}
 				/>
 			</form>
 			{handleDisplayResults()}

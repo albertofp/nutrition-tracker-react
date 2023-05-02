@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { foodItem } from '../../types/types'
-import { date, z, ZodType } from 'zod'
+import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
 import { notifications } from '@mantine/notifications'
@@ -9,21 +9,22 @@ import { CheckCircle2, Plus } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
 import usePhoto from '../hooks/usePhoto'
-import { NorthWest } from '@mui/icons-material'
 
 type Props = {
 	macros: foodItem
 	setMacros: React.Dispatch<React.SetStateAction<foodItem>>
 }
 
-type FormData = {
-	name: string
-	calories: number
-	protein: number
-	carbs: number
-	fat: number
-	fiber: number
-}
+const schema = z.object({
+	name: z.string(),
+	calories: z.number().min(0),
+	protein: z.number().min(0),
+	carbs: z.number().min(0),
+	fat: z.number().min(0),
+	fiber: z.number().min(0)
+})
+
+type FormData = z.infer<typeof schema>
 
 const inputStyle =
 	'border-2 border-sky-950 rounded-lg p-1 m-1 bg-slate-400 text-sky-800 placeholder-inherit'
@@ -32,15 +33,6 @@ const errorStyle = 'text-sm text-red-600 mt-1 self-center'
 
 function ManualInputForm({ macros, setMacros }: Props) {
 	const [saveTemplate, setSaveTemplate] = useState(false)
-
-	const schema: ZodType<FormData> = z.object({
-		name: z.string(),
-		calories: z.number().min(0),
-		protein: z.number().min(0),
-		carbs: z.number().min(0),
-		fat: z.number().min(0),
-		fiber: z.number().min(0)
-	})
 
 	const {
 		register,

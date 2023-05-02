@@ -5,12 +5,14 @@ interface Props extends React.HTMLAttributes<HTMLButtonElement>{
 	text?: string
 	type?: 'button' | 'submit'
 	icon?: ReactJSXElement
+	disabled?: boolean
 	className?: string // allows overriding styles manually
 }
 
 function Button({
 	text,
 	icon,
+	disabled,
 	className,
 	...props
 }: Props) {
