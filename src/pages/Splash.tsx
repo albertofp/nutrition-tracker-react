@@ -9,8 +9,8 @@ function Splash() {
 	const navigate = useNavigate()
 
 	const logsession = async () => {
-		const data = await supabase.auth.getSession()
-		console.log(`Session: ${data.data.session}`)
+		const { data, error } = await supabase.auth.getSession()
+		console.log(`Session: ${data.session}`)
 	}
 
 	return (
@@ -29,13 +29,12 @@ function Splash() {
 				/>
 				<Button
 					text='log user'
-					onClick={() => console.log(`User: ${user}`)}
+					onClick={() => console.log(`User: ${user?.id}`)}
 				/>
 				<Button
 					text='Log Out'
 					onClick={() => {
 						signOut()
-						navigate({ to: '/login' })
 					}}
 				/>
 				<Title weight={'normal'}>User : {user?.email} </Title>

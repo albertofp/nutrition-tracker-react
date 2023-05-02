@@ -10,7 +10,7 @@ type Props = {
 function ResultsDisplay({ results }: Props) {
 	const mobile = useMediaQuery(`(max-width: 768px)`)
 	return (
-		<div className='flex flex-col md:flex-row gap-4 md:max-w-[850px] flex-wrap m-2 p-2 justify-center'>
+		<div className='flex flex-col md:flex-row gap-4 md:max-w-[850px] flex-wrap-2 justify-center'>
 			{results!.length <= 0 ? (
 				<Title
 					order={2}
@@ -21,7 +21,7 @@ function ResultsDisplay({ results }: Props) {
 			) : (
 				<Carousel
 					slideSize='50%'
-					breakpoints={[{ maxWidth: 'sm', slideSize: '20%', slideGap: rem(2) }]}
+					breakpoints={[{ maxWidth: 'sm', slideSize: '20%', slideGap: rem(8) }]}
 					slideGap='sm'
 					align='start'
 					orientation={mobile ? 'vertical' : 'horizontal'}

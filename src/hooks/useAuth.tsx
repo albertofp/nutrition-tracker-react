@@ -20,8 +20,8 @@ export const AuthProvider = ({ children }: any) => {
 				error
 			} = await supabase.auth.getSession()
 			if (error) {
-				throw error
 				console.log(`Error getting session: ${error?.message}`)
+				throw error
 			}
 			setSession(session)
 			setUser(session?.user ?? null)

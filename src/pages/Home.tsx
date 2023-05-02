@@ -35,7 +35,7 @@ export default function Home() {
 	const displaySearch = () => {
 		currentDisplay === null
 			? setCurrentDisplay(<SearchForm />)
-			: setCurrentDisplay(<SearchForm />)
+			: setCurrentDisplay(null)
 	}
 
 	const resetDayTotal = () => {
@@ -63,7 +63,7 @@ export default function Home() {
 
 	return (
 		<DayContext.Provider value={{ dayTotal, setDayTotal }}>
-			<div className='flex flex-col m-2 w-full'>
+			<div className='flex flex-col w-full'>
 				<div className='flex justify-start gap-4 max-w-[1240px] mx-auto px-4 items-center'>
 					<div className='flex gap-2'>
 						<Button
@@ -84,7 +84,7 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className='flex flex-col items-center gap-2 text-sky-300 max-w-[1240px] min-w-[350px] mx-auto p-4'>
+				<div className='flex flex-col items-center gap-1 text-sky-300 max-w-[1240px] min-w-[350px] mx-auto p-4'>
 					<MacrosList
 						item={dayTotal}
 						title='Daily Total'
