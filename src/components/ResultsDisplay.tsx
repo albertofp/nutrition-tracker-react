@@ -26,6 +26,7 @@ function ResultsDisplay({ results }: Props) {
 					align='start'
 					orientation={mobile ? 'vertical' : 'horizontal'}
 					withControls={false}
+					className='max-w-5xl'
 				>
 					{results!.map((item) => (
 						<Carousel.Slide
