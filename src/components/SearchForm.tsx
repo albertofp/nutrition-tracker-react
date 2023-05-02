@@ -62,7 +62,7 @@ function SearchForm() {
 				setLoading(false)
 				setMatchingResults(res)
 			})
-		}else{
+		} else {
 			setMatchingResults(null)
 		}
 	}
@@ -78,7 +78,7 @@ function SearchForm() {
 						type='string'
 						placeholder=''
 						{...register('query')}
-						className='rounded-lg p-1 m-1 bg-gray-300 text-sky-600'
+						className='border-2 border-sky-950 rounded-lg p-1 m-1 bg-slate-400 text-sky-800 placeholder-inherit'
 					/>
 					{errors.query && (
 						<p className='text-sm text-red-600 mt-1 self-center'>
