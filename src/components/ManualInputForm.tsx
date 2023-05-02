@@ -1,38 +1,43 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { foodItem } from '../../types/types'
-import { z, ZodType } from 'zod'
+import { date, z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
 import { notifications } from '@mantine/notifications'
-import { CheckCircle2, Plus, AlertCircle } from 'lucide-react'
+import { CheckCircle2, Plus } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
 import usePhoto from '../hooks/usePhoto'
+import { NorthWest } from '@mui/icons-material'
+import { DayContext, DayContextTypes } from '../DayContext'
 
-type Props = {
-	macros: foodItem
-	setMacros: React.Dispatch<React.SetStateAction<foodItem>>
+type FormData = {
+	name: string
+	calories: number
+	protein: number
+	carbs: number
+	fat: number
+	fiber: number
 }
-
-const schema = z.object({
-	name: z.string().min(1),
-	calories: z.number().min(0).default(0),
-	protein: z.number().min(0).default(0),
-	carbs: z.number().min(0).default(0),
-	fat: z.number().min(0).default(0),
-	fiber: z.number().min(0).default(0)
-})
-
-type FormData = z.infer<typeof schema>
 
 const inputStyle =
 	'border-2 border-sky-950 rounded-lg p-1 m-1 bg-slate-400 text-sky-800 placeholder-inherit'
 
 const errorStyle = 'text-sm text-red-600 mt-1 self-center'
 
-function ManualInputForm({ macros, setMacros }: Props) {
+function ManualInputForm() {
 	const [saveTemplate, setSaveTemplate] = useState(false)
+	const { dayTotal, setDayTotal } = useContext(DayContext) as DayContextTypes
+
+	const schema: ZodType<FormData> = z.object({
+		name: z.string(),
+		calories: z.number().min(0),
+		protein: z.number().min(0),
+		carbs: z.number().min(0),
+		fat: z.number().min(0),
+		fiber: z.number().min(0)
+	})
 
 	const {
 		register,
@@ -53,48 +58,39 @@ function ManualInputForm({ macros, setMacros }: Props) {
 	})
 
 	const newItemName = getValues('name')
-	const { url, user, error } = usePhoto(newItemName)
+	const { url, user } = usePhoto(newItemName)
 
 	const onSubmit = (formValues: FormData, e: any) => {
 		//const newTotal = mergeObjects(formValues, macros)
 		const newTotal: foodItem = {
 			name: formValues.name,
-			calories: formValues.calories! + macros.calories!,
-			protein: formValues.protein! + macros.protein!,
-			carbs: formValues.carbs! + macros.carbs!,
-			fat: formValues.fat! + macros.fat!,
-			fiber: formValues.fiber! + macros.fiber!,
+			calories: formValues.calories! + dayTotal.calories!,
+			protein: formValues.protein! + dayTotal.protein!,
+			carbs: formValues.carbs! + dayTotal.carbs!,
+			fat: formValues.fat! + dayTotal.fat!,
+			fiber: formValues.fiber! + dayTotal.fiber!,
 			img: '',
 			imgAuthor: ''
 		}
 
-		setMacros(newTotal)
+		setDayTotal(newTotal)
 
-		if (saveTemplate) {
-			if (!error) {
-				const newItem = { ...formValues, img: url!, imgAuthor: user! }
-				addItem(newItem)
-				const message = saveTemplate
-					? `${formValues.name} added to database`
-					: 'Macros added to daily total'
-				notifications.show({
-					message: message,
-					color: 'green',
-					autoClose: 2000,
-					icon: <CheckCircle2 />,
-					sx: { backgroundColor: 'lightgreen' }
-				})
-				reset()
-			} else {
-				notifications.show({
-					message: `${error.status}: ${error.response?.message}`,
-					color: 'red',
-					autoClose: 2000,
-					icon: <AlertCircle />,
-					sx: { backgroundColor: 'orangered' }
-				})
-			}
+		if (saveTemplate && formValues.name.length > 0) {
+			const newItem = { ...formValues, img: url!, imgAuthor: user! }
+			addItem(newItem)
 		}
+
+		const message = formValues.name.length
+			? `${formValues.name} added to database`
+			: 'Macros added to daily total'
+		notifications.show({
+			message: message,
+			color: 'green',
+			autoClose: 2000,
+			icon: <CheckCircle2 />,
+			sx: { backgroundColor: 'lightgreen' }
+		})
+		reset()
 	}
 
 	const onCheckBoxChange = (e: any) => {

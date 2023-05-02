@@ -28,12 +28,7 @@ export default function Home() {
 
 	const displayManualInput = () => {
 		currentDisplay === null
-			? setCurrentDisplay(
-					<ManualInputForm
-						macros={dayTotal}
-						setMacros={setDayTotal}
-					/>
-			  )
+			? setCurrentDisplay(<ManualInputForm />)
 			: setCurrentDisplay(null)
 	}
 

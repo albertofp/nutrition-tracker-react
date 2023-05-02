@@ -24,13 +24,15 @@ function MacrosList({
 	const { dayTotal, setDayTotal } = useContext(DayContext) as DayContextTypes
 
 	const addMacrosToDaily = () => {
-		const newItem = {
+		const newItem: foodItem = {
 			name: item.name,
 			calories: item.calories + dayTotal.calories,
 			protein: item.protein + dayTotal.protein,
 			carbs: item.carbs + dayTotal.carbs,
 			fat: item.fat + dayTotal.fat,
-			fiber: item.fiber + dayTotal.fiber
+			fiber: item.fiber + dayTotal.fiber,
+			img: '',
+			imgAuthor: ''
 		}
 		setDayTotal(newItem)
 		notifications.show({
