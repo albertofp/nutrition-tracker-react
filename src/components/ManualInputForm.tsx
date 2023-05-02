@@ -1,15 +1,14 @@
 import { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { foodItem } from '../../types/types'
-import { date, z, ZodType } from 'zod'
+import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
 import { notifications } from '@mantine/notifications'
-import { CheckCircle2, Plus } from 'lucide-react'
+import { CheckCircle2, Plus, AlertCircle } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
 import usePhoto from '../hooks/usePhoto'
-import { NorthWest } from '@mui/icons-material'
 import { DayContext, DayContextTypes } from '../DayContext'
 
 type FormData = {
@@ -58,10 +57,9 @@ function ManualInputForm() {
 	})
 
 	const newItemName = getValues('name')
-	const { url, user } = usePhoto(newItemName)
+	const { url, user, error } = usePhoto(newItemName)
 
 	const onSubmit = (formValues: FormData, e: any) => {
-		//const newTotal = mergeObjects(formValues, macros)
 		const newTotal: foodItem = {
 			name: formValues.name,
 			calories: formValues.calories! + dayTotal.calories!,
@@ -78,18 +76,43 @@ function ManualInputForm() {
 		if (saveTemplate && formValues.name.length > 0) {
 			const newItem = { ...formValues, img: url!, imgAuthor: user! }
 			addItem(newItem)
-		}
 
-		const message = formValues.name.length
-			? `${formValues.name} added to database`
-			: 'Macros added to daily total'
-		notifications.show({
-			message: message,
-			color: 'green',
-			autoClose: 2000,
-			icon: <CheckCircle2 />,
-			sx: { backgroundColor: 'lightgreen' }
-		})
+			if (error) {
+				//Notifies if unsplash api fails to get image(e.g rate limit exceeded leading to 401)
+				notifications.show({
+					message: `${error.status}: ${error.response?.message} - using fallback image`,
+					color: 'yellow',
+					autoClose: 2000,
+					icon: <AlertCircle />,
+					sx: { backgroundColor: 'yellowgreen' }
+				})
+			}
+
+			notifications.show({
+				message: `${formValues.name} added to database`,
+				color: 'green',
+				autoClose: 2000,
+				icon: <CheckCircle2 />,
+				sx: { backgroundColor: 'lightgreen' }
+			})
+		} else {
+			if (
+				// Returns true if at least one value is > 0
+				// Prevents toast from showing if everything is 0
+				// Not sure about the TS error, it works
+				Object.values(formValues)
+					.slice(1)
+					.some((element) => element > 0)
+			) {
+				notifications.show({
+					message: 'Macros added to daily total',
+					color: 'green',
+					autoClose: 2000,
+					icon: <CheckCircle2 />,
+					sx: { backgroundColor: 'lightgreen' }
+				})
+			}
+		}
 		reset()
 	}
 
