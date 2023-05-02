@@ -5,7 +5,7 @@ import { z, ZodType } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { addItem } from '../utils/useDatabase'
 import { notifications } from '@mantine/notifications'
-import { CheckCircle2, Plus, X } from 'lucide-react'
+import { CheckCircle2, Plus, AlertCircle } from 'lucide-react'
 import Button from './Button'
 import { Title } from '@mantine/core'
 import usePhoto from '../hooks/usePhoto'
@@ -88,9 +88,9 @@ function ManualInputForm({ macros, setMacros }: Props) {
 			} else {
 				notifications.show({
 					message: `${error.status}: ${error.response?.message}`,
-					color: '',
+					color: 'red',
 					autoClose: 2000,
-					icon: <X />,
+					icon: <AlertCircle />,
 					sx: { backgroundColor: 'orangered' }
 				})
 			}
