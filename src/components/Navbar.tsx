@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from '@tanstack/router'
-import { Avatar, Text, Burger } from '@mantine/core'
+import { Avatar, Text, Burger, Divider } from '@mantine/core'
 import { useAuth } from '../hooks/useAuth'
 import { SeparatorVertical } from 'lucide-react'
 
@@ -18,7 +18,13 @@ export default function Navbar() {
           <Text weight={'lighter'} truncate size={'sm'}>
             {user?.user_metadata?.name ? user?.user_metadata.name : user?.email}
           </Text>
-          {session ? <SeparatorVertical /> : null}
+          {session ? (
+            <Divider
+              orientation="vertical"
+              color="rgb(125 211 252 / var(--tw-text-opacity))"
+              size='sm'
+            />
+          ) : null}
         </div>
         <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/home">Home</Link>
