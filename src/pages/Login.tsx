@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate()
   //let { session, user } = useAuth()
 
-  supabase.auth.onAuthStateChange(async (event) => {
+  supabase.auth.onAuthStateChange((event) => {
     switch (event) {
       case 'SIGNED_IN':
         navigate({ to: '/home' })
@@ -32,6 +32,10 @@ function Login() {
     supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
     })
+
+    if(session){
+      navigate({ to: '/home' })
+    }
   }, [])
 
   /*

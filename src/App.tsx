@@ -12,6 +12,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Splash from './pages/Splash'
+import { AuthProvider } from './hooks/useAuth'
 
 const rootRoute = new RootRoute({
   component: Root,
@@ -64,10 +65,10 @@ declare module '@tanstack/router' {
 
 function Root() {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
       <Outlet />
-    </>
+    </AuthProvider>
   )
 }
 

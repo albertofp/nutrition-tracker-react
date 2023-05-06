@@ -16,8 +16,8 @@ const Auth = () => {
     error: null,
     text: null,
   })
-  const emailRef = useRef()
-  const passwordRef = useRef()
+  const emailRef = useRef<HTMLInputElement>(null)
+  const passwordRef = useRef<HTMLInputElement>(null)
 
   const handleLogin = async (type: string) => {
     const email = emailRef.current?.value

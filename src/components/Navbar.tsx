@@ -1,14 +1,13 @@
-import { useState } from 'react'
+import { MouseEventHandler, useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { Link } from '@tanstack/router'
-import { Avatar, Title } from '@mantine/core'
+import { Avatar, Title, Text } from '@mantine/core'
 import { useAuth } from '../hooks/useAuth'
-
-const liStyle = 'p-4 cursor-pointer hover:bg-slate-900 rounded-lg min-w-fit '
+import { Session, User } from '@supabase/supabase-js'
 
 export default function Navbar() {
+  const { user, signOut, session } = useAuth()
   const [nav, setNav] = useState(true)
-  const { user, signOut } = useAuth()
 
   return (
     <nav className="mx-auto mb-6 flex h-20 w-full items-center justify-between bg-gradient-to-b from-sky-800 to-sky-950 px-4 text-sky-300">
@@ -16,16 +15,16 @@ export default function Navbar() {
         <Link to="/">Nutrition Tracker</Link>
       </h1>
       <ul className="hidden md:flex">
-        <li className={liStyle}>
+        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/home">Home</Link>
         </li>
-        <li className={liStyle}>
+        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/about">About</Link>
         </li>
-        <li className={liStyle}>
+        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/contact">Contact</Link>
         </li>
-        <li className={liStyle}>
+        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/login">Log in</Link>
         </li>
       </ul>
@@ -41,48 +40,63 @@ export default function Navbar() {
         className={
           nav
             ? 'fixed left-[-100%]'
-            : 'fixed left-0 top-0 h-full w-[60%] min-w-fit border-r border-r-sky-950 bg-zinc-900 duration-500 ease-in-out'
+            : 'fixed left-0 top-0 h-full w-[60%] min-w-fit max-w-[60%] border-r border-r-sky-950 bg-zinc-900 duration-500 ease-in-out'
         }
       >
         <h1 className="m-4 w-full max-w-fit text-3xl font-bold text-sky-300 ">
           <Link to="/">Nutrition Tracker</Link>
         </h1>
         <ul className="p-4 uppercase">
-          <li
-            className={liStyle + 'w-full rounded-none border-b border-sky-300'}
-          >
-            <div className=" flex items-center justify-between gap-2">
-              <Title size="h4" weight={'normal'}>
-                {user?.user_metadata?.name}
-              </Title>
-              <Avatar
-                radius={'xl'}
-                size={36}
-                variant="light"
-                src={user?.user_metadata?.image}
-                alt={user?.user_metadata?.name}
-                //children={user.initials}
-              />
-            </div>
-          </li>
-          <li
-            className={liStyle + 'w-full rounded-none border-b border-sky-300'}
-          >
-            <Link to="/login">Log in</Link>
-          </li>
-          <li
-            className={liStyle + 'w-full rounded-none border-b border-sky-300'}
-          >
+          {session ? (
+            <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
+              <div className=" flex max-w-xs items-center justify-between gap-2">
+                <Text weight={'lighter'} truncate size={'sm'}>
+                  {user?.user_metadata?.name
+                    ? user?.user_metadata.name
+                    : user?.email}
+                </Text>
+                <Avatar
+                  radius={'xl'}
+                  size={36}
+                  variant="light"
+                  src={user?.user_metadata?.image}
+                  alt={user?.user_metadata?.name}
+                  //children={user.initials}
+                />
+              </div>
+            </li>
+          ) : null}
+          <UserControls />
+          <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
             <Link to="/home">Home</Link>
           </li>
-          <li className={liStyle + 'rounded-none border-b border-sky-300'}>
+          <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
             <Link to="/about">About</Link>
           </li>
-          <li className={liStyle + 'rounded-none border-b border-sky-300'}>
+          <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
             <Link to="/contact">Contact</Link>
           </li>
         </ul>
       </aside>
     </nav>
   )
+}
+
+function UserControls() {
+  const { signOut, session } = useAuth()
+  if (session) {
+    return (
+      <li
+        className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900"
+        onClick={signOut}
+      >
+        Log out
+      </li>
+    )
+  } else
+    return (
+      <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
+        <Link to="/login">Log in</Link>
+      </li>
+    )
 }

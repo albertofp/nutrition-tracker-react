@@ -1,6 +1,7 @@
 import { Session, User } from '@supabase/supabase-js'
 import { useContext, useState, useEffect, createContext } from 'react'
 import { supabase } from '../config/supabaseClient'
+import { useNavigate } from '@tanstack/router'
 
 const AuthContext = createContext<{
   session: Session | null | undefined
@@ -12,6 +13,7 @@ export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<User | null | undefined>(null)
   const [session, setSession] = useState<Session | null>()
   const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const setData = async () => {
@@ -34,7 +36,16 @@ export const AuthProvider = ({ children }: any) => {
         console.log(`Supabase auth event: ${_event}`)
         setSession(session)
         setUser(session?.user ?? null)
-        setLoading(false)
+        setLoading(false)     
+
+        switch (_event) {
+          case 'SIGNED_IN':
+            navigate({ to: '/home' })
+          case 'SIGNED_OUT':
+            navigate({ to: '/login' })
+          default:
+            break
+        }
       }
     )
 
