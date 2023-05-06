@@ -4,17 +4,24 @@ import { Link } from '@tanstack/router'
 import { Avatar, Title, Text } from '@mantine/core'
 import { useAuth } from '../hooks/useAuth'
 import { Session, User } from '@supabase/supabase-js'
+import { SeparatorVertical } from 'lucide-react'
 
 export default function Navbar() {
   const { user, signOut, session } = useAuth()
   const [nav, setNav] = useState(true)
 
   return (
-    <nav className="mx-auto mb-6 flex h-20 w-full items-center justify-between bg-gradient-to-b from-sky-800 to-sky-950 px-4 text-sky-300">
+    <nav className="mb-6 flex h-20 w-full items-center justify-between bg-gradient-to-b from-sky-800 to-sky-950 px-4 text-sky-300">
       <h1 className="w-full text-3xl font-bold">
         <Link to="/">Nutrition Tracker</Link>
       </h1>
-      <ul className="hidden md:flex">
+      <ul className="hidden md:flex p-4">
+        <div className=" flex max-w-xs items-center justify-between gap-2">
+          <Text weight={'lighter'} truncate size={'sm'}>
+            {user?.user_metadata?.name ? (user?.user_metadata.name ) : user?.email}
+          </Text>
+          {session ? <SeparatorVertical /> : null}
+        </div>
         <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/home">Home</Link>
         </li>
@@ -24,9 +31,7 @@ export default function Navbar() {
         <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
           <Link to="/contact">Contact</Link>
         </li>
-        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
-          <Link to="/login">Log in</Link>
-        </li>
+        <UserControlsTop />
       </ul>
       <div
         onClick={() => {
@@ -66,7 +71,7 @@ export default function Navbar() {
               </div>
             </li>
           ) : null}
-          <UserControls />
+          <UserControlsAside />
           <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
             <Link to="/home">Home</Link>
           </li>
@@ -82,7 +87,7 @@ export default function Navbar() {
   )
 }
 
-function UserControls() {
+function UserControlsAside() {
   const { signOut, session } = useAuth()
   if (session) {
     return (
@@ -96,6 +101,25 @@ function UserControls() {
   } else
     return (
       <li className="w-full min-w-fit cursor-pointer rounded-none border-b border-sky-300 p-4 hover:bg-slate-900">
+        <Link to="/login">Log in</Link>
+      </li>
+    )
+}
+
+function UserControlsTop() {
+  const { signOut, session } = useAuth()
+  if (session) {
+    return (
+      <li
+        className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900"
+        onClick={signOut}
+      >
+        Log out
+      </li>
+    )
+  } else
+    return (
+      <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
         <Link to="/login">Log in</Link>
       </li>
     )

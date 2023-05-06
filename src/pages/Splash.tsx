@@ -1,16 +1,12 @@
 import { Title } from '@mantine/core'
 import Button from '../components/Button'
 import { useAuth } from '../hooks/useAuth'
-import { supabase } from '../config/supabaseClient'
-import { useNavigate } from '@tanstack/router'
 
 function Splash() {
   const { session, user, signOut } = useAuth()
-  const navigate = useNavigate()
 
   const logsession = async () => {
-    const { data, error } = await supabase.auth.getSession()
-    console.log(`Session: ${data.session}`)
+    console.log(`Session: ${session}`)
   }
 
   return (
