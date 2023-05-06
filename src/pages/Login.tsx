@@ -8,62 +8,62 @@ import { Session } from '@supabase/supabase-js'
 import { useState, useEffect } from 'react'
 
 function Login() {
-	const [session, setSession] = useState<Session | null>()
-	const navigate = useNavigate()
-	//let { session, user } = useAuth()
+  const [session, setSession] = useState<Session | null>()
+  const navigate = useNavigate()
+  //let { session, user } = useAuth()
 
-	supabase.auth.onAuthStateChange(async (event) => {
-		switch (event) {
-			case 'SIGNED_IN':
-				navigate({ to: '/home' })
-			case 'SIGNED_OUT':
-				navigate({ to: '/login' })
-			default:
-				break
-		}
-	})
+  supabase.auth.onAuthStateChange(async (event) => {
+    switch (event) {
+      case 'SIGNED_IN':
+        navigate({ to: '/home' })
+      case 'SIGNED_OUT':
+        navigate({ to: '/login' })
+      default:
+        break
+    }
+  })
 
- useEffect(() => {
-		supabase.auth.getSession().then(({ data: { session } }) => {
-			console.log(`Session: ${session}`)
-			setSession(session)
-		})
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      console.log(`Session: ${session}`)
+      setSession(session)
+    })
 
-		supabase.auth.onAuthStateChange((_event, session) => {
-			setSession(session)
-		})
-	}, [])
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
 
-	/*
+  /*
 	
 			
 		*/
 
-	return (
-		<div className='flex justify-center'>
-			<AuthUI
-				supabaseClient={supabase}
-				appearance={{
-					theme: ThemeSupa,
-					variables: {
-						default: {
-							colors: {
-								brand: '#082f49',
-								defaultButtonBackground: '#082f49',
-								defaultButtonBackgroundHover: '#075985',
-								brandAccent: '#075985',
-								defaultButtonBorder: '#155e75',
-								brandButtonText: '#0284c7'
-							}
-						}
-					}
-				}}
-				theme='dark'
-				providers={['github', 'google']}
-				socialLayout='horizontal'
-			/>
-		</div>
-	)
+  return (
+    <div className="flex justify-center">
+      <AuthUI
+        supabaseClient={supabase}
+        appearance={{
+          theme: ThemeSupa,
+          variables: {
+            default: {
+              colors: {
+                brand: '#082f49',
+                defaultButtonBackground: '#082f49',
+                defaultButtonBackgroundHover: '#075985',
+                brandAccent: '#075985',
+                defaultButtonBorder: '#155e75',
+                brandButtonText: '#0284c7',
+              },
+            },
+          },
+        }}
+        theme="dark"
+        providers={['github', 'google']}
+        socialLayout="horizontal"
+      />
+    </div>
+  )
 }
 
 export default Login

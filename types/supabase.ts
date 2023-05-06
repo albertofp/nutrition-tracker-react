@@ -34,7 +34,7 @@ export interface Database {
   }
   public: {
     Tables: {
-      "Ingredient Macros": {
+      'Ingredient Macros': {
         Row: {
           calories: number
           carbs: number

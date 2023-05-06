@@ -2,73 +2,73 @@ import { foodItem } from '../../types/types'
 import { supabase } from '../config/supabaseClient'
 
 export async function addItem(item: foodItem) {
-	const { error } = await supabase.from('Ingredient Macros').insert([
-		{
-			...item,
-			name: item.name.toLowerCase()
-		}
-	])
+  const { error } = await supabase.from('Ingredient Macros').insert([
+    {
+      ...item,
+      name: item.name.toLowerCase(),
+    },
+  ])
 
-	if (error) {
-		console.error('Create row error: ', error)
-		throw error
-	} else {
-		console.log('Added item to database: ', item)
-	}
+  if (error) {
+    console.error('Create row error: ', error)
+    throw error
+  } else {
+    console.log('Added item to database: ', item)
+  }
 }
 
 export async function delItem(name: string) {
-	const { error } = await supabase
-		.from('Ingredient Macros')
-		.delete()
-		.eq('name', name)
+  const { error } = await supabase
+    .from('Ingredient Macros')
+    .delete()
+    .eq('name', name)
 
-	if (error) {
-		console.error('Delete row error: ', error)
-		throw error
-	}
+  if (error) {
+    console.error('Delete row error: ', error)
+    throw error
+  }
 }
 
 export async function readItem(name: string) {
-	let { data: item, error } = await supabase
-		.from('Ingredient Macros')
-		.select('*')
-		.eq('name', name)
+  let { data: item, error } = await supabase
+    .from('Ingredient Macros')
+    .select('*')
+    .eq('name', name)
 
-	if (error) {
-		console.error('Read row error: ', error)
-		throw error
-	}
-	return Promise.resolve(item)
+  if (error) {
+    console.error('Read row error: ', error)
+    throw error
+  }
+  return Promise.resolve(item)
 }
 
 export async function readAll() {
-	let { data: item, error } = await supabase
-		.from('Ingredient Macros')
-		.select('*')
+  let { data: item, error } = await supabase
+    .from('Ingredient Macros')
+    .select('*')
 
-	if (error) {
-		console.error('Read row error: ', error)
-		throw error
-	}
-	return Promise.resolve(item)
+  if (error) {
+    console.error('Read row error: ', error)
+    throw error
+  }
+  return Promise.resolve(item)
 }
 
 export async function updateItem(item: foodItem) {
-	const { error } = await supabase
-		.from('Ingredient Macros')
-		.update({
-			name: item.name,
-			calories: item.calories,
-			protein: item.protein,
-			carbs: item.carbs,
-			fat: item.fat,
-			fiber: item.fiber
-		})
-		.eq('name', item.name)
+  const { error } = await supabase
+    .from('Ingredient Macros')
+    .update({
+      name: item.name,
+      calories: item.calories,
+      protein: item.protein,
+      carbs: item.carbs,
+      fat: item.fat,
+      fiber: item.fiber,
+    })
+    .eq('name', item.name)
 
-	if (error) {
-		console.error('Update row error: ', error)
-		throw error
-	}
+  if (error) {
+    console.error('Update row error: ', error)
+    throw error
+  }
 }
