@@ -1,6 +1,7 @@
 import { Title } from '@mantine/core'
 import Button from '../components/Button'
 import { useAuth } from '../hooks/useAuth'
+import Auth from '../components/Auth'
 
 function Splash() {
   const { session, user, signOut } = useAuth()
@@ -27,7 +28,7 @@ function Splash() {
             signOut()
           }}
         />
-        <Title weight={'normal'}>User : {user?.email} </Title>
+        <Auth />
       </div>
     </div>
   )

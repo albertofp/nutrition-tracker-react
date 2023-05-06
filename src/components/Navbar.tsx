@@ -1,9 +1,7 @@
-import { MouseEventHandler, useState } from 'react'
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
+import { useState } from 'react'
 import { Link } from '@tanstack/router'
-import { Avatar, Title, Text } from '@mantine/core'
+import { Avatar, Text, Burger } from '@mantine/core'
 import { useAuth } from '../hooks/useAuth'
-import { Session, User } from '@supabase/supabase-js'
 import { SeparatorVertical } from 'lucide-react'
 
 export default function Navbar() {
@@ -15,10 +13,10 @@ export default function Navbar() {
       <h1 className="w-full text-3xl font-bold">
         <Link to="/">Nutrition Tracker</Link>
       </h1>
-      <ul className="hidden md:flex p-4">
+      <ul className="hidden p-4 md:flex">
         <div className=" flex max-w-xs items-center justify-between gap-2">
           <Text weight={'lighter'} truncate size={'sm'}>
-            {user?.user_metadata?.name ? (user?.user_metadata.name ) : user?.email}
+            {user?.user_metadata?.name ? user?.user_metadata.name : user?.email}
           </Text>
           {session ? <SeparatorVertical /> : null}
         </div>
@@ -33,14 +31,14 @@ export default function Navbar() {
         </li>
         <UserControlsTop />
       </ul>
-      <div
+      <Burger
+        opened={!nav}
         onClick={() => {
           setNav(!nav)
         }}
-        className="block cursor-pointer md:hidden"
-      >
-        {!nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
-      </div>
+        color="rgb(125 211 252 / var(--tw-text-opacity))"
+        className="md:hidden"
+      />
       <aside
         className={
           nav
