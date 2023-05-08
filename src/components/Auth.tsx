@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../config/supabaseClient'
-import { EmailOtpType, Provider } from '@supabase/supabase-js'
+import { Provider } from '@supabase/supabase-js'
 import Button from './Button'
-import { AtSign, GithubIcon, Lock } from 'lucide-react'
-import { Google } from '@mui/icons-material'
-import { Text, Title, Input, PasswordInput, TextInput } from '@mantine/core'
+import { AtSign, GithubIcon } from 'lucide-react'
+import GoogleIcon from '/src/assets/google-icon.svg'
+import { Text, Title, TextInput } from '@mantine/core'
 import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -111,7 +110,7 @@ const Auth = () => {
             <div className="mt-3">
               <Button
                 className="focus:shadow-outline-sky mx-auto flex w-full min-w-[90px] items-center justify-center rounded-md border border-transparent bg-sky-600 px-4 py-2 text-sm font-medium text-sky-950 transition duration-150 ease-in-out hover:bg-sky-500 focus:border-sky-700 focus:outline-none active:bg-sky-700"
-                icon={<Google />}
+                icon={<img src={GoogleIcon} width={23}/>}
                 onClick={() => handleOAuthLogin('google')}
               />
             </div>
