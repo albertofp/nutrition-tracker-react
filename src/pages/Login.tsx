@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/useAuth'
 import Auth from '../components/Auth'
 import { Session } from '@supabase/supabase-js'
 import { useState, useEffect } from 'react'
+import { Paper } from '@mantine/core'
 
 function Login() {
   const [session, setSession] = useState<Session | null>()
@@ -33,7 +34,7 @@ function Login() {
       setSession(session)
     })
 
-    if(session){
+    if (session) {
       navigate({ to: '/home' })
     }
   }, [])
@@ -43,31 +44,7 @@ function Login() {
 			
 		*/
 
-  return (
-    <div className="flex justify-center">
-      <AuthUI
-        supabaseClient={supabase}
-        appearance={{
-          theme: ThemeSupa,
-          variables: {
-            default: {
-              colors: {
-                brand: '#082f49',
-                defaultButtonBackground: '#082f49',
-                defaultButtonBackgroundHover: '#075985',
-                brandAccent: '#075985',
-                defaultButtonBorder: '#155e75',
-                brandButtonText: '#0284c7',
-              },
-            },
-          },
-        }}
-        theme="dark"
-        providers={['github', 'google']}
-        socialLayout="horizontal"
-      />
-    </div>
-  )
+  return <Auth />
 }
 
 export default Login

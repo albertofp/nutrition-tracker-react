@@ -22,7 +22,7 @@ export default function Navbar() {
             <Divider
               orientation="vertical"
               color="rgb(125 211 252 / var(--tw-text-opacity))"
-              size='sm'
+              size="sm"
             />
           ) : null}
         </div>
@@ -48,8 +48,8 @@ export default function Navbar() {
       <aside
         className={
           nav
-            ? 'fixed left-[-100%]'
-            : 'fixed left-0 top-0 h-full w-[60%] min-w-fit max-w-[60%] border-r border-r-sky-950 bg-zinc-900 duration-500 ease-in-out'
+            ? 'fixed left-[-100%] z-[99]'
+            : 'fixed left-0 top-0 z-[99] h-full w-[60%] min-w-fit max-w-[60%] border-r border-r-sky-950 bg-zinc-900 duration-500 ease-in-out'
         }
       >
         <h1 className="m-4 w-full max-w-fit text-3xl font-bold text-sky-300 ">
