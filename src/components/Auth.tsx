@@ -31,8 +31,7 @@ const Auth = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email: email,
       options: {
-        emailRedirectTo:
-          'albertopluecker.github.io/nutrition-tracker-react/home',
+        emailRedirectTo: 'albertofp.github.io/nutrition-tracker-react/home',
       },
     })
     console.log(`Error signing in?: ${error ?? null}`)
