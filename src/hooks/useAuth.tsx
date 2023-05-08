@@ -28,7 +28,6 @@ export const AuthProvider = ({ children }: any) => {
       setSession(session)
       setUser(session?.user ?? null)
       setLoading(false)
-      console.log('Logged in - session:', session)
     }
 
     const { data: listener } = supabase.auth.onAuthStateChange(
@@ -36,15 +35,12 @@ export const AuthProvider = ({ children }: any) => {
         console.log(`Supabase auth event: ${_event}`)
         setSession(session)
         setUser(session?.user ?? null)
-        setLoading(false)     
-
-        switch (_event) {
-          case 'SIGNED_IN':
-            navigate({ to: '/home' })
-          case 'SIGNED_OUT':
-            navigate({ to: '/login' })
-          default:
-            break
+        setLoading(false)
+        if (_event === 'SIGNED_IN') {
+          navigate({ to: '/home' })
+        }
+        if (_event === 'SIGNED_OUT') {
+          navigate({ to: '/login' })
         }
       }
     )
