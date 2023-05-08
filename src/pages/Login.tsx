@@ -1,12 +1,10 @@
-import { Auth as AuthUI } from '@supabase/auth-ui-react'
+import SupabaseAuthUI from '../components/SupabaseAuthUI'
 import { supabase } from '../config/supabaseClient'
 import { useNavigate } from '@tanstack/router'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useAuth } from '../hooks/useAuth'
 import Auth from '../components/Auth'
 import { Session } from '@supabase/supabase-js'
 import { useState, useEffect } from 'react'
-import { Paper } from '@mantine/core'
 
 function Login() {
   const [session, setSession] = useState<Session | null>()
@@ -44,7 +42,7 @@ function Login() {
 			
 		*/
 
-  return <Auth />
+  return <SupabaseAuthUI />
 }
 
 export default Login
