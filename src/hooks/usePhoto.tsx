@@ -22,9 +22,9 @@ export default function usePhoto(query: string) {
   unsplashApi.search
     .getPhotos({ query: query, orientation: 'landscape', perPage: 1 })
     .then((result) => {
-      if (result.type == 'error') {
+      if (result.type == 'error' || result.response.total == 0) {
         setFallback(true)
-        setUnsplashError(result)
+        result.errors && setUnsplashError(result)
         unsplashApi.photos.trackDownload({
           downloadLocation:
             'https://unsplash.com/photos/T6hvDcE7pDs/download?ixid=MnwxMjA3fDB8MXxhbGx8MXx8fHx8fDJ8fDE2ODMwMzc5NDc&force=true&w=1920',
