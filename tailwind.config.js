@@ -9,8 +9,4 @@ export default {
     },
   },
   plugins: [],
-  purge: [
-    './components/**/*.{js,ts,jsx,tsx}',
-    './src/pages/**/*.{html,js,ts,jsx,tsx}',
-  ],
 }
