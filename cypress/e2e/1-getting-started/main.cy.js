@@ -26,6 +26,14 @@ describe('check navbar links', () => {
     cy.get('#contact').click()
     cy.contains('Alberto F. Pluecker')
   })
+
+  it('logs in', () => {
+    cy.get('#login').click()
+    cy.get("input[name='email']").type('s0gyqt+69zb0imfs92bw@sharklasers.com')
+    cy.get("input[name='password").type('123123')
+    cy.contains('Sign in').click()
+    cy.contains('s0gyqt+69zb0imfs92bw@sharklasers.com')
+  })
 })
 
 describe('Home functionality tests', () => {

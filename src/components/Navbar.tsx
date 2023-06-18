@@ -123,6 +123,7 @@ function UserControlsTop() {
   if (session) {
     return (
       <li
+        id="logout"
         className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900"
         onClick={signOut}
       >
@@ -131,7 +132,10 @@ function UserControlsTop() {
     )
   } else
     return (
-      <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
+      <li
+        id="login"
+        className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900"
+      >
         <Link to="/login">Log in</Link>
       </li>
     )
