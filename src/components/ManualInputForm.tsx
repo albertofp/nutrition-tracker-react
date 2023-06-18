@@ -55,7 +55,7 @@ function ManualInputForm() {
       fiber: 0,
     },
   })
-
+  //TODO: somehow move usePhoto inside onSubmit so it doesnt  keep calling the API
   const newItemName = getValues('name')
   const { url, user, error } = usePhoto(newItemName)
 
@@ -102,7 +102,7 @@ function ManualInputForm() {
         // Not sure about the TS error, it works
         Object.values(formValues)
           .slice(1)
-          .some((element) => element > 0)
+          .some((element) => Number(element) > 0)
       ) {
         notifications.show({
           message: 'Macros added to daily total',
@@ -208,7 +208,7 @@ function ManualInputForm() {
           </div>
         )}
 
-        <Button type="submit" text="Input" icon={<Plus />} />
+        <Button type="submit" text="Input" icon={<Plus />} id="submitbtn" />
       </form>
     </>
   )

@@ -27,7 +27,7 @@ function ResultsDisplay({ results }: Props) {
         >
           {results!.map((item) => (
             <Carousel.Slide key={item.id} size={20} gap={10}>
-              <MacrosList item={item} controls={true} showImg={true} />
+              <MacrosList item={item} controls={true} showImg={true}/>
             </Carousel.Slide>
           ))}
         </Carousel>

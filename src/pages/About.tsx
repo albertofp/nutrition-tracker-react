@@ -13,7 +13,7 @@ function About() {
         <Title align="center" weight={'normal'}>
           About
         </Title>
-        <Text className=" max-w-[420px] text-xl" align="justify">
+        <Text id="aboutText" className=" max-w-[420px] text-xl" align="justify">
           App to track and display your daily calorie and macro nutrient
           consumption. Developed by Alberto F. Pluecker as a learning project on
           React, Typescript, Tailwind and Supabase.

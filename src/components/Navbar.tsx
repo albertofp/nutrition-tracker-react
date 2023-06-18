@@ -27,12 +27,20 @@ export default function Navbar() {
           ) : null}
         </div>
         <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
-          <Link to="/home">Home</Link>
+          <Link id="home" to="/home">
+            Home
+          </Link>
         </li>
-        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
+        <li
+          id="about"
+          className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900"
+        >
           <Link to="/about">About</Link>
         </li>
-        <li className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900">
+        <li
+          id="contact"
+          className="min-w-fit cursor-pointer rounded-lg p-4 hover:bg-slate-900"
+        >
           <Link to="/contact">Contact</Link>
         </li>
         <UserControlsTop />

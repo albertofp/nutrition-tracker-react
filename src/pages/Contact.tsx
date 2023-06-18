@@ -10,6 +10,7 @@ export default function Contact() {
       </Title>
       <div className="mx-auto flex h-24 max-w-[1240px] flex-col items-center justify-between gap-4 px-4 md:flex-row md:justify-between">
         <a
+          id="githubLink"
           href="https://github.com/albertofp"
           className="flex items-center gap-4 rounded-md bg-gradient-to-b from-sky-800 to-sky-950 p-2"
         >
@@ -20,6 +21,7 @@ export default function Contact() {
         </a>
 
         <a
+          id="linkedinLink"
           href="https://www.linkedin.com/in/alberto-pluecker/"
           className="flex items-center gap-4 rounded-md bg-gradient-to-b from-sky-800 to-sky-950 p-2"
         >
