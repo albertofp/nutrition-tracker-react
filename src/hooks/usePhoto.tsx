@@ -16,8 +16,8 @@ export default function usePhoto(query: string) {
   const [fallback, setFallback] = useState(false)
 
   const fallbackURL =
-    'https://images.unsplash.com/photo-1502621066348-0e0b0a6d35c9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
-  const fallbackUser = 'Mona Eendra'
+    'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80'
+  const fallbackUser = 'Milad Fakurian'
 
   unsplashApi.search
     .getPhotos({ query: query, orientation: 'landscape', perPage: 1 })
@@ -41,18 +41,13 @@ export default function usePhoto(query: string) {
     })
     .catch((error) => console.error('error getting photo: ', error))
 
-  const response = fallback
-    ? {
-        url: fallbackURL,
-        user: fallbackUser,
-        error: unsplashError,
-      }
-    : {
-        //Ideally should change it to return the user object,
-        //but TS complains for some reason
-        url: data?.response?.results[0]?.urls.regular,
-        user: data?.response?.results[0]?.user?.name,
-        error: unsplashError,
-      }
-  return response
+  if (fallback)
+    return { url: fallbackURL, user: fallbackUser, error: unsplashError }
+  else
+    return {
+      url: data?.response?.results[0]?.urls.regular,
+      user: data?.response?.results[0]?.user?.name,
+      //user: data?.response?.results[0].user,
+      error: unsplashError,
+    }
 }
