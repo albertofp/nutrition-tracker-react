@@ -10,7 +10,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/output.css",
+    "tailwind": "npx tailwindcss -i ./src/input.css -o .output.css",
     "tailwind:watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
     "gen-types": "npx supabase gen types typescript --linked > types/supabase.ts",
     "test": "vitest --coverage",
